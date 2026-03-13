@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="light h-full w-full overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ambulance Traffic Management System Using IOT & Sound Detection</title>
+    
+    <!-- Script dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Leaflet for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Custom Tailwind Configuration to simulate modern aesthetics -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            panel: '#1e293b',
+                            border: '#334155'
+                        }
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-gray-200 transition-colors duration-300 antialiased h-full w-full flex flex-col overflow-hidden m-0 p-0">
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-dark-panel border-b border-gray-200 dark:border-dark-border py-3 px-6 shadow-sm z-10 hidden" id="mainHeader">
+        <div class="flex justify-between items-center max-w-7xl mx-auto w-full">
+            <div class="flex items-center gap-3">
+                <div class="bg-red-500 text-white p-2 rounded-lg shadow-md shrink-0">
+                    <i data-lucide="siren" class="w-6 h-6"></i>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight hidden sm:block">Smart Ambulance Traffic Management <span class="text-red-500">System Using IOT & Sound Detection</span></h1>
+                <h1 class="text-xl font-bold tracking-tight sm:hidden">Smart AMB<span class="text-red-500">SYS</span></h1>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <span id="userRoleBadge" class="px-3 py-1 rounded-full text-sm font-medium bg-brand-100 text-brand-600 dark:bg-brand-900 dark:text-brand-100 uppercase">
+                    Role
+                </span>
+                
+                <button id="themeToggleBtn" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    <i data-lucide="moon" id="moonIcon" class="w-5 h-5 hidden"></i>
+                    <i data-lucide="sun" id="sunIcon" class="w-5 h-5 text-yellow-400"></i>
+                </button>
+
+                <button id="muteBtn" class="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 transition group" title="Toggle System Audio">
+                    <i data-lucide="volume-2" id="volIcon" class="w-5 h-5 text-slate-600 dark:text-slate-300 group-hover:text-red-500"></i>
+                </button>
+                
+                <button id="logoutBtn" onclick="localStorage.clear(); window.location.href='/';" class="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition font-medium text-sm">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Emergency Alert Banner -->
+    <div id="emergencyBanner" class="hidden bg-red-600 text-white p-3 shadow-lg flex justify-center items-center gap-3 animate-pulse-fast z-50 fixed top-0 left-0 w-full">
+        <i data-lucide="alert-triangle" class="w-6 h-6 animate-bounce"></i>
+        <span class="font-bold text-lg tracking-wider">EMERGENCY MODE ACTIVE: CLEAR THE ROAD</span>
+        <i data-lucide="alert-triangle" class="w-6 h-6 animate-bounce"></i>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="flex-1 flex w-full h-full items-center justify-center bg-gradient-to-br from-brand-50 to-gray-100 dark:from-slate-900 dark:to-dark-bg p-4 relative">
+        <!-- Decorative blobs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-500/20 dark:bg-brand-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-red-500/20 dark:bg-red-500/10 rounded-full blur-3xl"></div>
+        
+        <div class="bg-white/80 dark:bg-dark-panel/80 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20 dark:border-dark-border z-10 relative shadow-brand-500/10">
+            <div class="text-center mb-8">
+                <div class="bg-gradient-to-br from-red-500 to-red-600 p-4 rounded-full inline-flex mb-4 shadow-lg shadow-red-500/30">
+                    <i data-lucide="siren" class="w-10 h-10 text-white"></i>
+                </div>
+                <h2 class="text-xl font-extrabold text-gray-900 dark:text-white leading-tight">Smart Ambulance Traffic Management<br><span class="text-brand-500 text-lg">Using IoT & Sound Detection</span></h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Sign in to access dashboard</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium mb-1 dark:text-gray-300">Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="user" class="h-5 w-5 text-gray-400"></i>
+                        </div>
+                        <input type="text" id="username" class="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 dark:text-white transition-all outline-none" placeholder="admin or driver1" required>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1 dark:text-gray-300">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="lock" class="h-5 w-5 text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" class="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 dark:text-white transition-all outline-none" placeholder="password123" required>
+                    </div>
+                </div>
+                
+                <div id="loginError" class="text-red-500 text-sm hidden font-medium text-center">Invalid credentials</div>
+                
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white rounded-xl font-bold shadow-lg shadow-brand-500/30 transform transition active:scale-[0.98]">
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-xs text-gray-400">
+                Simulation Demo Accounts: <br>
+                Admin (User: admin, Pass: password123) <br>
+                Driver (User: driver1, Pass: password123)
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="mainContent" class="hidden flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-6 pb-20 max-w-7xl mx-auto w-full relative">
+        <!-- Will be populated by JS based on role -->
+    </main>
+
+    <!-- Admin Dashboard Template -->
+    <template id="adminDashboardTemplate">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Traffic Signal Visualizer -->
+            <div class="lg:col-span-2 bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="traffic-cone" class="text-brand-500"></i> Intersection Status</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium" id="phaseIndicator">Phase: NS</span>
+                        <div class="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full text-xs font-bold uppercase tracking-wide border border-green-200 dark:border-green-800" id="syncStatus">
+                            <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></span>
+                            Live Server Sync
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Intersection Visualizer -->
+                <div class="relative w-full aspect-square max-w-md mx-auto bg-slate-100 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-inner p-4 flex items-center justify-center">
+                    
+                    <!-- Road SVG Background -->
+                    <div class="absolute inset-0 z-0 opacity-50 flex items-center justify-center pointer-events-none">
+                        <div class="w-full h-24 bg-slate-300 dark:bg-slate-900 absolute top-1/2 -mt-12"></div>
+                        <div class="h-full w-24 bg-slate-300 dark:bg-slate-900 absolute left-1/2 -ml-12"></div>
+                        <div class="w-full h-1 border-t-2 border-dashed border-white/50 absolute top-1/2"></div>
+                        <div class="h-full w-1 border-l-2 border-dashed border-white/50 absolute left-1/2"></div>
+                    </div>
+
+                    <!-- Signals Container -->
+                    <div class="relative w-full h-full z-10">
+                        <!-- North -->
+                        <div class="absolute top-2 left-1/2 -ml-6 flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold bg-slate-800 text-white px-2 rounded">NORTH</span>
+                            <div class="traffic-light-box" id="sig-north">
+                                <div class="light red"></div>
+                                <div class="light yellow"></div>
+                                <div class="light green"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- South -->
+                        <div class="absolute bottom-2 left-1/2 -ml-6 flex flex-col items-center gap-2">
+                            <div class="traffic-light-box" id="sig-south">
+                                <div class="light red"></div>
+                                <div class="light yellow"></div>
+                                <div class="light green"></div>
+                            </div>
+                            <span class="text-xs font-bold bg-slate-800 text-white px-2 rounded">SOUTH</span>
+                        </div>
+                        
+                        <!-- East -->
+                        <div class="absolute right-2 top-1/2 -mt-10 flex flex-row items-center gap-2">
+                            <span class="text-xs font-bold bg-slate-800 text-white px-2 rounded shrink-0">EAST</span>
+                            <div class="traffic-light-box horizontal" id="sig-east">
+                                <div class="light red"></div>
+                                <div class="light yellow"></div>
+                                <div class="light green"></div>
+                            </div>
+                        </div>
+
+                        <!-- West -->
+                        <div class="absolute left-2 top-1/2 -mt-10 flex flex-row shrink-0 items-center gap-2">
+                            <div class="traffic-light-box horizontal" id="sig-west">
+                                <div class="light green"></div>
+                                <div class="light yellow"></div>
+                                <div class="light red"></div>
+                            </div>
+                            <span class="text-xs font-bold bg-slate-800 text-white px-2 rounded shrink-0">WEST</span>
+                        </div>
+                        
+                        <!-- Center Emergency Indicator -->
+                        <div id="centerEmergencyVisual" class="absolute top-1/2 left-1/2 -mt-8 -ml-8 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,1)] animate-ping opacity-0 pointer-events-none transition-opacity duration-300"></div>
+                        <div id="centerEmergencyIcon" class="absolute top-1/2 left-1/2 -mt-6 -ml-6 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg text-white opacity-0 pointer-events-none transition-opacity duration-300">
+                           <i data-lucide="siren" class="w-6 h-6 animate-pulse"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widgets -->
+            <div class="flex flex-col gap-6">
+                <!-- Emergency Override Controls -->
+                <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-red-500"><i data-lucide="alert-octagon"></i> Manual Override</h3>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <button class="emp-btn btn-trigger relative overflow-hidden group" data-dir="north">
+                            <span class="relative z-10 flex flex-col items-center gap-1">
+                                <i data-lucide="arrow-up" class="w-5 h-5"></i> North
+                            </span>
+                            <div class="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left text-white z-0 rounded-lg"></div>
+                        </button>
+                        <button class="emp-btn btn-trigger relative overflow-hidden group" data-dir="south">
+                            <span class="relative z-10 flex flex-col items-center gap-1">
+                                <i data-lucide="arrow-down" class="w-5 h-5"></i> South
+                            </span>
+                        </button>
+                        <button class="emp-btn btn-trigger relative overflow-hidden group" data-dir="east">
+                            <span class="relative z-10 flex flex-col items-center gap-1">
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i> East
+                            </span>
+                        </button>
+                        <button class="emp-btn btn-trigger relative overflow-hidden group" data-dir="west">
+                            <span class="relative z-10 flex flex-col items-center gap-1">
+                                <i data-lucide="arrow-left" class="w-5 h-5"></i> West
+                            </span>
+                        </button>
+                    </div>
+                    
+                    <button id="disableEmergencyBtn" class="w-full py-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 font-bold rounded-xl transition flex justify-center items-center gap-2 text-slate-700 dark:text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="x-circle" class="w-5 h-5"></i> Restore Normal Traffic
+                    </button>
+                </div>
+
+                <!-- hardware Panel -->
+                <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 flex-1">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="cpu" class="text-brand-500"></i> IoT Hardware Status</h3>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i data-lucide="wifi" class="w-4 h-4 text-blue-500"></i> ESP32 Link
+                            </span>
+                            <span class="flex items-center gap-1 text-sm font-bold text-green-500">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Connected
+                            </span>
+                        </li>
+                        <li class="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i data-lucide="radio" class="w-4 h-4 text-purple-500"></i> Siren Sensor
+                            </span>
+                            <span class="flex items-center gap-1 text-sm font-bold text-green-500">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span> Active
+                            </span>
+                        </li>
+                        <li class="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i data-lucide="server" class="w-4 h-4 text-orange-500"></i> Signal Controller
+                            </span>
+                            <span class="flex items-center gap-1 text-sm font-bold text-green-500">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span> Running
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Density Control -->
+            <div class="lg:col-span-2 bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5">
+                 <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="sliders" class="text-brand-500"></i> Traffic Density Controls</h3>
+                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Dynamically adjusts green light timing for incoming traffic lanes. (Low: 10s, Med: 20s, High: 30s)</p>
+                 
+                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Density controls populated here by JS -->
+                    <div class="density-slider-container border border-gray-100 dark:border-dark-border p-4 rounded-xl relative overflow-hidden group hover:border-brand-200 transition">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <label class="font-bold flex justify-between mb-3"><span class="flex items-center gap-2"><i data-lucide="arrow-up" class="w-4 h-4"></i> North Lane</span> <span class="text-brand-500 font-mono text-xs dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30 px-2 py-1 rounded" id="label-den-north">LOW</span></label>
+                        <input type="range" class="w-full density-range accent-brand-500" min="1" max="3" step="1" id="den-north" data-dir="north">
+                        <div class="flex justify-between text-xs text-gray-400 font-medium px-1 mt-1">
+                            <span>Low</span><span>Mid</span><span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="density-slider-container border border-gray-100 dark:border-dark-border p-4 rounded-xl relative overflow-hidden group hover:border-brand-200 transition">
+                         <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                        <label class="font-bold flex justify-between mb-3"><span class="flex items-center gap-2"><i data-lucide="arrow-down" class="w-4 h-4"></i> South Lane</span> <span class="text-green-500 font-mono text-xs dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded" id="label-den-south">LOW</span></label>
+                        <input type="range" class="w-full density-range accent-green-500" min="1" max="3" step="1" id="den-south" data-dir="south">
+                        <div class="flex justify-between text-xs text-gray-400 font-medium px-1 mt-1">
+                            <span>Low</span><span>Mid</span><span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="density-slider-container border border-gray-100 dark:border-dark-border p-4 rounded-xl relative overflow-hidden group hover:border-brand-200 transition">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                        <label class="font-bold flex justify-between mb-3"><span class="flex items-center gap-2"><i data-lucide="arrow-right" class="w-4 h-4"></i> East Lane</span> <span class="text-orange-500 font-mono text-xs dark:text-orange-400 bg-orange-50 dark:bg-orange-900/30 px-2 py-1 rounded" id="label-den-east">LOW</span></label>
+                        <input type="range" class="w-full density-range accent-orange-500" min="1" max="3" step="1" id="den-east" data-dir="east">
+                        <div class="flex justify-between text-xs text-gray-400 font-medium px-1 mt-1">
+                            <span>Low</span><span>Mid</span><span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="density-slider-container border border-gray-100 dark:border-dark-border p-4 rounded-xl relative overflow-hidden group hover:border-brand-200 transition">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+                        <label class="font-bold flex justify-between mb-3"><span class="flex items-center gap-2"><i data-lucide="arrow-left" class="w-4 h-4"></i> West Lane</span> <span class="text-purple-500 font-mono text-xs dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-2 py-1 rounded" id="label-den-west">LOW</span></label>
+                        <input type="range" class="w-full density-range accent-purple-500" min="1" max="3" step="1" id="den-west" data-dir="west">
+                        <div class="flex justify-between text-xs text-gray-400 font-medium px-1 mt-1">
+                            <span>Low</span><span>Mid</span><span>High</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- System Logs -->
+            <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 lg:h-[400px] flex flex-col">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="terminal" class="text-brand-500"></i> Event Logs</h3>
+                <div id="logsContainer" class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar font-mono text-sm bg-slate-900 text-slate-300 p-4 rounded-xl border border-slate-700 shadow-inner">
+                    <!-- Logs injected here -->
+                </div>
+            </div>
+            
+            <!-- Map View Placeholder (for next step) -->
+             <div class="lg:col-span-3 bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 h-[400px] flex flex-col" id="adminMapContainer">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="map" class="text-brand-500"></i> Global City Map</h3>
+                <div id="adminMap" class="w-full flex-1 rounded-xl bg-slate-100 z-0 border border-slate-200 dark:border-slate-700"></div>
+            </div>
+
+        </div>
+    </template>
+
+    <!-- Driver Dashboard Template -->
+    <template id="driverDashboardTemplate">
+        <!-- New Location for Emergency Banner to prevent blocking the Map -->
+        <div id="driverEmergencyTopBanner" class="hidden mb-4 bg-red-600 border-2 border-red-700 text-white font-black tracking-widest px-6 py-3 rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.5)] animate-pulse flex items-center justify-center gap-3 w-full">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i> GREEN CORRIDOR ACTIVE - PROCEED WITH CAUTION
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:h-[calc(100vh-140px)] min-h-0">
+            
+            <!-- Navigation Map -->
+            <div class="lg:col-span-2 bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border overflow-hidden flex flex-col relative min-h-[400px] lg:min-h-0 h-full">
+                
+                <div class="p-4 bg-white/90 dark:bg-dark-panel/90 backdrop-blur border-b border-gray-200 dark:border-dark-border absolute top-0 w-full z-10 shadow-sm flex justify-between items-center">
+                    <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="navigation" class="text-brand-500"></i> Active Route</h3>
+                    <div id="tripStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">Idling</div>
+                </div>
+                
+                <div id="driverMap" class="w-full flex-1 bg-slate-200 dark:bg-slate-800 z-0"></div>
+            </div>
+
+            <!-- Controls Panel -->
+            <div class="flex flex-col gap-6 lg:h-[calc(100vh-140px)] min-h-0">
+                <!-- Driver Action Controls -->
+                <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 shrink-0">
+                    <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="power" class="text-brand-500"></i> Trip Controls</h3>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2 text-slate-600 dark:text-slate-400">Destination Hospital</label>
+                        <select id="hospitalSelect" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 dark:text-white outline-none">
+                            <option value="city">City General Hospital</option>
+                            <option value="metro">Metro Heart Institute</option>
+                            <option value="apollo">Apollo Life Care</option>
+                        </select>
+                    </div>
+                    <button id="startTripBtn" class="w-full py-4 mb-4 bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-bold rounded-xl transition flex justify-center items-center gap-2 shadow-lg">
+                        <i data-lucide="play" class="w-5 h-5"></i> Start Navigation
+                    </button>
+                    
+                    <button id="driverEmergencyBtn" class="w-full py-5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-black text-lg rounded-xl transition transform active:scale-95 flex justify-center items-center gap-3 shadow-[0_10px_20px_-10px_rgba(220,38,38,0.6)] border border-red-400 overflow-hidden relative group opacity-50 cursor-not-allowed hidden">
+                        <div class="absolute inset-0 bg-white/20 skew-x-[-20deg] group-hover:block transition-transform transform translate-x-[-150%] group-hover:translate-x-[150%] duration-700"></div>
+                        <i data-lucide="siren" class="w-6 h-6 z-10"></i> 
+                        <span class="z-10 tracking-wide drop-shadow-md">REQUEST GREEN CORRIDOR</span>
+                    </button>
+                    
+                     <button id="stopTripBtn" class="w-full py-3 mt-4 bg-transparent border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition flex justify-center items-center gap-2 hidden">
+                        <i data-lucide="square" class="w-5 h-5"></i> End Trip
+                    </button>
+                </div>
+                <!-- Live Intersection Status Removed per Phase 11 -->
+                
+                <!-- AI Copilot Panel -->
+                <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 flex flex-col min-h-0 relative h-full">
+                    <div class="flex justify-between items-center mb-4 shrink-0">
+                        <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="radio" class="text-brand-500"></i> AI Co-Pilot</h3>
+                    </div>
+                    
+                    <div id="driverAlertsBox" class="flex-1 bg-slate-50 dark:bg-slate-800 rounded-xl p-4 border border-slate-100 dark:border-slate-700 overflow-y-auto space-y-3 shadow-inner custom-scrollbar relative">
+                        <!-- Glassmorphism overlay for empty state -->
+                         <div id="alertsEmptyState" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-6 text-center">
+                            <i data-lucide="mic" class="w-10 h-10 mb-2 opacity-50"></i>
+                            <p class="text-sm font-medium">System ready. Waiting for trip to start.</p>
+                         </div>
+                        <!-- Logs go here -->
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/voice.js"></script>
+    <script src="/js/map.js"></script>
+</body>
+</html>

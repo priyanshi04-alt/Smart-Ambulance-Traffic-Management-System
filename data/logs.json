@@ -1,0 +1,602 @@
+[
+  {
+    "id": "1773428171523",
+    "timestamp": "2026-03-13T18:56:11.523Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428170506",
+    "timestamp": "2026-03-13T18:56:10.506Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428169494",
+    "timestamp": "2026-03-13T18:56:09.494Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428168511",
+    "timestamp": "2026-03-13T18:56:08.511Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428167498",
+    "timestamp": "2026-03-13T18:56:07.498Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428166486",
+    "timestamp": "2026-03-13T18:56:06.486Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428156380",
+    "timestamp": "2026-03-13T18:55:56.380Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428155367",
+    "timestamp": "2026-03-13T18:55:55.367Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428154352",
+    "timestamp": "2026-03-13T18:55:54.352Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428153373",
+    "timestamp": "2026-03-13T18:55:53.373Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428152359",
+    "timestamp": "2026-03-13T18:55:52.359Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428151347",
+    "timestamp": "2026-03-13T18:55:51.347Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428141252",
+    "timestamp": "2026-03-13T18:55:41.252Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428140235",
+    "timestamp": "2026-03-13T18:55:40.235Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428139224",
+    "timestamp": "2026-03-13T18:55:39.224Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428138238",
+    "timestamp": "2026-03-13T18:55:38.238Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428137226",
+    "timestamp": "2026-03-13T18:55:37.226Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428136211",
+    "timestamp": "2026-03-13T18:55:36.211Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428126089",
+    "timestamp": "2026-03-13T18:55:26.089Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428125096",
+    "timestamp": "2026-03-13T18:55:25.096Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428124082",
+    "timestamp": "2026-03-13T18:55:24.082Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428123085",
+    "timestamp": "2026-03-13T18:55:23.085Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428122083",
+    "timestamp": "2026-03-13T18:55:22.083Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428121074",
+    "timestamp": "2026-03-13T18:55:21.074Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428110932",
+    "timestamp": "2026-03-13T18:55:10.932Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428109933",
+    "timestamp": "2026-03-13T18:55:09.933Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428108920",
+    "timestamp": "2026-03-13T18:55:08.920Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428107922",
+    "timestamp": "2026-03-13T18:55:07.922Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428106923",
+    "timestamp": "2026-03-13T18:55:06.923Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428105912",
+    "timestamp": "2026-03-13T18:55:05.912Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428095797",
+    "timestamp": "2026-03-13T18:54:55.797Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428094782",
+    "timestamp": "2026-03-13T18:54:54.782Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428093765",
+    "timestamp": "2026-03-13T18:54:53.765Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428092783",
+    "timestamp": "2026-03-13T18:54:52.783Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428091769",
+    "timestamp": "2026-03-13T18:54:51.769Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428090757",
+    "timestamp": "2026-03-13T18:54:50.757Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428080639",
+    "timestamp": "2026-03-13T18:54:40.639Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428079627",
+    "timestamp": "2026-03-13T18:54:39.627Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428078626",
+    "timestamp": "2026-03-13T18:54:38.626Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428077630",
+    "timestamp": "2026-03-13T18:54:37.630Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428076619",
+    "timestamp": "2026-03-13T18:54:36.619Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428075615",
+    "timestamp": "2026-03-13T18:54:35.615Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428065524",
+    "timestamp": "2026-03-13T18:54:25.524Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428064508",
+    "timestamp": "2026-03-13T18:54:24.508Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428063510",
+    "timestamp": "2026-03-13T18:54:23.510Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428062514",
+    "timestamp": "2026-03-13T18:54:22.514Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428061502",
+    "timestamp": "2026-03-13T18:54:21.502Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428060498",
+    "timestamp": "2026-03-13T18:54:20.498Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428050386",
+    "timestamp": "2026-03-13T18:54:10.386Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428049376",
+    "timestamp": "2026-03-13T18:54:09.376Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428048378",
+    "timestamp": "2026-03-13T18:54:08.378Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428047378",
+    "timestamp": "2026-03-13T18:54:07.378Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428046366",
+    "timestamp": "2026-03-13T18:54:06.366Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428045365",
+    "timestamp": "2026-03-13T18:54:05.365Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428035249",
+    "timestamp": "2026-03-13T18:53:55.249Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428034238",
+    "timestamp": "2026-03-13T18:53:54.238Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428033228",
+    "timestamp": "2026-03-13T18:53:53.228Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428032247",
+    "timestamp": "2026-03-13T18:53:52.247Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428031234",
+    "timestamp": "2026-03-13T18:53:51.234Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428030220",
+    "timestamp": "2026-03-13T18:53:50.220Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428020139",
+    "timestamp": "2026-03-13T18:53:40.139Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428019145",
+    "timestamp": "2026-03-13T18:53:39.145Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428018137",
+    "timestamp": "2026-03-13T18:53:38.137Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773428017138",
+    "timestamp": "2026-03-13T18:53:37.138Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428016132",
+    "timestamp": "2026-03-13T18:53:36.132Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428015132",
+    "timestamp": "2026-03-13T18:53:35.132Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773428005029",
+    "timestamp": "2026-03-13T18:53:25.029Z",
+    "message": "Emergency Mode Disabled. Resuming normal traffic cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1773428003320",
+    "timestamp": "2026-03-13T18:53:23.320Z",
+    "message": "EMERGENCY MODE ACTIVATED: Green corridor for west",
+    "type": "warning"
+  },
+  {
+    "id": "1773428001994",
+    "timestamp": "2026-03-13T18:53:21.994Z",
+    "message": "Emergency Mode Disabled. Resuming normal traffic cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1773427997191",
+    "timestamp": "2026-03-13T18:53:17.191Z",
+    "message": "Emergency Mode Disabled. Resuming normal traffic cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1773427971768",
+    "timestamp": "2026-03-13T18:52:51.768Z",
+    "message": "EMERGENCY MODE ACTIVATED: Green corridor for north",
+    "type": "warning"
+  },
+  {
+    "id": "1773427971674",
+    "timestamp": "2026-03-13T18:52:51.674Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427970673",
+    "timestamp": "2026-03-13T18:52:50.673Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427969659",
+    "timestamp": "2026-03-13T18:52:49.659Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427959563",
+    "timestamp": "2026-03-13T18:52:39.563Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427958549",
+    "timestamp": "2026-03-13T18:52:38.549Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427957539",
+    "timestamp": "2026-03-13T18:52:37.539Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427956556",
+    "timestamp": "2026-03-13T18:52:36.556Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427955548",
+    "timestamp": "2026-03-13T18:52:35.548Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427954536",
+    "timestamp": "2026-03-13T18:52:34.536Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427944428",
+    "timestamp": "2026-03-13T18:52:24.428Z",
+    "message": "Emergency Mode Disabled. Resuming normal traffic cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1773427934813",
+    "timestamp": "2026-03-13T18:52:14.813Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427933801",
+    "timestamp": "2026-03-13T18:52:13.801Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427932792",
+    "timestamp": "2026-03-13T18:52:12.792Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427931796",
+    "timestamp": "2026-03-13T18:52:11.796Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427930795",
+    "timestamp": "2026-03-13T18:52:10.795Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427929789",
+    "timestamp": "2026-03-13T18:52:09.789Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427919683",
+    "timestamp": "2026-03-13T18:51:59.683Z",
+    "message": "Emergency Mode Disabled. Resuming normal traffic cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1773427917641",
+    "timestamp": "2026-03-13T18:51:57.641Z",
+    "message": "EMERGENCY MODE ACTIVATED: Green corridor for south",
+    "type": "warning"
+  },
+  {
+    "id": "1773427916995",
+    "timestamp": "2026-03-13T18:51:56.995Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427916012",
+    "timestamp": "2026-03-13T18:51:56.012Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427915004",
+    "timestamp": "2026-03-13T18:51:55.004Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427913992",
+    "timestamp": "2026-03-13T18:51:53.992Z",
+    "message": "NS signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427903884",
+    "timestamp": "2026-03-13T18:51:43.884Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427902870",
+    "timestamp": "2026-03-13T18:51:42.870Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427901874",
+    "timestamp": "2026-03-13T18:51:41.874Z",
+    "message": "North-South is now GREEN",
+    "type": "info"
+  },
+  {
+    "id": "1773427900877",
+    "timestamp": "2026-03-13T18:51:40.877Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427899867",
+    "timestamp": "2026-03-13T18:51:39.867Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427898861",
+    "timestamp": "2026-03-13T18:51:38.861Z",
+    "message": "EW signal transitioning (Yellow)",
+    "type": "info"
+  },
+  {
+    "id": "1773427888746",
+    "timestamp": "2026-03-13T18:51:28.746Z",
+    "message": "East-West is now GREEN",
+    "type": "info"
+  }
+]

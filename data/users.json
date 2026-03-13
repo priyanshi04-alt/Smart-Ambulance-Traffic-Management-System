@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO", 
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "username": "driver1",
+    "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO",
+    "role": "driver"
+  }
+]
