@@ -223,5 +223,5 @@ This project is for academic/educational purposes.
 ## 🙋 Author
 
 **Priyanshi**
-B.Tech CSE — Smart Ambulance Traffic Management System
+B.E CSE — Smart Ambulance Traffic Management System
 *College Project — March 2026*
