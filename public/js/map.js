@@ -1,7 +1,14 @@
 // Global Map Variables
 let map;
+let trafficMarkers = [];
+let routeLines = [];
 let ambulanceMarker;
 let routePolyline;
+
+// GPS Tracking State
+window.useDeviceGPS = false;
+let gpsWatchId = null;
+let lastGpsCoords = null;
 let isTripActive = false;
 let simulationInterval;
 let hospitalMarkers = {};
@@ -20,18 +27,13 @@ const hospitals = {
     'metro': { lat: 28.6050, lng: 77.2000, name: 'Metro Heart Institute' },
     'apollo': { lat: 28.6150, lng: 77.2250, name: 'Apollo Life Care' }
 };
+window.hospitalData = hospitals;
 
 window.initMap = function(containerId, role) {
     if (map) {
-        map.remove(); // clear existing if re-init
+        map.remove(); 
     }
     
-    // Un-hide the container if it's admin
-    if (role === 'admin') {
-        const container = document.getElementById('adminMapContainer');
-        if (container) container.classList.remove('hidden');
-    }
-
     // Default center at I1 (Delhi)
     let initialCenter = [28.6139, 77.2090];
     let initialZoom = 15;
@@ -40,6 +42,10 @@ window.initMap = function(containerId, role) {
         zoomControl: false,
         attributionControl: false
     }).setView(initialCenter, initialZoom);
+    
+    if (role === 'hospital') window.hMap = map;
+    if (role === 'admin') window.adminMap = map;
+    if (role === 'driver') window.driverMap = map;
     
     // Add custom styled tiles
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -503,8 +509,8 @@ window.startDriverSimulation = function(waypoints) {
              }, 2500); // Wait 2.5s for "Intersection cleared. Resuming normal traffic." to finish
         }
 
-        // Emit live location over socket if available
-        if (window.socket && currentUser.role === 'driver') {
+        // Emit live location over socket if available (But skip if real GPS is taking over)
+        if (window.socket && currentUser.role === 'driver' && !window.useDeviceGPS) {
              window.socket.emit('driver-location', {
                   lat: lat,
                   lng: lng,
@@ -545,31 +551,107 @@ window.stopDriverSimulation = function() {
 function addAlertBox(message, type) {
     const box = document.getElementById('driverAlertsBox');
     const empty = document.getElementById('alertsEmptyState');
+    const activeInstr = document.getElementById('activeInstruction');
+    const copilotCard = document.getElementById('aiCopilotActiveCard');
+    const statusText = document.getElementById('copilotStatusText');
+    
     if (!box) return;
     if (empty) empty.classList.add('hidden');
+    if (copilotCard) copilotCard.classList.remove('hidden');
     
+    // Update Live Co-Pilot Card for major instructions
+    if (activeInstr) {
+        // If it's a navigation instruction or a major AI alert, highlight it
+        if (message.includes('In 50 meters') || message.includes('Instruction') || message.includes('AI Copilot') || type === 'warning') {
+            activeInstr.innerHTML = message.replace('Instruction: ', '').replace('AI Copilot: ', '');
+            activeInstr.classList.add('animate-in', 'zoom-in-95', 'duration-300');
+            setTimeout(() => activeInstr.classList.remove('animate-in', 'zoom-in-95'), 300);
+            
+            if (statusText) {
+                statusText.textContent = type === 'warning' ? 'Warning' : 'Navigating';
+                statusText.className = `text-[10px] font-bold uppercase transition-colors ${type === 'warning' ? 'text-yellow-300' : 'text-green-400'}`;
+            }
+        }
+    }
+
     const div = document.createElement('div');
-    const icon = type === 'warning' ? '<i data-lucide="alert-triangle" class="text-amber-500 w-5 h-5"></i>' : 
-                 type === 'success' ? '<i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i>' :
-                 '<i data-lucide="info" class="text-blue-500 w-5 h-5"></i>';
+    const icon = type === 'warning' ? '<i data-lucide="alert-triangle" class="text-amber-500 w-4 h-4"></i>' : 
+                 type === 'success' ? '<i data-lucide="check-circle" class="text-green-500 w-4 h-4"></i>' :
+                 '<i data-lucide="info" class="text-blue-500 w-4 h-4"></i>';
                  
-    div.className = `p-3 rounded-lg flex items-start gap-3 border ${
-        type === 'warning' ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800/50' : 
-        type === 'success' ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800/50' : 
-        'bg-white dark:bg-slate-700/50 border-slate-200 dark:border-slate-600'
-    } shadow-sm`;
+    div.className = `p-2 rounded-lg flex items-start gap-2 border ${
+        type === 'warning' ? 'bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800/50' : 
+        type === 'success' ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50' : 
+        'bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-700'
+    }`;
     
     div.innerHTML = `
         <div class="mt-0.5 flex-shrink-0">${icon}</div>
-        <div>
-           <span class="block text-xs font-bold ${type === 'warning' ? 'text-amber-700 dark:text-amber-400' : 'text-slate-500 dark:text-slate-400'} uppercase tracking-wide mb-1">
-               ${new Date().toLocaleTimeString()}
-           </span>
-           <span class="text-sm font-medium dark:text-slate-200">${message}</span>
+        <div class="flex-1 min-w-0">
+           <div class="flex justify-between items-center mb-0.5">
+               <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${new Date().toLocaleTimeString()}</span>
+               <span class="text-[8px] px-1 bg-slate-200 dark:bg-slate-700 rounded text-slate-500">${type.toUpperCase()}</span>
+           </div>
+           <span class="text-[11px] leading-tight dark:text-slate-300 block truncate">${message}</span>
         </div>
     `;
     
     box.insertBefore(div, box.firstChild);
-    lucide.createIcons();
+    if (window.lucide) window.lucide.createIcons();
 }
 window.addAlertBox = addAlertBox;
+window.startDeviceTracking = function() {
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser");
+        return;
+    }
+
+    window.useDeviceGPS = true;
+    gpsWatchId = navigator.geolocation.watchPosition(
+        (position) => {
+            const { latitude, longitude, accuracy, speed } = position.coords;
+            lastGpsCoords = { latitude, longitude, accuracy, speed };
+            
+            console.log(`GPS Update: ${latitude}, ${longitude} (Acc: ${accuracy}m)`);
+            
+            // If we are in driver mode and have an active alert, emit the real GPS
+            if (window.currentUser && window.currentUser.role === 'driver' && window.activeEmergencyAlert) {
+                if (window.socket) {
+                    window.socket.emit('ambulance-location-update', {
+                        alertId: window.activeEmergencyAlert.alertId,
+                        lat: latitude,
+                        lng: longitude,
+                        accuracy: accuracy,
+                        speed: speed,
+                        isRealGPS: true,
+                        hospitalId: window.activeEmergencyAlert.hospitalId
+                    });
+                }
+            }
+
+            // Update local ambulance marker if it exists
+            if (window.ambulanceMarker) {
+                window.ambulanceMarker.setLatLng([latitude, longitude]);
+            }
+        },
+        (error) => {
+            console.error("GPS Tracking Error:", error);
+            window.stopDeviceTracking();
+            alert("GPS Error: " + error.message);
+        },
+        {
+            enableHighAccuracy: true,
+            maximumAge: 5000,
+            timeout: 10000
+        }
+    );
+};
+
+window.stopDeviceTracking = function() {
+    window.useDeviceGPS = false;
+    if (gpsWatchId !== null) {
+        navigator.geolocation.clearWatch(gpsWatchId);
+        gpsWatchId = null;
+    }
+    console.log("GPS Tracking Stopped");
+};

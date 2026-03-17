@@ -19,7 +19,6 @@ const io = new Server(server, {
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Services
 const trafficController = require('./services/TrafficController');
@@ -36,7 +35,9 @@ const iotRoutes = require('./routes/iot');
 app.use('/api/auth', authRoutes);
 app.use('/api/iot', iotRoutes);
 
-// Fallback to index.html for SPA
+// Static files and SPA fallback
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -53,6 +54,34 @@ io.on('connection', (socket) => {
   // Handle location relay
   socket.on('driver-location', (data) => {
       io.emit('ambulance-location-update', data);
+  });
+
+  // Handle Hospital Alerts from Drivers
+  socket.on('hospital-alert', (data) => {
+      console.log(`Hospital Alert: ${data.hospitalId} regarding patient: ${data.problem}`);
+      // Notify the specific hospital (or all for demo simplicity)
+      io.emit('hospital-alert-received', {
+          ...data,
+          timestamp: new Date().toISOString(),
+          alertId: 'ALT-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+      });
+      logService.addLog(`Emergency alert sent to ${data.hospitalName}: ${data.problem}`, data.critical ? 'warning' : 'info');
+  });
+
+  // Handle Hospital Acknowledgment
+  socket.on('hospital-acknowledgment', (data) => {
+      console.log(`Hospital Acknowledgment: ${data.hospitalName} is ${data.status}`);
+      io.emit('hospital-response-update', data);
+      logService.addLog(`${data.hospitalName} acknowledged: ${data.status}`, 'info');
+  });
+
+  // Two-way Messaging
+  socket.on('hospital-to-driver-message', (data) => {
+      io.emit('hospital-message-received', data);
+  });
+
+  socket.on('driver-to-hospital-message', (data) => {
+      io.emit('driver-message-received', data);
   });
 
   socket.on('disconnect', () => {

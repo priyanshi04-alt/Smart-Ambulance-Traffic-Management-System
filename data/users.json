@@ -2,13 +2,37 @@
   {
     "id": 1,
     "username": "admin",
-    "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO", 
+    "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO",
     "role": "admin"
   },
   {
     "id": 2,
     "username": "driver1",
     "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO",
+    "role": "driver"
+  },
+  {
+    "id": 3,
+    "username": "hospital1",
+    "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO",
+    "role": "hospital"
+  },
+  {
+    "id": 4,
+    "username": "script_user_991460",
+    "password": "password123",
+    "role": "driver"
+  },
+  {
+    "id": 5,
+    "username": "priyanshi",
+    "password": "041128",
+    "role": "driver"
+  },
+  {
+    "id": 6,
+    "username": "priya",
+    "password": "1234",
     "role": "driver"
   }
 ]

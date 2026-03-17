@@ -20,18 +20,20 @@ const getUsers = () => {
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
     
-    // In a real app we use bcrypt, but for this simulation demo we'll do simple password check
-    // "password123" is assumed valid for all seeded users for ease of review
+    console.log(`Login attempt for user: ${username}`);
+    
     const users = getUsers();
     const user = users.find(u => u.username === username);
     
     if (!user) {
+        console.log(`Login failed: User ${username} not found`);
         return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // A real app: const isMatch = await bcrypt.compare(password, user.password);
-    // Shortcut for demo: accept any non-empty correctly mapped pass or 'password123'
-    if (password !== 'password123') {
+    // For demo simplicity, we use password123 as the universal password
+    // However, if the user was just created, we check against their stored password
+    if (password !== 'password123' && password !== user.password) {
+        console.log(`Login failed: Incorrect password for ${username}`);
         return res.status(401).json({ message: 'Invalid credentials. Hint: use password123' });
     }
 
@@ -41,10 +43,69 @@ router.post('/login', (req, res) => {
         { expiresIn: '24h' }
     );
 
+    console.log(`Login successful for ${username} (${user.role})`);
     res.json({
         token,
         user: { id: user.id, username: user.username, role: user.role }
     });
+});
+
+// Admin-only registration route
+router.post('/register', (req, res) => {
+    try {
+        console.log("Registration request received");
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            console.log("Registration failed: No auth header");
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const token = authHeader.split(' ')[1];
+        try {
+            const decoded = jwt.verify(token, JWT_SECRET);
+            if (decoded.role !== 'admin') {
+                console.log(`Registration failed: User ${decoded.username} is not an admin`);
+                return res.status(403).json({ message: 'Forbidden: Admins only' });
+            }
+        } catch (err) {
+            console.log("Registration failed: Invalid token");
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+
+        const { username, password, role } = req.body;
+        if (!username || !password || !role) {
+            console.log("Registration failed: Missing fields");
+            return res.status(400).json({ message: 'Missing required fields' });
+        }
+
+        const users = getUsers();
+        if (users.find(u => u.username === username)) {
+            console.log(`Registration failed: Username ${username} already exists`);
+            return res.status(400).json({ message: 'Username already exists' });
+        }
+
+        const newUser = {
+            id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+            username,
+            password, // In a real app, hash this!
+            role
+        };
+
+        users.push(newUser);
+        
+        try {
+            fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+            console.log(`User created successfully: ${username}`);
+        } catch (fsErr) {
+            console.error("Failed to write to users.json:", fsErr);
+            return res.status(500).json({ message: 'Internal server error: Failed to save user' });
+        }
+
+        res.status(201).json({ message: 'User created successfully', user: { id: newUser.id, username, role } });
+    } catch (err) {
+        console.error("Global registration error:", err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 module.exports = router;

@@ -65,8 +65,7 @@ async function handleLogin(e) {
 }
 
 function handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.clear();
     currentUser = null;
     window.location.href = '/';
 }
@@ -89,12 +88,19 @@ function showDashboard() {
     
     if (currentUser.role === 'admin') {
         const template = document.getElementById('adminDashboardTemplate');
-        mainContent.appendChild(template.content.cloneNode(true));
+        const clone = template.content.cloneNode(true);
+        console.log("Template cloned. Elements in clone:", clone.children.length);
+        mainContent.appendChild(clone);
+        console.log("Template appended. mainContent HTML length:", mainContent.innerHTML.length);
         initAdminDashboard();
     } else if (currentUser.role === 'driver') {
         const template = document.getElementById('driverDashboardTemplate');
         mainContent.appendChild(template.content.cloneNode(true));
         initDriverDashboard();
+    } else if (currentUser.role === 'hospital') {
+        const template = document.getElementById('hospitalDashboardTemplate');
+        mainContent.appendChild(template.content.cloneNode(true));
+        initHospitalDashboard();
     }
     
     // Re-initialize icons for newly added DOM elements
@@ -131,6 +137,7 @@ function initTheme() {
     });
 }
 
+
 // Global state for audio
 window.isMuted = false;
 
@@ -166,6 +173,36 @@ document.addEventListener('DOMContentLoaded', () => {
 function initAdminDashboard() {
     console.log("Admin dashboard initialized");
     
+    // Initial Signal Status Fetch - Use a more robust check with cache busting
+    const fetchUrl = `/api/iot/signal-status?t=${Date.now()}`;
+    console.log(`Fetching initial signal status from ${fetchUrl}...`);
+    fetch(fetchUrl)
+        .then(async res => {
+            const contentType = res.headers.get("content-type");
+            console.log(`Response status: ${res.status}, Content-Type: ${contentType}`);
+            if (res.ok && contentType && contentType.includes("application/json")) {
+                return res.json();
+            }
+            const text = await res.text();
+            console.error("Received non-JSON response (first 100 chars):", text.substring(0, 100));
+            throw new Error("Invalid response from server");
+        })
+        .then(state => {
+            console.log("Initial traffic state successfully parsed:", state);
+            // Small delay to ensure template DOM is ready
+            setTimeout(() => {
+                console.log("Attempting to update visuals...");
+                if (window.updateTrafficVisuals) {
+                    window.updateTrafficVisuals(state);
+                } else {
+                    console.error("CRITICAL: window.updateTrafficVisuals is NOT defined!");
+                }
+            }, 1000);
+        })
+        .catch(err => {
+            console.warn("Initial signal fetch failed, waiting for socket sync...", err);
+        });
+
     // Binding Manual Overrides
     document.querySelectorAll('.btn-trigger').forEach(btn => {
         btn.addEventListener('click', async (e) => {
@@ -214,10 +251,66 @@ function initAdminDashboard() {
          });
     });
 
+    // User Management Form Handler
+    const addUserForm = document.getElementById('addUserForm');
+    const addUserStatus = document.getElementById('addUserStatus');
+
+    if (addUserForm) {
+        addUserForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const role = document.getElementById('newRole').value;
+
+            addUserStatus.textContent = "Creating user...";
+            addUserStatus.classList.remove('hidden', 'text-green-500', 'text-red-500');
+            addUserStatus.classList.add('text-slate-400');
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ username, password, role })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    addUserStatus.textContent = "User created successfully!";
+                    addUserStatus.classList.replace('text-slate-400', 'text-green-500');
+                    addUserForm.reset();
+                    if (window.speak) window.speak("New login created successfully.");
+                    lucide.createIcons(); // For any new status icons if added
+                } else {
+                    addUserStatus.textContent = data.message || "Failed to create user";
+                    addUserStatus.classList.replace('text-slate-400', 'text-red-500');
+                }
+            } catch (err) {
+                console.error(err);
+                addUserStatus.textContent = "Server error";
+                addUserStatus.classList.replace('text-slate-400', 'text-red-500');
+            }
+
+            setTimeout(() => {
+                addUserStatus.classList.add('hidden');
+            }, 3000);
+        });
+    }
+
     // Init Map
     setTimeout(() => {
         if (window.initMap) window.initMap('adminMap', 'admin');
-    }, 500); // Wait for DOM to paint completely
+    }, 500); 
+
+    // Create icons again after template injection
+    if (window.lucide) window.lucide.createIcons();
+
+    // Verify presence of critical elements
+    console.log("Checking for intersection elements:", 
+        document.getElementById('sig-north') ? "Found" : "Missing");
 }
 
 let activeWaypoints = [];
@@ -236,31 +329,82 @@ function initDriverDashboard() {
         if (window.initMap) window.initMap('driverMap', 'driver');
     }, 500);
 
+    // 4. GPS Toggle Handler
+    const gpsToggle = document.getElementById('toggleGPSTracking');
+    const gpsHandle = document.getElementById('gpsToggleHandle');
+    if (gpsToggle && gpsHandle) {
+        gpsToggle.addEventListener('click', () => {
+            const isActive = gpsHandle.classList.contains('translate-x-5');
+            if (isActive) {
+                // Turn OFF
+                gpsHandle.classList.replace('translate-x-5', 'translate-x-0');
+                gpsToggle.classList.replace('bg-brand-600', 'bg-slate-200');
+                if (window.stopDeviceTracking) window.stopDeviceTracking();
+            } else {
+                // Turn ON
+                gpsHandle.classList.replace('translate-x-0', 'translate-x-5');
+                gpsToggle.classList.replace('bg-slate-200', 'bg-brand-600');
+                if (window.startDeviceTracking) window.startDeviceTracking();
+            }
+        });
+    }
+
     // Trip Start
     startTripBtn.addEventListener('click', () => {
-        // Did the user select a destination (either from custom point or dropdown)
+        console.log("Start Trip clicked. Status:", { 
+            proposedWaypoints: !!window.proposedWaypoints,
+            hospitalValue: hospitalSelect.value 
+        });
+
+        const handleSimulationStart = (waypoints, destName) => {
+            console.log("Simulating trip to:", destName, "Waypoints count:", waypoints?.length);
+            if (!waypoints || waypoints.length === 0) {
+                console.error("Simulation failed: No waypoints provided.");
+                statusBadge.textContent = 'Route Failed';
+                statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800';
+                return;
+            }
+
+            startTripBtn.classList.add('hidden');
+            stopTripBtn.classList.remove('hidden');
+            emergencyBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'hidden');
+            
+            // Show hospital notification panel
+            const hospPanel = document.getElementById('hospitalNotificationPanel');
+            if (hospPanel) hospPanel.classList.remove('hidden');
+
+            statusBadge.textContent = 'En Route: ' + destName;
+            statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400 border border-brand-200 dark:border-brand-800 animate-pulse';
+            
+            window.addAlertBox(`Route calculated for ${destName}`, 'info');
+            window.startDriverSimulation(waypoints);
+        };
+
+        // Case A: User selected via Map Click
         if (window.proposedWaypoints) {
+             console.log("Using map-proposed waypoints");
              activeWaypoints = window.proposedWaypoints;
-             
-             startTripBtn.classList.add('hidden');
-             stopTripBtn.classList.remove('hidden');
-         } else {
-             // Fallback to the drop down menu if they didn't click
+             handleSimulationStart(activeWaypoints, "Custom Destination");
+         } 
+         // Case B: User selected via Dropdown
+         else {
              const dest = hospitalSelect.value;
              const destName = hospitalSelect.options[hospitalSelect.selectedIndex].text;
              const destC = { city: [28.6200, 77.2150], metro: [28.6050, 77.2000], apollo: [28.6150, 77.2250] };
              
+             console.log("Using dropdown destination:", dest, destName);
              window.currentDestId = dest;
              window.currentDestName = destName;
              
              // Immediate UI feedback
              startTripBtn.disabled = true;
-             startTripBtn.innerHTML = '<i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i> Calculating Route...';
-             statusBadge.textContent = 'Calculating...';
+             startTripBtn.innerHTML = '<i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i> Calculating...';
+             statusBadge.textContent = 'Routing...';
              statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800 animate-pulse';
              if(window.lucide) window.lucide.createIcons();
              
-             activeWaypoints = window.calculateAndDrawRoute(destC[dest][0], destC[dest][1]).then(wp => {
+             window.calculateAndDrawRoute(destC[dest][0], destC[dest][1]).then(wp => {
+                 console.log("Route calculation completed. Waypoints received:", !!wp);
                  activeWaypoints = wp;
                  
                  // Restore button state
@@ -268,22 +412,14 @@ function initDriverDashboard() {
                  startTripBtn.innerHTML = '<i data-lucide="play" class="w-5 h-5"></i> Start Navigation';
                  if(window.lucide) window.lucide.createIcons();
                  
-                 if (activeWaypoints) {
-                     startTripBtn.classList.add('hidden');
-                     stopTripBtn.classList.remove('hidden');
-                     emergencyBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'hidden');
-                     
-                     statusBadge.textContent = 'En Route: ' + destName;
-                     statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400 border border-brand-200 dark:border-brand-800 animate-pulse';
-                     
-                     window.addAlertBox(`Route calculated for ${destName}`, 'info');
-                     window.startDriverSimulation(activeWaypoints);
-                 } else {
-                     statusBadge.textContent = 'Route Failed';
-                     statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800';
-                 }
+                 handleSimulationStart(activeWaypoints, destName);
+             }).catch(err => {
+                 console.error("Route calculation error:", err);
+                 startTripBtn.disabled = false;
+                 startTripBtn.innerHTML = '<i data-lucide="play" class="w-5 h-5"></i> Start Navigation';
+                 statusBadge.textContent = 'Error';
              });
-        }
+         }
     });
 
     // Trip Stop
@@ -292,7 +428,27 @@ function initDriverDashboard() {
         stopTripBtn.classList.add('hidden');
         emergencyBtn.classList.add('opacity-50', 'cursor-not-allowed', 'hidden');
         
-        statusBadge.textContent = 'Idling';
+    const copilotCard = document.getElementById('aiCopilotActiveCard');
+    if (copilotCard) copilotCard.classList.add('hidden');
+    const activeInstr = document.getElementById('activeInstruction');
+    if (activeInstr) activeInstr.innerHTML = 'Waiting for navigation to start...';
+    
+    const alertsBox = document.getElementById('driverAlertsBox');
+    if (alertsBox) {
+        alertsBox.innerHTML = ''; 
+        const empty = document.getElementById('alertsEmptyState');
+        if (empty) empty.classList.remove('hidden');
+    }
+
+    const hospPanel = document.getElementById('hospitalNotificationPanel');
+    if (hospPanel) {
+        hospPanel.classList.add('hidden');
+        document.getElementById('hospitalStatusResponse').classList.add('hidden');
+        document.getElementById('patientProblem').value = '';
+        document.getElementById('criticalStatus').checked = false;
+    }
+
+    statusBadge.textContent = 'Idling';
         statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700';
         
         // Deactivate emergency if active
@@ -350,16 +506,160 @@ window.isEmergencyActive = false;
         lucide.createIcons();
     });
 
-    reportHazardBtn.addEventListener('click', async () => {
-         try {
-             await fetch('/api/iot/hazard-alert', {
-                 method: 'POST',
-                 headers: { 'Content-Type': 'application/json' },
-                 body: JSON.stringify({ type: 'Congestion/Accident', location: 'Current Position' })
-             });
-             window.addAlertBox("Hazard broadcasted to network", "warning");
-         } catch (err) {
-             console.error(err);
-         }
-    });
+    if (typeof reportHazardBtn !== 'undefined') {
+        reportHazardBtn.addEventListener('click', async () => {
+            try {
+                await fetch('/api/iot/hazard-alert', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: 'Congestion/Accident', location: 'Current Position' })
+                });
+                window.addAlertBox("Hazard broadcasted to network", "warning");
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    }
+}
+
+// Hospital Dashboard Controller
+function initHospitalDashboard() {
+    console.log("Initializing Hospital Dashboard...");
+    
+    // 1. Initialize Map with fix for hidden containers
+    setTimeout(() => {
+        const mapContainer = document.getElementById('hospitalMap');
+        if (mapContainer && window.initMap) {
+            window.initMap('hospitalMap', 'hospital');
+            
+            // Leaflet Fix: invalidateSize ensures the map tiles render correctly
+            // if the container was hidden or resized during initialization
+            if (window.hMap) {
+                setTimeout(() => {
+                    window.hMap.invalidateSize();
+                }, 400);
+            }
+        }
+    }, 500);
+
+    // 2. Resource Simulation (For Demo)
+    const updateResources = () => {
+        const icu = document.getElementById('icuCount');
+        const docs = document.getElementById('doctorsReadyCount');
+        if (icu) icu.textContent = Math.floor(Math.random() * 5) + 1;
+        if (docs) docs.textContent = Math.floor(Math.random() * 8) + 2;
+    };
+    
+    updateResources();
+    setInterval(updateResources, 30000); // Update every 30s
+
+    // 3. Setup Internal Alerts Simulation
+    const internalAlerts = [
+        "Clear Trauma Room A-1 for incoming AMB-401",
+        "OT Team 2 proceed to prep Room 4",
+        "Cardiology consult requested in ER Bay 3",
+        "Ventilator 5 moved to ICU Corridor"
+    ];
+    
+    const alertEl = document.querySelector('.bg-orange-50 p');
+    if (alertEl) {
+        let alertIdx = 0;
+        setInterval(() => {
+            alertIdx = (alertIdx + 1) % internalAlerts.length;
+            alertEl.classList.add('opacity-0');
+            setTimeout(() => {
+                alertEl.textContent = `"${internalAlerts[alertIdx]}"`;
+                alertEl.classList.remove('opacity-0');
+            }, 500);
+        }, 8000);
+    }
+}
+
+// Driver calling hospital
+async function sendHospitalAlert() {
+    const problem = document.getElementById('patientProblem').value;
+    const critical = document.getElementById('criticalStatus').checked;
+    const hospitalId = window.currentDestId;
+    const hospitalName = window.currentDestName;
+    
+    // New Advanced Vitals
+    const spo2 = document.getElementById('vitalsSPO2').value;
+    const hr = document.getElementById('vitalsHR').value;
+    const blood = document.getElementById('vitalsBlood').value;
+    const requirements = document.getElementById('vitalsReq').value;
+
+    if (!problem || !problem.trim()) {
+        alert("Please describe the patient's condition first.");
+        return;
+    }
+
+    const alertBtn = document.getElementById('notifyHospitalBtn');
+    alertBtn.disabled = true;
+    alertBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Notifying...';
+    lucide.createIcons();
+
+    if (window.socket) {
+        window.socket.emit('hospital-alert', {
+            driverId: currentUser.id,
+            driverName: currentUser.username,
+            hospitalId,
+            hospitalName,
+            problem,
+            critical,
+            vitals: {
+                spo2,
+                hr,
+                blood,
+                requirements
+            }
+        });
+
+        // Show status feedback
+        const statusBox = document.getElementById('hospitalStatusResponse');
+        const statusText = document.getElementById('hospResponseStatus');
+        const statusMsg = document.getElementById('hospResponseMsg');
+
+        if (statusBox && statusText && statusMsg) {
+            statusBox.classList.remove('hidden', 'bg-green-100', 'border-green-300', 'bg-amber-100', 'border-amber-300');
+            statusBox.classList.add('bg-slate-100', 'border-slate-300');
+            statusText.textContent = 'SENT';
+            statusText.className = 'text-xs font-black px-2 py-0.5 rounded bg-slate-200 text-slate-700';
+            statusMsg.textContent = 'Awaiting acknowledgment from ' + hospitalName + '...';
+        }
+
+        setTimeout(() => {
+            alertBtn.disabled = false;
+            alertBtn.innerHTML = '<i data-lucide="bell-ring" class="w-5 h-5"></i> Notify Hospital';
+            lucide.createIcons();
+        }, 2000);
+    }
+}
+
+// Global button listener (delegation)
+document.addEventListener('click', (e) => {
+    if (e && (e.target.id === 'notifyHospitalBtn' || e.target.closest('#notifyHospitalBtn'))) {
+        sendHospitalAlert();
+    }
+    if (e && (e.target.id === 'sendReplyBtn' || e.target.closest('#sendReplyBtn'))) {
+        sendDriverReply();
+    }
+});
+
+async function sendDriverReply() {
+    const msg = document.getElementById('driverReplyMsg').value;
+    if (!msg.trim()) return;
+    
+    if (window.socket) {
+        window.socket.emit('driver-to-hospital-message', {
+            alertId: window.currentAlertId,
+            driverName: currentUser.username,
+            message: msg,
+            hospitalId: window.currentDestId
+        });
+        document.getElementById('driverReplyMsg').value = '';
+        
+        // Local feedback
+        const msgBox = document.getElementById('driverMessages');
+        msgBox.innerHTML = `<div class="text-[10px] text-brand-400 font-bold uppercase">You:</div>${msg}`;
+    }
 }
