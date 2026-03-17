@@ -220,8 +220,11 @@ This project is for academic/educational purposes.
 
 ---
 
-## 🙋 Author
+## 👥 Team
 
-**Priyanshi**
-B.E CSE — Smart Ambulance Traffic Management System
-*College Project — March 2026*
+- **Priyanshi** (Team Lead) — B.E CSE
+- **Pratham Chadda** — Teammate
+- **Raghav Garg** — Teammate
+- **Priya** — Teammate
+
+*Smart Ambulance Traffic Management System — College Project — March 2026*
