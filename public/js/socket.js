@@ -188,6 +188,16 @@ window.initSocket = function() {
             if (driverBanner) {
                 driverBanner.style.setProperty('display', 'flex', 'important');
             }
+
+            // Update Civilian Mock UI (NEW)
+            const civNormal = document.getElementById('civNormalState');
+            const civAlert = document.getElementById('civAlertState');
+            const civScreen = document.getElementById('civilianScreen');
+            if (civNormal && civAlert && civScreen) {
+                civNormal.classList.add('hidden');
+                civAlert.classList.remove('hidden');
+                civScreen.classList.replace('bg-slate-900', 'bg-red-900');
+            }
             
             // Global alert sound
             playSiren();
@@ -201,6 +211,16 @@ window.initSocket = function() {
             if (centerIcon) centerIcon.classList.add('opacity-0');
             if (driverBanner) {
                 driverBanner.style.setProperty('display', 'none', 'important');
+            }
+
+            // Reset Civilian Mock UI (NEW)
+            const civNormal = document.getElementById('civNormalState');
+            const civAlert = document.getElementById('civAlertState');
+            const civScreen = document.getElementById('civilianScreen');
+            if (civNormal && civAlert && civScreen) {
+                civAlert.classList.add('hidden');
+                civNormal.classList.remove('hidden');
+                civScreen.classList.replace('bg-red-900', 'bg-slate-900');
             }
             
             stopSiren();

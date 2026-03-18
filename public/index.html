@@ -319,6 +319,29 @@
                     </form>
                     <div id="addUserStatus" class="mt-2 text-[10px] font-bold text-center hidden"></div>
                 </div>
+
+                <!-- Mock Civilian Device Alert (NEW) -->
+                <div class="bg-white dark:bg-dark-panel rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border p-5 mt-auto">
+                    <h3 class="text-sm font-bold mb-4 flex items-center gap-2"><i data-lucide="smartphone" class="text-slate-500"></i> Civilian Device Simulation</h3>
+                    <div id="civilianDeviceMock" class="bg-slate-800 rounded-[2rem] p-4 border-4 border-slate-700 shadow-xl relative aspect-[9/16] max-w-[150px] mx-auto overflow-hidden">
+                        <!-- Screen -->
+                        <div id="civilianScreen" class="bg-slate-900 h-full w-full rounded-[1.5rem] flex flex-col items-center justify-center p-2 text-center transition-all duration-300">
+                             <div id="civNormalState">
+                                <i data-lucide="map" class="w-8 h-8 text-slate-700 mb-2"></i>
+                                <div class="text-[8px] text-slate-600 font-bold uppercase tracking-tighter">Navigation Active</div>
+                             </div>
+                             <!-- Alert State -->
+                             <div id="civAlertState" class="hidden animate-pulse">
+                                <div class="bg-red-600 p-2 rounded-full mb-2">
+                                    <i data-lucide="siren" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <div class="text-[10px] text-red-500 font-black uppercase leading-tight">AMBULANCE NEARBY</div>
+                                <div class="text-[7px] text-white mt-1">PLEASE PULL OVER</div>
+                             </div>
+                        </div>
+                    </div>
+                    <p class="text-[9px] text-slate-400 mt-3 text-center italic">Shows how regular drivers receive emergency alerts in real-time.</p>
+                </div>
             </div>
 
             <!-- Density Control -->
@@ -806,6 +829,50 @@
 
         </div>
     </template>
+
+    <!-- Trip Summary Modal (NEW) -->
+    <div id="tripSummaryModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden animate-in fade-in duration-300">
+        <div class="bg-white dark:bg-dark-panel w-full max-w-sm rounded-[2rem] shadow-2xl border border-gray-100 dark:border-dark-border overflow-hidden transform animate-in zoom-in-95 duration-300">
+            <div class="bg-brand-600 p-6 text-center text-white relative">
+                <div class="absolute top-4 right-4 cursor-pointer opacity-70 hover:opacity-100" onclick="document.getElementById('tripSummaryModal').classList.add('hidden')">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </div>
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 backdrop-blur">
+                    <i data-lucide="trophy" class="w-8 h-8"></i>
+                </div>
+                <h2 class="text-xl font-black uppercase tracking-widest">Mission Summary</h2>
+                <p class="text-xs opacity-80 font-bold mt-1">Emergency Trip Successfully Completed</p>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase mb-1">Distance</div>
+                        <div id="summaryDistance" class="text-xl font-black text-slate-700 dark:text-slate-200">5.2 km</div>
+                    </div>
+                    <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase mb-1">Time Saved</div>
+                        <div id="summaryTimeSaved" class="text-xl font-black text-green-500">4m 12s</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100 dark:border-slate-800">
+                        <span class="text-xs font-bold text-slate-500">Traffic Overrides</span>
+                        <span id="summaryOverrides" class="text-xs font-black bg-brand-100 text-brand-600 px-2 py-0.5 rounded">03 Units</span>
+                    </div>
+                    <div id="summaryImpact" class="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl text-center">
+                        <div class="text-[10px] font-black text-green-600 dark:text-green-400 uppercase mb-1">Estimated Impact</div>
+                        <p class="text-[11px] font-medium text-slate-600 dark:text-slate-300">Significant reduction in critical response latency achieved.</p>
+                    </div>
+                </div>
+
+                <button onclick="document.getElementById('tripSummaryModal').classList.add('hidden')" class="w-full py-4 bg-slate-800 hover:bg-slate-900 text-white font-black rounded-xl transition shadow-lg">
+                    CLOSE REPORT
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="/js/app.js"></script>
     <script src="/js/socket.js"></script>

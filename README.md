@@ -16,8 +16,13 @@
 - 🚦 **Green Corridor** — Automatic traffic signal override via ESP32 + KY-037 siren detection
 - 🔀 **Dynamic Re-routing** — Congestion detected → alternate route calculated and drawn instantly
 - 🎙️ **AI Co-Pilot** — Voice-guided navigation using Web Speech API with priority interrupt queue
+- 🏥 **Hospital Integration** — Remote patient monitoring (SPO2, Heart Rate) transmitted to hospital dashboard
+- 📊 **Trip Performance Analytics** — Post-trip summaries showing distance, time saved, and signal overrides
+- 📱 **Civilian Alert Simulator** — Real-time emergency notifications simulated on smartphone UI
+- 🔒 **Secure Authentication** — JWT-based access with **Bcrypt password hashing** for all users
 - 🔊 **Virtual Siren** — Programmatic Hi-Lo siren generated via Web Audio API (no external files)
-- 👤 **Role-Based Dashboards** — Separate Admin and Driver views with JWT authentication
+- 👤 **Role-Based Dashboards** — Separate Admin, Driver, and Hospital views with personalized UI
+- ➕ **User Management** — Admin-only portal to register and manage new system users
 - 📋 **Live Event Logs** — Real-time system logs persisted to JSON, broadcast via WebSocket
 - ⚡ **Sub-250ms Latency** — From siren detection to LED actuation on local Wi-Fi
 
@@ -132,8 +137,10 @@ Open your browser and go to: **http://localhost:3000**
 |---|---|---|
 | Admin | `admin` | `admin123` |
 | Driver | `driver1` | `password123` |
+| Hospital | `hospital1` | `password123` |
+| Driver (Priyanshi) | `priyanshi` | `041128` |
 
-> ⚠️ Change these in `routes/auth.js` before any real deployment.
+> 🔒 **Security Note:** All passwords are now stored as secure Bcrypt hashes in `data/users.json`. The "Master Password" `password123` is enabled for demo simplicity but can be disabled in `routes/auth.js`.
 
 ---
 

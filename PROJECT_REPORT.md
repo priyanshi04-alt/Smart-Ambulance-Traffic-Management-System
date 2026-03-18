@@ -26,8 +26,12 @@ Current traffic management systems operate on static timers or localized sensors
 ### Objectives
 - Develop a real-time tracking dashboard to plot the GPS trajectory of the ambulance.
 - Implement an AI Co-Pilot with Text-to-Speech (TTS) for hands-free navigational alerts.
+- **Develop a Remote Patient Monitoring system** that transmits real-time vitals (SPO2, Heart Rate) from the ambulance to the hospital.
 - Create a dynamic dynamic re-routing engine that calculates alternative paths based on live congestion data.
 - Develop a Node.js/Socket.io backend to simulate the digital override of traffic lights.
+- **Implement a dedicated Hospital Dashboard** for medical staff to receive incoming alerts and prepare resources.
+- **Integrate Trip Performance Analytics** to display mission summaries including distance, time saved, and traffic overrides.
+- **Develop Mock Civilian Driver Alerts** to simulate how nearby drivers receive real-time emergency warnings on their personal devices.
 - Integrate ESP32 microcontrollers with sound sensors (KY-037) and LED modules to represent the physical actuation of traffic signals.
 
 ### Scope of the Project
@@ -35,6 +39,8 @@ Current traffic management systems operate on static timers or localized sensors
 - Front-end mapping interface using Leaflet.js.
 - Back-end traffic and scenario control server using Node.js and WebSockets.
 - Voice-assisted navigation integrated via the Browser Web Speech API.
+- **Post-Trip Analytics Engine** for performance reporting.
+- **Civilian Alert Simulator** integrated into the Admin control panel.
 - Hardware prototyping using ESP32 microcontrollers for siren detection and LED traffic light manipulation.
 
 **Excluded:**
@@ -92,19 +98,30 @@ graph TD;
 ### Description of Modules and Features
 - **Map & Tracking Module:** Uses Leaflet.js to plot custom SVG icons representing the ambulance and traffic nodes.
 - **AI Co-Pilot Module:** An audio queue manager parses incoming server events and converts string payloads into spoken commands, overriding lower priority alerts when emergencies occur.
+- **Hospital Notification Module:** A specialized interface that displays incoming patient vitals (SPO2, Heart Rate, Blood Type) and allows medical staff to acknowledge readiness with a "READY" status update.
 - **Scenario Control Interface:** A side-panel UI that allows the presenter to trigger specific events (e.g., Scenario 1: Straight clear, Scenario 2: Congestion, Scenario 3: Network Override).
+- **Post-Trip Reporting Module:** Triggers a high-impact mission summary modal upon arrival, providing quantifiable metrics (Distance, Time Saved, Signal Overrides) of the system's effectiveness.
+- **Role-Based Authentication:** A secure login system that redirects users to their specific dashboard based on their role: **Admin** (Traffic Control), **Driver** (Navigation), or **Hospital** (Emergency Intake).
 
 ### Code Snippets or Pseudo-Code
 
 **WebSocket Synchronization (Node.js)**
 ```javascript
 io.on('connection', (socket) => {
+    // Hospital Alert Transmission
+    socket.on('hospital-alert', (data) => {
+        io.emit('hospital-alert-received', {
+            ...data,
+            timestamp: new Date().toISOString(),
+            alertId: 'ALT-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+        });
+    });
+
     socket.on('trigger_override', (data) => {
         // Force the specific node to green
         trafficNodes[data.nodeId].state = 'GREEN';
         // Broadcast the new state to the dashboard and hardware
         io.emit('traffic_update', trafficNodes);
-        io.emit('play_voice_alert', 'Emergency override activated at Junction.');
     });
 });
 ```
@@ -126,6 +143,9 @@ io.on('connection', (socket) => {
 - **Hardware Trigger Test:** Placed a siren audio source near the KY-037 mic.
   - *Expected:* Dashboard registers override without manual button press.
   - *Result:* Passed. Response latency < 300ms over local Wi-Fi.
+- **Civilian Device Alert Test:** Triggered emergency mode while monitoring the Admin Dashboard's simulator.
+  - *Expected:* Simulation screen switches from "Normal Navigation" to "Ambulance Nearby" alert.
+  - *Result:* Passed. Real-time synchronization confirmed.
 
 ---
 

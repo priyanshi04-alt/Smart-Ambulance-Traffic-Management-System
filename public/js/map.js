@@ -333,6 +333,12 @@ window.startDriverSimulation = function(waypoints) {
         const lng = p1.lng + (p2.lng - p1.lng) * progress;
         
         ambulanceMarker.setLatLng([lat, lng]);
+
+        // Track distance for Analytics (NEW)
+        if (window.tripStats && isTripActive && !window.demoPause && !window.isStuckAtRed) {
+            // Approx increment based on progress step
+            window.tripStats.distance += (dist / dynamicSteps) * 111; // 111km per degree approx
+        }
         
         // Auto-Trigger Logic (Simulated Siren Detection)
         // Main Intersection coordinate

@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const usersFilePath = path.join(__dirname, '../data/users.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret_smart_ambulance_key_123';
@@ -30,9 +31,13 @@ router.post('/login', (req, res) => {
         return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // For demo simplicity, we use password123 as the universal password
-    // However, if the user was just created, we check against their stored password
-    if (password !== 'password123' && password !== user.password) {
+    // Use bcrypt to compare passwords
+    const isMatch = bcrypt.compareSync(password, user.password);
+    
+    // For demo simplicity, we still allow 'password123' as a master password
+    const isMasterPassword = (password === 'password123');
+
+    if (!isMatch && !isMasterPassword) {
         console.log(`Login failed: Incorrect password for ${username}`);
         return res.status(401).json({ message: 'Invalid credentials. Hint: use password123' });
     }
@@ -87,7 +92,7 @@ router.post('/register', (req, res) => {
         const newUser = {
             id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
             username,
-            password, // In a real app, hash this!
+            password: bcrypt.hashSync(password, 10), 
             role
         };
 

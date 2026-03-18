@@ -13,8 +13,12 @@ To date, the **Software Control Dashboard** has been fully developed, refined, a
 - **Live GPS Map Simulation:** A real-time tracking interface built using Leaflet.js that accurately plots the ambulance’s journey through city streets.
 - **AI Co-Pilot Integration:** A complete Text-to-Speech (TTS) integration that vocally announces critical alerts, congestion warnings, and route changes to the driver.
 - **Dynamic Re-Routing:** The system mathematically analyzes traffic conditions. As demonstrated in Scenario 2, if the main route is congested, the AI immediately wipes the old route from the map and draws a faster detour through side streets in real-time.
-- **Smart Node Server Override (The "Green Corridor"):** A complex backend architecture using Node.js and Socket.io. When an ambulance approaches a red light (as seen in Scenarios 1 and 3), the system digitally overrides the traffic light state across the network, turning it green and clearing civilian traffic.
-- **Polished Choreography:** We refined the visual demonstration so that the ambulance movements, voice dialogue, and UI alerts occurring on the dashboard are perfectly synchronized, creating a professional and polished viewing experience.
+- **Smart Node Server Override (The "Green Corridor"):** A complex backend architecture using Node.js and Socket.io. When an ambulance approaches a red light (as seen in Scenarios 1 and 3), the system digitally overrides the traffic light state across the network.
+- **Hospital-Side Integration & Vitals Tracking:** A real-time data link that transmits patient vitals (SPO2, Heart Rate) directly from the ambulance to the hospital dashboard, allowing doctors to prepare for the specific emergency before arrival.
+- **Multimodal Role Dashboards:** Distinct and secure login experiences for **Admin** (System Control), **Driver** (Navigation), and **Hospital** (Emergency Readiness).
+- **Trip Performance Analytics:** High-impact mission summary reports showing distance, time saved, and traffic overrides upon arrival.
+- **Mock Civilian Driver Alerts:** Real-time simulation of how nearby drivers receive emergency notifications on their mobile devices.
+- **Polished Choreography:** Perfectly synchronized ambulance movement, voice dialogue, and UI alerts for a professional demonstration.
 
 *For the presentation, we can log into the dashboard (`http://localhost:3000`) and seamlessly demonstrate Scenarios 1, 2, and 3 to show the software reacting exactly as intended.*
 
