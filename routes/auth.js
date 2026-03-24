@@ -83,6 +83,17 @@ router.post('/register', (req, res) => {
             return res.status(400).json({ message: 'Missing required fields' });
         }
 
+        // --- STRONG PASSWORD VALIDATION (NEW) ---
+        // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!strongPasswordRegex.test(password)) {
+            console.log(`Registration failed: Weak password for username ${username}`);
+            return res.status(400).json({ 
+                message: 'Password must be at least 8 chars, contain 1 uppercase, 1 lowercase, 1 number, and 1 special character.' 
+            });
+        }
+        // ----------------------------------------
+
         const users = getUsers();
         if (users.find(u => u.username === username)) {
             console.log(`Registration failed: Username ${username} already exists`);

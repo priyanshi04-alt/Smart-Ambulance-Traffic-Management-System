@@ -264,6 +264,15 @@ function initAdminDashboard() {
             const password = document.getElementById('newPassword').value;
             const role = document.getElementById('newRole').value;
 
+            // --- FRONTEND STRONG PASSWORD CHECK ---
+            const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!strongPasswordRegex.test(password)) {
+                addUserStatus.textContent = "Weak Password: 8+ chars, 1 Upper, 1 Lower, 1 Number, 1 Special Char required.";
+                addUserStatus.classList.remove('hidden', 'text-green-500', 'text-slate-400');
+                addUserStatus.classList.add('text-red-500');
+                return;
+            }
+
             addUserStatus.textContent = "Creating user...";
             addUserStatus.classList.remove('hidden', 'text-green-500', 'text-red-500');
             addUserStatus.classList.add('text-slate-400');

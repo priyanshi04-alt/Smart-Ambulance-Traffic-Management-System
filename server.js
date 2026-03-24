@@ -23,9 +23,13 @@ app.use(express.json());
 // Services
 const trafficController = require('./services/TrafficController');
 const logService = require('./services/LogService');
+const hwSync = require('./services/HardwareSyncService');
+const geoAlerts = require('./services/GeoFencedAlertService');
 
 // Initialize services with socket.io instance
 logService.init(io);
+hwSync.init(io);
+geoAlerts.init(io);
 trafficController.init(io);
 
 // Routes
@@ -53,6 +57,12 @@ io.on('connection', (socket) => {
 
   // Handle location relay
   socket.on('driver-location', (data) => {
+      // 1. Pass data into the Advanced Predictive ETA Engine Execution Layer
+      trafficController.processPredictiveTelemetry(data);
+      
+      // 2. Pass data into Geo-Fenced Proximity Engine
+      geoAlerts.processCivilianProximity(data);
+
       io.emit('ambulance-location-update', data);
   });
 

@@ -1,602 +1,602 @@
 [
   {
-    "id": "1773843711818",
-    "timestamp": "2026-03-18T14:21:51.818Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376572295",
+    "timestamp": "2026-03-24T18:22:52.295Z",
+    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843710802",
-    "timestamp": "2026-03-18T14:21:50.803Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376571280",
+    "timestamp": "2026-03-24T18:22:51.280Z",
+    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843709799",
-    "timestamp": "2026-03-18T14:21:49.799Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376570325",
+    "timestamp": "2026-03-24T18:22:50.325Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VQ54XLMB8] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843708809",
-    "timestamp": "2026-03-18T14:21:48.809Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376570279",
+    "timestamp": "2026-03-24T18:22:50.279Z",
+    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843707800",
-    "timestamp": "2026-03-18T14:21:47.800Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376569323",
+    "timestamp": "2026-03-24T18:22:49.323Z",
+    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843706787",
-    "timestamp": "2026-03-18T14:21:46.787Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376568314",
+    "timestamp": "2026-03-24T18:22:48.314Z",
+    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843696686",
-    "timestamp": "2026-03-18T14:21:36.686Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376567286",
+    "timestamp": "2026-03-24T18:22:47.286Z",
+    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843695668",
-    "timestamp": "2026-03-18T14:21:35.668Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376560201",
+    "timestamp": "2026-03-24T18:22:40.201Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-7JYI2TI7Z] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843694661",
-    "timestamp": "2026-03-18T14:21:34.661Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376559196",
+    "timestamp": "2026-03-24T18:22:39.196Z",
+    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843693675",
-    "timestamp": "2026-03-18T14:21:33.675Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376558185",
+    "timestamp": "2026-03-24T18:22:38.185Z",
+    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843692662",
-    "timestamp": "2026-03-18T14:21:32.662Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376557206",
+    "timestamp": "2026-03-24T18:22:37.206Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-Y9V02XO4H] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843691648",
-    "timestamp": "2026-03-18T14:21:31.648Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376557174",
+    "timestamp": "2026-03-24T18:22:37.174Z",
+    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843681524",
-    "timestamp": "2026-03-18T14:21:21.524Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376556203",
+    "timestamp": "2026-03-24T18:22:36.203Z",
+    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843680514",
-    "timestamp": "2026-03-18T14:21:20.514Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376555196",
+    "timestamp": "2026-03-24T18:22:35.196Z",
+    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843679503",
-    "timestamp": "2026-03-18T14:21:19.503Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376554180",
+    "timestamp": "2026-03-24T18:22:34.180Z",
+    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843678522",
-    "timestamp": "2026-03-18T14:21:18.522Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376547135",
+    "timestamp": "2026-03-24T18:22:27.135Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-GZ86OD1U5] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843677508",
-    "timestamp": "2026-03-18T14:21:17.508Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376546131",
+    "timestamp": "2026-03-24T18:22:26.131Z",
+    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843676493",
-    "timestamp": "2026-03-18T14:21:16.493Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376545114",
+    "timestamp": "2026-03-24T18:22:25.114Z",
+    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843666375",
-    "timestamp": "2026-03-18T14:21:06.375Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376544114",
+    "timestamp": "2026-03-24T18:22:24.114Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-0TUUTB4WB] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843665361",
-    "timestamp": "2026-03-18T14:21:05.361Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376544098",
+    "timestamp": "2026-03-24T18:22:24.098Z",
+    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843664357",
-    "timestamp": "2026-03-18T14:21:04.357Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376543100",
+    "timestamp": "2026-03-24T18:22:23.100Z",
+    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843663362",
-    "timestamp": "2026-03-18T14:21:03.362Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376542096",
+    "timestamp": "2026-03-24T18:22:22.096Z",
+    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843662353",
-    "timestamp": "2026-03-18T14:21:02.353Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376541091",
+    "timestamp": "2026-03-24T18:22:21.091Z",
+    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843661341",
-    "timestamp": "2026-03-18T14:21:01.341Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376534033",
+    "timestamp": "2026-03-24T18:22:14.034Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-CJ3MEM9GM] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843651226",
-    "timestamp": "2026-03-18T14:20:51.226Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376533032",
+    "timestamp": "2026-03-24T18:22:13.032Z",
+    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843650214",
-    "timestamp": "2026-03-18T14:20:50.214Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376532030",
+    "timestamp": "2026-03-24T18:22:12.030Z",
+    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843649202",
-    "timestamp": "2026-03-18T14:20:49.202Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376531057",
+    "timestamp": "2026-03-24T18:22:11.057Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-J4112FWE0] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843648217",
-    "timestamp": "2026-03-18T14:20:48.217Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376531024",
+    "timestamp": "2026-03-24T18:22:11.024Z",
+    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843647206",
-    "timestamp": "2026-03-18T14:20:47.206Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376530041",
+    "timestamp": "2026-03-24T18:22:10.041Z",
+    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843646190",
-    "timestamp": "2026-03-18T14:20:46.190Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376529025",
+    "timestamp": "2026-03-24T18:22:09.025Z",
+    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843636094",
-    "timestamp": "2026-03-18T14:20:36.094Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376528010",
+    "timestamp": "2026-03-24T18:22:08.010Z",
+    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843635079",
-    "timestamp": "2026-03-18T14:20:35.079Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376520930",
+    "timestamp": "2026-03-24T18:22:00.930Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-RUYSW0BYR] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843634064",
-    "timestamp": "2026-03-18T14:20:34.064Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376519913",
+    "timestamp": "2026-03-24T18:21:59.913Z",
+    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843633082",
-    "timestamp": "2026-03-18T14:20:33.082Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376518896",
+    "timestamp": "2026-03-24T18:21:58.896Z",
+    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843632069",
-    "timestamp": "2026-03-18T14:20:32.069Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376517895",
+    "timestamp": "2026-03-24T18:21:57.895Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-JAQOMRME6] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843631056",
-    "timestamp": "2026-03-18T14:20:31.056Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376517879",
+    "timestamp": "2026-03-24T18:21:57.879Z",
+    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843620947",
-    "timestamp": "2026-03-18T14:20:20.947Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376516889",
+    "timestamp": "2026-03-24T18:21:56.889Z",
+    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843619934",
-    "timestamp": "2026-03-18T14:20:19.934Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376515885",
+    "timestamp": "2026-03-24T18:21:55.885Z",
+    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843618934",
-    "timestamp": "2026-03-18T14:20:18.934Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376514872",
+    "timestamp": "2026-03-24T18:21:54.872Z",
+    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843617941",
-    "timestamp": "2026-03-18T14:20:17.941Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376507822",
+    "timestamp": "2026-03-24T18:21:47.822Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-BI6FZX16C] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843616931",
-    "timestamp": "2026-03-18T14:20:16.931Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376506808",
+    "timestamp": "2026-03-24T18:21:46.808Z",
+    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843615921",
-    "timestamp": "2026-03-18T14:20:15.921Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376505795",
+    "timestamp": "2026-03-24T18:21:45.795Z",
+    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843605799",
-    "timestamp": "2026-03-18T14:20:05.799Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376504808",
+    "timestamp": "2026-03-24T18:21:44.808Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-BY9RAWJEG] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843604792",
-    "timestamp": "2026-03-18T14:20:04.792Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376504792",
+    "timestamp": "2026-03-24T18:21:44.792Z",
+    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843603778",
-    "timestamp": "2026-03-18T14:20:03.778Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376503797",
+    "timestamp": "2026-03-24T18:21:43.797Z",
+    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843602796",
-    "timestamp": "2026-03-18T14:20:02.796Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376502784",
+    "timestamp": "2026-03-24T18:21:42.784Z",
+    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843601781",
-    "timestamp": "2026-03-18T14:20:01.781Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376501768",
+    "timestamp": "2026-03-24T18:21:41.768Z",
+    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843600767",
-    "timestamp": "2026-03-18T14:20:00.767Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376494704",
+    "timestamp": "2026-03-24T18:21:34.704Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VSZDZN2M7] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843590691",
-    "timestamp": "2026-03-18T14:19:50.691Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376493690",
+    "timestamp": "2026-03-24T18:21:33.690Z",
+    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843589674",
-    "timestamp": "2026-03-18T14:19:49.674Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376492687",
+    "timestamp": "2026-03-24T18:21:32.687Z",
+    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843588663",
-    "timestamp": "2026-03-18T14:19:48.663Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376491703",
+    "timestamp": "2026-03-24T18:21:31.703Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-ELVAE1AZE] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843587681",
-    "timestamp": "2026-03-18T14:19:47.681Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376491672",
+    "timestamp": "2026-03-24T18:21:31.672Z",
+    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843586672",
-    "timestamp": "2026-03-18T14:19:46.672Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376490689",
+    "timestamp": "2026-03-24T18:21:30.689Z",
+    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843585661",
-    "timestamp": "2026-03-18T14:19:45.661Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376489675",
+    "timestamp": "2026-03-24T18:21:29.675Z",
+    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843575577",
-    "timestamp": "2026-03-18T14:19:35.577Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376488660",
+    "timestamp": "2026-03-24T18:21:28.660Z",
+    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843574566",
-    "timestamp": "2026-03-18T14:19:34.566Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376481600",
+    "timestamp": "2026-03-24T18:21:21.600Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-5MWJ5YS5B] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843573568",
-    "timestamp": "2026-03-18T14:19:33.568Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376480587",
+    "timestamp": "2026-03-24T18:21:20.587Z",
+    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843572571",
-    "timestamp": "2026-03-18T14:19:32.571Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376479575",
+    "timestamp": "2026-03-24T18:21:19.575Z",
+    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843571558",
-    "timestamp": "2026-03-18T14:19:31.558Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376478590",
+    "timestamp": "2026-03-24T18:21:18.590Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-R32T2KPCE] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843570556",
-    "timestamp": "2026-03-18T14:19:30.556Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376478574",
+    "timestamp": "2026-03-24T18:21:18.574Z",
+    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843560442",
-    "timestamp": "2026-03-18T14:19:20.442Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376477587",
+    "timestamp": "2026-03-24T18:21:17.587Z",
+    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843559439",
-    "timestamp": "2026-03-18T14:19:19.439Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376476585",
+    "timestamp": "2026-03-24T18:21:16.585Z",
+    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843558442",
-    "timestamp": "2026-03-18T14:19:18.442Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376475570",
+    "timestamp": "2026-03-24T18:21:15.570Z",
+    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843557432",
-    "timestamp": "2026-03-18T14:19:17.432Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376468526",
+    "timestamp": "2026-03-24T18:21:08.526Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-168LVVJWR] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843556427",
-    "timestamp": "2026-03-18T14:19:16.427Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376467512",
+    "timestamp": "2026-03-24T18:21:07.512Z",
+    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843555428",
-    "timestamp": "2026-03-18T14:19:15.428Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376466508",
+    "timestamp": "2026-03-24T18:21:06.508Z",
+    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843545319",
-    "timestamp": "2026-03-18T14:19:05.319Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376465528",
+    "timestamp": "2026-03-24T18:21:05.528Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-2UZ17814E] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843544306",
-    "timestamp": "2026-03-18T14:19:04.306Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376465496",
+    "timestamp": "2026-03-24T18:21:05.496Z",
+    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843543295",
-    "timestamp": "2026-03-18T14:19:03.295Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376464513",
+    "timestamp": "2026-03-24T18:21:04.513Z",
+    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843542302",
-    "timestamp": "2026-03-18T14:19:02.302Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376463501",
+    "timestamp": "2026-03-24T18:21:03.501Z",
+    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843541300",
-    "timestamp": "2026-03-18T14:19:01.300Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376462487",
+    "timestamp": "2026-03-24T18:21:02.487Z",
+    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843540285",
-    "timestamp": "2026-03-18T14:19:00.285Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376455414",
+    "timestamp": "2026-03-24T18:20:55.414Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-O45WDRV4Q] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843530164",
-    "timestamp": "2026-03-18T14:18:50.164Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376454401",
+    "timestamp": "2026-03-24T18:20:54.401Z",
+    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843529154",
-    "timestamp": "2026-03-18T14:18:49.154Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376453383",
+    "timestamp": "2026-03-24T18:20:53.383Z",
+    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843528138",
-    "timestamp": "2026-03-18T14:18:48.138Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376452381",
+    "timestamp": "2026-03-24T18:20:52.381Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-UCY1SAWXD] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843527156",
-    "timestamp": "2026-03-18T14:18:47.156Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376452366",
+    "timestamp": "2026-03-24T18:20:52.366Z",
+    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843526140",
-    "timestamp": "2026-03-18T14:18:46.140Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376451368",
+    "timestamp": "2026-03-24T18:20:51.368Z",
+    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843525129",
-    "timestamp": "2026-03-18T14:18:45.129Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376450359",
+    "timestamp": "2026-03-24T18:20:50.359Z",
+    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843515020",
-    "timestamp": "2026-03-18T14:18:35.020Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376449342",
+    "timestamp": "2026-03-24T18:20:49.342Z",
+    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843514008",
-    "timestamp": "2026-03-18T14:18:34.008Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376442308",
+    "timestamp": "2026-03-24T18:20:42.308Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-OBMV6X9I6] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843513000",
-    "timestamp": "2026-03-18T14:18:33.000Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376441291",
+    "timestamp": "2026-03-24T18:20:41.291Z",
+    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843512005",
-    "timestamp": "2026-03-18T14:18:32.005Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376440289",
+    "timestamp": "2026-03-24T18:20:40.289Z",
+    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843510995",
-    "timestamp": "2026-03-18T14:18:30.995Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376439318",
+    "timestamp": "2026-03-24T18:20:39.318Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-I0NYAXQA9] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843509988",
-    "timestamp": "2026-03-18T14:18:29.988Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376439287",
+    "timestamp": "2026-03-24T18:20:39.287Z",
+    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843499881",
-    "timestamp": "2026-03-18T14:18:19.881Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376438304",
+    "timestamp": "2026-03-24T18:20:38.304Z",
+    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843498881",
-    "timestamp": "2026-03-18T14:18:18.881Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376437291",
+    "timestamp": "2026-03-24T18:20:37.291Z",
+    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843497869",
-    "timestamp": "2026-03-18T14:18:17.869Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376436277",
+    "timestamp": "2026-03-24T18:20:36.277Z",
+    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843496873",
-    "timestamp": "2026-03-18T14:18:16.873Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376429204",
+    "timestamp": "2026-03-24T18:20:29.204Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-JRYUWST33] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843495871",
-    "timestamp": "2026-03-18T14:18:15.871Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376428190",
+    "timestamp": "2026-03-24T18:20:28.190Z",
+    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843494859",
-    "timestamp": "2026-03-18T14:18:14.859Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376427175",
+    "timestamp": "2026-03-24T18:20:27.176Z",
+    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843484762",
-    "timestamp": "2026-03-18T14:18:04.762Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376426177",
+    "timestamp": "2026-03-24T18:20:26.177Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-LEYQMC7ZR] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843483750",
-    "timestamp": "2026-03-18T14:18:03.750Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376426160",
+    "timestamp": "2026-03-24T18:20:26.160Z",
+    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843482739",
-    "timestamp": "2026-03-18T14:18:02.739Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376425170",
+    "timestamp": "2026-03-24T18:20:25.170Z",
+    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843481755",
-    "timestamp": "2026-03-18T14:18:01.755Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376424165",
+    "timestamp": "2026-03-24T18:20:24.165Z",
+    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843480746",
-    "timestamp": "2026-03-18T14:18:00.746Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376423152",
+    "timestamp": "2026-03-24T18:20:23.152Z",
+    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   },
   {
-    "id": "1773843479735",
-    "timestamp": "2026-03-18T14:17:59.735Z",
-    "message": "NS signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376416106",
+    "timestamp": "2026-03-24T18:20:16.106Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-3YLEM8ZBL] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843469622",
-    "timestamp": "2026-03-18T14:17:49.622Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376415104",
+    "timestamp": "2026-03-24T18:20:15.104Z",
+    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 3)",
+    "type": "warning"
   },
   {
-    "id": "1773843468609",
-    "timestamp": "2026-03-18T14:17:48.609Z",
-    "message": "East-West is now GREEN",
-    "type": "info"
+    "id": "1774376414101",
+    "timestamp": "2026-03-24T18:20:14.101Z",
+    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 2)",
+    "type": "warning"
   },
   {
-    "id": "1773843467600",
-    "timestamp": "2026-03-18T14:17:47.600Z",
-    "message": "North-South is now GREEN",
-    "type": "info"
+    "id": "1774376413101",
+    "timestamp": "2026-03-24T18:20:13.101Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VNVH4DN5U] after 3 attempts.",
+    "type": "warning"
   },
   {
-    "id": "1773843466613",
-    "timestamp": "2026-03-18T14:17:46.613Z",
-    "message": "EW signal transitioning (Yellow)",
-    "type": "info"
+    "id": "1774376413085",
+    "timestamp": "2026-03-24T18:20:13.085Z",
+    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 1)",
+    "type": "warning"
   }
 ]
