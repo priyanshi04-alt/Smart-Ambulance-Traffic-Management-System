@@ -1,602 +1,602 @@
 [
   {
-    "id": "1774376572295",
-    "timestamp": "2026-03-24T18:22:52.295Z",
-    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1776589800605",
+    "timestamp": "2026-04-19T09:10:00.605Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376571280",
-    "timestamp": "2026-03-24T18:22:51.280Z",
-    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1776589800601",
+    "timestamp": "2026-04-19T09:10:00.601Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
   },
   {
-    "id": "1774376570325",
-    "timestamp": "2026-03-24T18:22:50.325Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VQ54XLMB8] after 3 attempts.",
-    "type": "warning"
+    "id": "1776589723989",
+    "timestamp": "2026-04-19T09:08:43.989Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376570279",
-    "timestamp": "2026-03-24T18:22:50.279Z",
-    "message": "Retrying hardware sync [CMD-D49T1HKZF] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1776589723985",
+    "timestamp": "2026-04-19T09:08:43.985Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
   },
   {
-    "id": "1774376569323",
-    "timestamp": "2026-03-24T18:22:49.323Z",
-    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1776589722907",
+    "timestamp": "2026-04-19T09:08:42.907Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376568314",
-    "timestamp": "2026-03-24T18:22:48.314Z",
-    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1776589697024",
+    "timestamp": "2026-04-19T09:08:17.024Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376567286",
-    "timestamp": "2026-03-24T18:22:47.286Z",
-    "message": "Retrying hardware sync [CMD-VQ54XLMB8] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1776589697020",
+    "timestamp": "2026-04-19T09:08:17.020Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
   },
   {
-    "id": "1774376560201",
-    "timestamp": "2026-03-24T18:22:40.201Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-7JYI2TI7Z] after 3 attempts.",
+    "id": "1776589694804",
+    "timestamp": "2026-04-19T09:08:14.804Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376559196",
-    "timestamp": "2026-03-24T18:22:39.196Z",
-    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1776589694799",
+    "timestamp": "2026-04-19T09:08:14.799Z",
+    "message": "Siren/Emergency override ACTIVATED for direction: south",
     "type": "warning"
   },
   {
-    "id": "1774376558185",
-    "timestamp": "2026-03-24T18:22:38.185Z",
-    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1776589685547",
+    "timestamp": "2026-04-19T09:08:05.547Z",
+    "message": "Message from Hospital (City General Hospital): \"jhlfcjf\"",
+    "type": "info"
   },
   {
-    "id": "1774376557206",
-    "timestamp": "2026-03-24T18:22:37.206Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-Y9V02XO4H] after 3 attempts.",
+    "id": "1776589673892",
+    "timestamp": "2026-04-19T09:07:53.892Z",
+    "message": "Emergency alert sent to City General Hospital: bdkjlc",
     "type": "warning"
   },
   {
-    "id": "1774376557174",
-    "timestamp": "2026-03-24T18:22:37.174Z",
-    "message": "Retrying hardware sync [CMD-7JYI2TI7Z] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1776585090708",
+    "timestamp": "2026-04-19T07:51:30.708Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376556203",
-    "timestamp": "2026-03-24T18:22:36.203Z",
-    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1776585090704",
+    "timestamp": "2026-04-19T07:51:30.704Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
   },
   {
-    "id": "1774376555196",
-    "timestamp": "2026-03-24T18:22:35.196Z",
-    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1776585086262",
+    "timestamp": "2026-04-19T07:51:26.262Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced north.",
     "type": "warning"
   },
   {
-    "id": "1774376554180",
-    "timestamp": "2026-03-24T18:22:34.180Z",
-    "message": "Retrying hardware sync [CMD-Y9V02XO4H] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1776585086253",
+    "timestamp": "2026-04-19T07:51:26.253Z",
+    "message": "Siren/Emergency override ACTIVATED for direction: north",
     "type": "warning"
   },
   {
-    "id": "1774376547135",
-    "timestamp": "2026-03-24T18:22:27.135Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-GZ86OD1U5] after 3 attempts.",
-    "type": "warning"
+    "id": "1775451001151",
+    "timestamp": "2026-04-06T04:50:01.151Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376546131",
-    "timestamp": "2026-03-24T18:22:26.131Z",
-    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1775450933771",
+    "timestamp": "2026-04-06T04:48:53.771Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376545114",
-    "timestamp": "2026-03-24T18:22:25.114Z",
-    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1775450927369",
+    "timestamp": "2026-04-06T04:48:47.369Z",
+    "message": "Emergency alert sent to Apollo Life Care: pain",
     "type": "warning"
   },
   {
-    "id": "1774376544114",
-    "timestamp": "2026-03-24T18:22:24.114Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-0TUUTB4WB] after 3 attempts.",
-    "type": "warning"
+    "id": "1775449856850",
+    "timestamp": "2026-04-06T04:30:56.850Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376544098",
-    "timestamp": "2026-03-24T18:22:24.098Z",
-    "message": "Retrying hardware sync [CMD-GZ86OD1U5] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1775449788399",
+    "timestamp": "2026-04-06T04:29:48.399Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376543100",
-    "timestamp": "2026-03-24T18:22:23.100Z",
-    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1775449784872",
+    "timestamp": "2026-04-06T04:29:44.872Z",
+    "message": "Emergency alert sent to Apollo Life Care: pain",
     "type": "warning"
   },
   {
-    "id": "1774376542096",
-    "timestamp": "2026-03-24T18:22:22.096Z",
-    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1775449758165",
+    "timestamp": "2026-04-06T04:29:18.165Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376541091",
-    "timestamp": "2026-03-24T18:22:21.091Z",
-    "message": "Retrying hardware sync [CMD-0TUUTB4WB] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1775449726809",
+    "timestamp": "2026-04-06T04:28:46.809Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376534033",
-    "timestamp": "2026-03-24T18:22:14.034Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-CJ3MEM9GM] after 3 attempts.",
+    "id": "1775449724687",
+    "timestamp": "2026-04-06T04:28:44.687Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376533032",
-    "timestamp": "2026-03-24T18:22:13.032Z",
-    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1775449711355",
+    "timestamp": "2026-04-06T04:28:31.355Z",
+    "message": "Emergency alert sent to City General Hospital: pain",
     "type": "warning"
   },
   {
-    "id": "1774376532030",
-    "timestamp": "2026-03-24T18:22:12.030Z",
-    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1775449521172",
+    "timestamp": "2026-04-06T04:25:21.172Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376531057",
-    "timestamp": "2026-03-24T18:22:11.057Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-J4112FWE0] after 3 attempts.",
+    "id": "1775449520315",
+    "timestamp": "2026-04-06T04:25:20.316Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376531024",
-    "timestamp": "2026-03-24T18:22:11.024Z",
-    "message": "Retrying hardware sync [CMD-CJ3MEM9GM] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774846017295",
+    "timestamp": "2026-03-30T04:46:57.295Z",
+    "message": "City General Hospital acknowledged: READY",
+    "type": "info"
   },
   {
-    "id": "1774376530041",
-    "timestamp": "2026-03-24T18:22:10.041Z",
-    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774845995809",
+    "timestamp": "2026-03-30T04:46:35.809Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376529025",
-    "timestamp": "2026-03-24T18:22:09.025Z",
-    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774845993988",
+    "timestamp": "2026-03-30T04:46:33.988Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376528010",
-    "timestamp": "2026-03-24T18:22:08.010Z",
-    "message": "Retrying hardware sync [CMD-J4112FWE0] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774845967332",
+    "timestamp": "2026-03-30T04:46:07.332Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376520930",
-    "timestamp": "2026-03-24T18:22:00.930Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-RUYSW0BYR] after 3 attempts.",
+    "id": "1774845964761",
+    "timestamp": "2026-03-30T04:46:04.761Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376519913",
-    "timestamp": "2026-03-24T18:21:59.913Z",
-    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774845945233",
+    "timestamp": "2026-03-30T04:45:45.234Z",
+    "message": "Emergency alert sent to City General Hospital: jkjf",
     "type": "warning"
   },
   {
-    "id": "1774376518896",
-    "timestamp": "2026-03-24T18:21:58.896Z",
-    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1774845356462",
+    "timestamp": "2026-03-30T04:35:56.462Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376517895",
-    "timestamp": "2026-03-24T18:21:57.895Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-JAQOMRME6] after 3 attempts.",
+    "id": "1774845293425",
+    "timestamp": "2026-03-30T04:34:53.425Z",
+    "message": "Emergency alert sent to Apollo Life Care: cghvh",
     "type": "warning"
   },
   {
-    "id": "1774376517879",
-    "timestamp": "2026-03-24T18:21:57.879Z",
-    "message": "Retrying hardware sync [CMD-RUYSW0BYR] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774845201023",
+    "timestamp": "2026-03-30T04:33:21.023Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376516889",
-    "timestamp": "2026-03-24T18:21:56.889Z",
-    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774845179357",
+    "timestamp": "2026-03-30T04:32:59.357Z",
+    "message": "Emergency alert sent to Apollo Life Care: dfndijnd",
     "type": "warning"
   },
   {
-    "id": "1774376515885",
-    "timestamp": "2026-03-24T18:21:55.885Z",
-    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774845133598",
+    "timestamp": "2026-03-30T04:32:13.598Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376514872",
-    "timestamp": "2026-03-24T18:21:54.872Z",
-    "message": "Retrying hardware sync [CMD-JAQOMRME6] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774845079704",
+    "timestamp": "2026-03-30T04:31:19.704Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376507822",
-    "timestamp": "2026-03-24T18:21:47.822Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-BI6FZX16C] after 3 attempts.",
-    "type": "warning"
+    "id": "1774845051891",
+    "timestamp": "2026-03-30T04:30:51.891Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376506808",
-    "timestamp": "2026-03-24T18:21:46.808Z",
-    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774845033527",
+    "timestamp": "2026-03-30T04:30:33.527Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376505795",
-    "timestamp": "2026-03-24T18:21:45.795Z",
-    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774845031351",
+    "timestamp": "2026-03-30T04:30:31.351Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376504808",
-    "timestamp": "2026-03-24T18:21:44.808Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-BY9RAWJEG] after 3 attempts.",
-    "type": "warning"
+    "id": "1774786653013",
+    "timestamp": "2026-03-29T12:17:33.013Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376504792",
-    "timestamp": "2026-03-24T18:21:44.792Z",
-    "message": "Retrying hardware sync [CMD-BI6FZX16C] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774786651616",
+    "timestamp": "2026-03-29T12:17:31.616Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376503797",
-    "timestamp": "2026-03-24T18:21:43.797Z",
-    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774786626071",
+    "timestamp": "2026-03-29T12:17:06.071Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376502784",
-    "timestamp": "2026-03-24T18:21:42.784Z",
-    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774786623774",
+    "timestamp": "2026-03-29T12:17:03.774Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376501768",
-    "timestamp": "2026-03-24T18:21:41.768Z",
-    "message": "Retrying hardware sync [CMD-BY9RAWJEG] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774786621977",
+    "timestamp": "2026-03-29T12:17:01.977Z",
+    "message": "City General Hospital acknowledged: READY",
+    "type": "info"
   },
   {
-    "id": "1774376494704",
-    "timestamp": "2026-03-24T18:21:34.704Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VSZDZN2M7] after 3 attempts.",
+    "id": "1774786613248",
+    "timestamp": "2026-03-29T12:16:53.248Z",
+    "message": "Emergency alert sent to City General Hospital: painn",
     "type": "warning"
   },
   {
-    "id": "1774376493690",
-    "timestamp": "2026-03-24T18:21:33.690Z",
-    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774786287643",
+    "timestamp": "2026-03-29T12:11:27.643Z",
+    "message": "City General Hospital acknowledged: READY",
+    "type": "info"
   },
   {
-    "id": "1774376492687",
-    "timestamp": "2026-03-24T18:21:32.687Z",
-    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1774786235686",
+    "timestamp": "2026-03-29T12:10:35.686Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376491703",
-    "timestamp": "2026-03-24T18:21:31.703Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-ELVAE1AZE] after 3 attempts.",
+    "id": "1774786234827",
+    "timestamp": "2026-03-29T12:10:34.827Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376491672",
-    "timestamp": "2026-03-24T18:21:31.672Z",
-    "message": "Retrying hardware sync [CMD-VSZDZN2M7] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774786215903",
+    "timestamp": "2026-03-29T12:10:15.903Z",
+    "message": "Emergency alert sent to City General Hospital: painn",
     "type": "warning"
   },
   {
-    "id": "1774376490689",
-    "timestamp": "2026-03-24T18:21:30.689Z",
-    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774785978491",
+    "timestamp": "2026-03-29T12:06:18.491Z",
+    "message": "City General Hospital acknowledged: READY",
+    "type": "info"
   },
   {
-    "id": "1774376489675",
-    "timestamp": "2026-03-24T18:21:29.675Z",
-    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
+    "id": "1774785975049",
+    "timestamp": "2026-03-29T12:06:15.049Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376488660",
-    "timestamp": "2026-03-24T18:21:28.660Z",
-    "message": "Retrying hardware sync [CMD-ELVAE1AZE] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774785974020",
+    "timestamp": "2026-03-29T12:06:14.020Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
     "type": "warning"
   },
   {
-    "id": "1774376481600",
-    "timestamp": "2026-03-24T18:21:21.600Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-5MWJ5YS5B] after 3 attempts.",
-    "type": "warning"
+    "id": "1774785950322",
+    "timestamp": "2026-03-29T12:05:50.322Z",
+    "message": "Emergency alert sent to City General Hospital:  gh j",
+    "type": "info"
   },
   {
-    "id": "1774376480587",
-    "timestamp": "2026-03-24T18:21:20.587Z",
-    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
+    "id": "1774785073426",
+    "timestamp": "2026-03-29T11:51:13.426Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376479575",
-    "timestamp": "2026-03-24T18:21:19.575Z",
-    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774785006267",
+    "timestamp": "2026-03-29T11:50:06.267Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376478590",
-    "timestamp": "2026-03-24T18:21:18.590Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-R32T2KPCE] after 3 attempts.",
-    "type": "warning"
+    "id": "1774784198475",
+    "timestamp": "2026-03-29T11:36:38.475Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376478574",
-    "timestamp": "2026-03-24T18:21:18.574Z",
-    "message": "Retrying hardware sync [CMD-5MWJ5YS5B] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
+    "id": "1774784169114",
+    "timestamp": "2026-03-29T11:36:09.114Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
   },
   {
-    "id": "1774376477587",
-    "timestamp": "2026-03-24T18:21:17.587Z",
-    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774784166801",
+    "timestamp": "2026-03-29T11:36:06.801Z",
+    "message": "MANUAL OVERRIDE: Green corridor forced south.",
     "type": "warning"
   },
   {
-    "id": "1774376476585",
-    "timestamp": "2026-03-24T18:21:16.585Z",
-    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774784003381",
+    "timestamp": "2026-03-29T11:33:23.381Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-0EPDBGCEH] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376475570",
-    "timestamp": "2026-03-24T18:21:15.570Z",
-    "message": "Retrying hardware sync [CMD-R32T2KPCE] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774784002364",
+    "timestamp": "2026-03-29T11:33:22.364Z",
+    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376468526",
-    "timestamp": "2026-03-24T18:21:08.526Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-168LVVJWR] after 3 attempts.",
+    "id": "1774784001353",
+    "timestamp": "2026-03-29T11:33:21.353Z",
+    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376467512",
-    "timestamp": "2026-03-24T18:21:07.512Z",
-    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774784000350",
+    "timestamp": "2026-03-29T11:33:20.350Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-KU0EYLE57] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376466508",
-    "timestamp": "2026-03-24T18:21:06.508Z",
-    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774784000335",
+    "timestamp": "2026-03-29T11:33:20.335Z",
+    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376465528",
-    "timestamp": "2026-03-24T18:21:05.528Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-2UZ17814E] after 3 attempts.",
+    "id": "1774783999340",
+    "timestamp": "2026-03-29T11:33:19.340Z",
+    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376465496",
-    "timestamp": "2026-03-24T18:21:05.496Z",
-    "message": "Retrying hardware sync [CMD-168LVVJWR] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783998329",
+    "timestamp": "2026-03-29T11:33:18.329Z",
+    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376464513",
-    "timestamp": "2026-03-24T18:21:04.513Z",
-    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783997319",
+    "timestamp": "2026-03-29T11:33:17.319Z",
+    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376463501",
-    "timestamp": "2026-03-24T18:21:03.501Z",
-    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783990253",
+    "timestamp": "2026-03-29T11:33:10.253Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-ZS89JT5HZ] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376462487",
-    "timestamp": "2026-03-24T18:21:02.487Z",
-    "message": "Retrying hardware sync [CMD-2UZ17814E] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783989246",
+    "timestamp": "2026-03-29T11:33:09.247Z",
+    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376455414",
-    "timestamp": "2026-03-24T18:20:55.414Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-O45WDRV4Q] after 3 attempts.",
+    "id": "1774783988241",
+    "timestamp": "2026-03-29T11:33:08.241Z",
+    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376454401",
-    "timestamp": "2026-03-24T18:20:54.401Z",
-    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783987263",
+    "timestamp": "2026-03-29T11:33:07.263Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-3WONOEZ3N] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376453383",
-    "timestamp": "2026-03-24T18:20:53.383Z",
-    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783987232",
+    "timestamp": "2026-03-29T11:33:07.232Z",
+    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376452381",
-    "timestamp": "2026-03-24T18:20:52.381Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-UCY1SAWXD] after 3 attempts.",
+    "id": "1774783986250",
+    "timestamp": "2026-03-29T11:33:06.250Z",
+    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376452366",
-    "timestamp": "2026-03-24T18:20:52.366Z",
-    "message": "Retrying hardware sync [CMD-O45WDRV4Q] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783985238",
+    "timestamp": "2026-03-29T11:33:05.238Z",
+    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376451368",
-    "timestamp": "2026-03-24T18:20:51.368Z",
-    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783984222",
+    "timestamp": "2026-03-29T11:33:04.222Z",
+    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376450359",
-    "timestamp": "2026-03-24T18:20:50.359Z",
-    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783977171",
+    "timestamp": "2026-03-29T11:32:57.171Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-FNR98FNQL] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376449342",
-    "timestamp": "2026-03-24T18:20:49.342Z",
-    "message": "Retrying hardware sync [CMD-UCY1SAWXD] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783976156",
+    "timestamp": "2026-03-29T11:32:56.156Z",
+    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376442308",
-    "timestamp": "2026-03-24T18:20:42.308Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-OBMV6X9I6] after 3 attempts.",
+    "id": "1774783975144",
+    "timestamp": "2026-03-29T11:32:55.144Z",
+    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376441291",
-    "timestamp": "2026-03-24T18:20:41.291Z",
-    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783974163",
+    "timestamp": "2026-03-29T11:32:54.163Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-CEXONT8C4] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376440289",
-    "timestamp": "2026-03-24T18:20:40.289Z",
-    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783974131",
+    "timestamp": "2026-03-29T11:32:54.131Z",
+    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376439318",
-    "timestamp": "2026-03-24T18:20:39.318Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-I0NYAXQA9] after 3 attempts.",
+    "id": "1774783973152",
+    "timestamp": "2026-03-29T11:32:53.152Z",
+    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376439287",
-    "timestamp": "2026-03-24T18:20:39.287Z",
-    "message": "Retrying hardware sync [CMD-OBMV6X9I6] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783972142",
+    "timestamp": "2026-03-29T11:32:52.142Z",
+    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376438304",
-    "timestamp": "2026-03-24T18:20:38.304Z",
-    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783971127",
+    "timestamp": "2026-03-29T11:32:51.127Z",
+    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376437291",
-    "timestamp": "2026-03-24T18:20:37.291Z",
-    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783964046",
+    "timestamp": "2026-03-29T11:32:44.046Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-WNYVH9XE9] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376436277",
-    "timestamp": "2026-03-24T18:20:36.277Z",
-    "message": "Retrying hardware sync [CMD-I0NYAXQA9] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783963035",
+    "timestamp": "2026-03-29T11:32:43.035Z",
+    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376429204",
-    "timestamp": "2026-03-24T18:20:29.204Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-JRYUWST33] after 3 attempts.",
+    "id": "1774783962023",
+    "timestamp": "2026-03-29T11:32:42.023Z",
+    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376428190",
-    "timestamp": "2026-03-24T18:20:28.190Z",
-    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783961027",
+    "timestamp": "2026-03-29T11:32:41.027Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-DKA4BJFMU] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376427175",
-    "timestamp": "2026-03-24T18:20:27.176Z",
-    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783961011",
+    "timestamp": "2026-03-29T11:32:41.011Z",
+    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376426177",
-    "timestamp": "2026-03-24T18:20:26.177Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-LEYQMC7ZR] after 3 attempts.",
+    "id": "1774783960011",
+    "timestamp": "2026-03-29T11:32:40.011Z",
+    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376426160",
-    "timestamp": "2026-03-24T18:20:26.160Z",
-    "message": "Retrying hardware sync [CMD-JRYUWST33] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783959001",
+    "timestamp": "2026-03-29T11:32:39.001Z",
+    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376425170",
-    "timestamp": "2026-03-24T18:20:25.170Z",
-    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783957992",
+    "timestamp": "2026-03-29T11:32:37.992Z",
+    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376424165",
-    "timestamp": "2026-03-24T18:20:24.165Z",
-    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783950914",
+    "timestamp": "2026-03-29T11:32:30.914Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-4S71BSK8H] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376423152",
-    "timestamp": "2026-03-24T18:20:23.152Z",
-    "message": "Retrying hardware sync [CMD-LEYQMC7ZR] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783949898",
+    "timestamp": "2026-03-29T11:32:29.898Z",
+    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376416106",
-    "timestamp": "2026-03-24T18:20:16.106Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-3YLEM8ZBL] after 3 attempts.",
+    "id": "1774783948885",
+    "timestamp": "2026-03-29T11:32:28.885Z",
+    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   },
   {
-    "id": "1774376415104",
-    "timestamp": "2026-03-24T18:20:15.104Z",
-    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 3)",
+    "id": "1774783947906",
+    "timestamp": "2026-03-29T11:32:27.906Z",
+    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-O7F13WL7E] after 3 attempts.",
     "type": "warning"
   },
   {
-    "id": "1774376414101",
-    "timestamp": "2026-03-24T18:20:14.101Z",
-    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 2)",
+    "id": "1774783947875",
+    "timestamp": "2026-03-29T11:32:27.875Z",
+    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 1)",
     "type": "warning"
   },
   {
-    "id": "1774376413101",
-    "timestamp": "2026-03-24T18:20:13.101Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-VNVH4DN5U] after 3 attempts.",
+    "id": "1774783946897",
+    "timestamp": "2026-03-29T11:32:26.897Z",
+    "message": "Retrying hardware sync [CMD-O7F13WL7E] -> ESP32-NODE-01 (Attempt 3)",
     "type": "warning"
   },
   {
-    "id": "1774376413085",
-    "timestamp": "2026-03-24T18:20:13.085Z",
-    "message": "Retrying hardware sync [CMD-3YLEM8ZBL] -> ESP32-NODE-01 (Attempt 1)",
+    "id": "1774783945886",
+    "timestamp": "2026-03-29T11:32:25.886Z",
+    "message": "Retrying hardware sync [CMD-O7F13WL7E] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   }
 ]

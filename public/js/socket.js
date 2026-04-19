@@ -5,6 +5,7 @@ window.initSocket = function() {
     
     // Connect socket
     socket = io();
+    window.socket = socket;
 
     socket.on('connect', () => {
         console.log('Connected to real-time server');
@@ -239,7 +240,7 @@ window.initSocket = function() {
             }
         }
         
-        if (currentUser && currentUser.role === 'hospital') {
+        if (currentUser && (currentUser.role === 'hospital' || currentUser.role === 'admin')) {
             const container = document.getElementById('incomingAlertsContainer');
             const noAlerts = document.getElementById('noAlertsMessage');
             
@@ -374,8 +375,15 @@ window.initSocket = function() {
     socket.on('hospital-message-received', (data) => {
         if (currentUser && currentUser.role === 'driver') {
             const msgBox = document.getElementById('driverMessages');
+            const wrap = document.getElementById('driverMessagingSection');
+            if (wrap) wrap.classList.remove('hidden');
             if (msgBox) {
-                msgBox.innerHTML = `<div class="text-[10px] text-brand-500 font-bold uppercase">${data.hospitalName}:</div>${data.message}`;
+                if (msgBox.textContent.includes('No instructions...')) {
+                    msgBox.innerHTML = '';
+                    msgBox.classList.remove('italic');
+                }
+                msgBox.insertAdjacentHTML('beforeend', `<div class="mt-1"><span class="text-[10px] text-brand-500 font-bold uppercase">${data.hospitalName}:</span> ${data.message}</div>`);
+                msgBox.scrollTop = msgBox.scrollHeight;
                 msgBox.classList.add('animate-pulse');
                 setTimeout(() => msgBox.classList.remove('animate-pulse'), 2000);
             }
@@ -388,7 +396,8 @@ window.initSocket = function() {
             if (card) {
                 const msgBox = card.querySelector('.alert-messages');
                 if (msgBox) {
-                    msgBox.innerHTML = `<div class="text-[10px] text-blue-500 font-bold uppercase">Driver ${data.driverName}:</div>${data.message}`;
+                    msgBox.insertAdjacentHTML('beforeend', `<div class="mt-1"><span class="text-[10px] text-blue-500 font-bold uppercase">Driver ${data.driverName}:</span> ${data.message}</div>`);
+                    msgBox.scrollTop = msgBox.scrollHeight;
                     msgBox.classList.remove('hidden');
                 }
             }
@@ -418,6 +427,16 @@ function createHospitalAlertCard(data) {
             <div class="text-right shrink-0">
                 <div class="text-[10px] font-bold text-brand-600 dist-val">-- km</div>
                 <div class="text-[8px] text-slate-400 font-medium">${time}</div>
+            </div>
+        </div>
+    `;
+
+    div.innerHTML += `
+        <div class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800" onclick="event.stopPropagation()">
+            <div class="alert-messages hidden mb-2 p-1.5 bg-slate-50 dark:bg-slate-900 rounded text-[10px] text-slate-600 dark:text-slate-300 max-h-20 overflow-y-auto w-full"></div>
+            <div class="flex gap-1">
+                <input type="text" class="hosp-msg-input w-full text-[10px] p-1.5 border border-slate-200 dark:border-slate-700 rounded bg-slate-50 dark:bg-slate-800 outline-none dark:text-white" placeholder="Type instructions..." onkeypress="if(event.key==='Enter') sendHospitalMsg('${data.alertId}', '${data.hospitalName}')">
+                <button type="button" onclick="sendHospitalMsg('${data.alertId}', '${data.hospitalName}')" class="px-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded font-bold pointer-events-auto">Reply</button>
             </div>
         </div>
     `;
@@ -520,6 +539,13 @@ window.sendHospitalMsg = function(alertId, hospitalName) {
             hospitalName,
             message: msg
         });
+        
+        const msgBox = card ? card.querySelector('.alert-messages') : null;
+        if (msgBox) {
+            msgBox.innerHTML += `<div class="mt-1"><span class="text-[10px] text-green-600 font-bold uppercase">You:</span> ${msg}</div>`;
+            msgBox.classList.remove('hidden');
+        }
+
         if (input) {
             input.value = '';
             input.placeholder = 'Sent!';

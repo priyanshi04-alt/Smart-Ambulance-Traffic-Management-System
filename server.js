@@ -88,10 +88,12 @@ io.on('connection', (socket) => {
   // Two-way Messaging
   socket.on('hospital-to-driver-message', (data) => {
       io.emit('hospital-message-received', data);
+      logService.addLog(`Message from Hospital (${data.hospitalName}): "${data.message}"`, 'info');
   });
 
   socket.on('driver-to-hospital-message', (data) => {
       io.emit('driver-message-received', data);
+      logService.addLog(`Message from Driver (${data.driverName}): "${data.message}"`, 'info');
   });
 
   socket.on('disconnect', () => {

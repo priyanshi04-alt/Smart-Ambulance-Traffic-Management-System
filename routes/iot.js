@@ -16,9 +16,11 @@ router.post('/ambulance-detected', (req, res) => {
     const { direction, active } = req.body;
     
     if (active) {
+        logService.addLog(`Siren/Emergency override ACTIVATED for direction: ${direction || 'north'}`, 'warning');
         trafficController.activateEmergencyMode(direction || 'north');
         res.json({ message: 'Emergency mode forced active via manual admin override' });
     } else {
+        logService.addLog(`Emergency override DEACTIVATED`, 'info');
         trafficController.deactivateEmergencyMode();
         res.json({ message: 'Emergency manual override deactivated' });
     }
@@ -47,7 +49,10 @@ router.post('/traffic-density', (req, res) => {
     const { direction, level } = req.body;
     if (!direction || !level) return res.status(400).json({ message: 'Direction and level are required' });
     const updated = trafficController.updateDensity(direction, level);
-    if (updated) res.json({ message: `Density updated for ${direction}` });
+    if (updated) {
+        logService.addLog(`Traffic density forcefully set to ${level.toUpperCase()} for ${direction}`, 'info');
+        res.json({ message: `Density updated for ${direction}` });
+    }
     else res.status(400).json({ message: 'Invalid density level' });
 });
 

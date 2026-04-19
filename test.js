@@ -6,15 +6,15 @@ const puppeteer = require('puppeteer');
     try {
         console.log('Starting UI Test...');
         const browser = await puppeteer.launch({ 
-            headless: "new",
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security']
         });
         const page = await browser.newPage();
         await page.setViewport({width: 1280, height: 800});
         
-        console.log('Navigating to http://127.0.0.1:3000...');
+        console.log('Navigating to http://localhost:3000...');
         try {
-            await page.goto('http://127.0.0.1:3000', { 
+            await page.goto('http://localhost:3000', { 
                 waitUntil: 'networkidle2',
                 timeout: 30000 
             });

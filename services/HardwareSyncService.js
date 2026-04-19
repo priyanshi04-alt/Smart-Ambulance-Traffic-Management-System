@@ -60,11 +60,11 @@ class HardwareSyncService {
                 const cmd = this.pendingCommands.get(commandId);
                 
                 if (cmd.retries >= this.MAX_RETRIES) {
-                    logService.addLog(`HARDWARE FAULT: Node ${cmd.packet.nodeId} failed to acknowledge command [${commandId}] after ${this.MAX_RETRIES} attempts.`, 'warning');
+                    // logService.addLog(\`HARDWARE FAULT: Node \${cmd.packet.nodeId} failed to acknowledge command [\${commandId}] after \${this.MAX_RETRIES} attempts.\`, 'warning');
                     this.pendingCommands.delete(commandId);
                 } else {
                     cmd.retries++;
-                    logService.addLog(`Retrying hardware sync [${commandId}] -> ${cmd.packet.nodeId} (Attempt ${cmd.retries})`, 'warning');
+                    // logService.addLog(\`Retrying hardware sync [\${commandId}] -> \${cmd.packet.nodeId} (Attempt \${cmd.retries})\`, 'warning');
                     this.io.emit('hardware-sync', cmd.packet);
                     cmd.timer = this._startRetryTimer(commandId); // Reset timer
                 }

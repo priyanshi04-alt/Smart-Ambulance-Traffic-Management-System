@@ -118,6 +118,43 @@ window.initMap = function(containerId, role) {
         
         map.setView(startPoint, 15);
     }
+    
+    return map;
+};
+
+window.initAdminSecondaryMap = function(containerId) {
+    let initialCenter = [28.6139, 77.2090];
+    let initialZoom = 13; // slightly zoomed out for global view
+    
+    let secMap = L.map(containerId, {
+        zoomControl: false,
+        attributionControl: false
+    }).setView(initialCenter, initialZoom);
+    
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+    }).addTo(secMap);
+    
+    intersections.forEach(node => {
+        const iconHtml = `<div class="bg-slate-800 border-2 border-white w-3 h-3 rounded-full shadow-lg"></div>`;
+        const icon = L.divIcon({ html: iconHtml, className: '', iconSize: [12,12], iconAnchor: [6,6] });
+        L.marker([node.lat, node.lng], { icon }).addTo(secMap);
+    });
+
+    Object.values(hospitals).forEach(h => {
+         const hIcon = L.divIcon({ 
+             html: `<div class="bg-red-500 text-white w-6 h-6 rounded-full shadow-lg flex items-center justify-center border border-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cross"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"/></svg>
+                    </div>`, 
+             className: '', 
+             iconSize: [24,24], 
+             iconAnchor: [12,12] 
+         });
+         L.marker([h.lat, h.lng], { icon: hIcon }).addTo(secMap);
+    });
+    
+    window.adminGlobalMapInstance = secMap;
+    return secMap;
 };
 
 window.calculateAndDrawRoute = async function(destinationLat, destinationLng) {
@@ -520,7 +557,8 @@ window.startDriverSimulation = function(waypoints) {
              window.socket.emit('driver-location', {
                   lat: lat,
                   lng: lng,
-                  isEmergency: window.isEmergencyActive || false
+                  isEmergency: window.isEmergencyActive || false,
+                  hospitalId: window.currentDestId
              });
         }
         
