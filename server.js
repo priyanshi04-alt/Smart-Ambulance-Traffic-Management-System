@@ -96,6 +96,13 @@ io.on('connection', (socket) => {
       logService.addLog(`Message from Driver (${data.driverName}): "${data.message}"`, 'info');
   });
 
+  // Explicit Hardware Acknowledgment Reception Layer
+  socket.on('node-ack', (data) => {
+      if (data && data.commandId) {
+          hwSync.handleAck(data.commandId, data.status || 'RECEIVED_WS');
+      }
+  });
+
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
   });

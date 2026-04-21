@@ -70,7 +70,8 @@ class CentralDecisionEngine {
 
         // For Simulation purposes, we log the conflict resolution if multiple ambulances hit
         if (registry.length > 1 && finalCommands.length > 0) {
-           logService.addLog(`DECISION ENGINE: Resolved network map. Output: ${JSON.stringify(finalCommands.map(c => `${c.intersection_id}->${c.controllerId}`))}`, 'warning');
+           const logMsg = finalCommands.map(c => `[${c.intersection_id} SET:${c.state} to AMB:${c.controllerId} (ETA ${c.eta.toFixed(1)}s)]`).join(' | ');
+           logService.addLog(`DECISION ENGINE: Resolved predictive map collision across nodes. Details: ${logMsg}`, 'warning');
         }
 
         return finalCommands;

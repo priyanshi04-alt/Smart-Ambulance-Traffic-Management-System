@@ -42,7 +42,7 @@ async function handleLogin(e) {
     const errorMsg = document.getElementById('loginError');
     
     try {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch(`${window.apiBaseUrl || ''}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -175,7 +175,7 @@ function initAdminDashboard() {
     console.log("Admin dashboard initialized");
     
     // Initial Signal Status Fetch - Use a more robust check with cache busting
-    const fetchUrl = `/api/iot/signal-status?t=${Date.now()}`;
+    const fetchUrl = `${window.apiBaseUrl || ''}/api/iot/signal-status?t=${Date.now()}`;
     console.log(`Fetching initial signal status from ${fetchUrl}...`);
     fetch(fetchUrl)
         .then(async res => {
@@ -223,7 +223,7 @@ function initAdminDashboard() {
     
     document.getElementById('disableEmergencyBtn').addEventListener('click', async () => {
          try {
-             await fetch('/api/iot/ambulance-detected', {
+             await fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
                  method: 'POST',
                  headers: { 'Content-Type': 'application/json' },
                  body: JSON.stringify({ active: false })
@@ -242,7 +242,7 @@ function initAdminDashboard() {
              const level = valMap[val];
              
              try {
-                 await fetch('/api/iot/traffic-density', {
+                 await fetch(`${window.apiBaseUrl || ''}/api/iot/traffic-density`, {
                      method: 'POST',
                      headers: { 'Content-Type': 'application/json' },
                      body: JSON.stringify({ direction: dir, level })
@@ -278,7 +278,7 @@ function initAdminDashboard() {
             addUserStatus.classList.add('text-slate-400');
 
             try {
-                const response = await fetch('/api/auth/register', {
+                const response = await fetch(`${window.apiBaseUrl || ''}/api/auth/register`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -467,7 +467,7 @@ function initDriverDashboard() {
         statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700';
         
         // Deactivate emergency if active
-        fetch('/api/iot/ambulance-detected', {
+        fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
              method: 'POST',
              headers: { 'Content-Type': 'application/json' },
              body: JSON.stringify({ active: false })
@@ -513,7 +513,7 @@ window.isEmergencyActive = false;
         if (window.isEmergencyActive) {
             // Activate
             try {
-                await fetch('/api/iot/ambulance-detected', {
+                await fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ direction: 'south', active: true }) // Simulating coming from south
@@ -547,7 +547,7 @@ window.isEmergencyActive = false;
     if (typeof reportHazardBtn !== 'undefined') {
         reportHazardBtn.addEventListener('click', async () => {
             try {
-                await fetch('/api/iot/hazard-alert', {
+                await fetch(`${window.apiBaseUrl || ''}/api/iot/hazard-alert`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ type: 'Congestion/Accident', location: 'Current Position' })

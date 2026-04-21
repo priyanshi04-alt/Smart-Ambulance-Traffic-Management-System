@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Ambulance Traffic Management System Using IOT & Sound Detection</title>
     
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <!-- Script dependencies -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/tailwind-cdn.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/js/lucide.js"></script>
     
     <!-- Leaflet for Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="/css/leaflet.css" />
+    <script src="/js/leaflet.js"></script>
 
     <!-- Custom Tailwind Configuration to simulate modern aesthetics -->
     <script>
@@ -739,7 +743,7 @@
                                 <button id="markReadyBtn" class="px-3 py-1 bg-green-600 text-white text-[10px] font-bold rounded-lg hover:bg-green-700 transition flex items-center gap-1 hidden">
                                     <i data-lucide="check-circle" class="w-3 h-3"></i> Mark Hospital Ready
                                 </button>
-                                <button class="px-3 py-1 bg-brand-600 text-white text-[10px] font-bold rounded-lg hover:bg-brand-700 transition flex items-center gap-1">
+                                <button id="viewDigitalChartBtn" onclick="openDigitalChart()" class="px-3 py-1 bg-brand-600 text-white text-[10px] font-bold rounded-lg hover:bg-brand-700 transition flex items-center gap-1">
                                     <i data-lucide="file-text" class="w-3 h-3"></i> View Digital Chart
                                 </button>
                             </div>
@@ -793,7 +797,7 @@
                                 <span class="text-[9px] bg-green-500 text-white px-1.5 py-0.5 rounded uppercase">Assigned</span>
                             </div>
                             <div class="flex justify-between items-center p-2 rounded-lg bg-brand-50 dark:bg-brand-900/10 border border-brand-100 dark:border-brand-800/50">
-                                <span class="text-[11px] font-bold text-brand-700 dark:text-brand-400">Nurse Mehra (ER)</span>
+                                <span class="text-[11px] font-bold text-brand-700 dark:brand-400">Nurse Mehra (ER)</span>
                                 <span class="text-[9px] bg-brand-500 text-white px-1.5 py-0.5 rounded uppercase">Assigned</span>
                             </div>
                             <div class="flex justify-between items-center p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
@@ -814,18 +818,19 @@
                             <p class="text-[11px] font-medium text-slate-600 dark:text-slate-400 italic">"Clear Trauma Room A-1 immediately for incoming AMB-401"</p>
                         </div>
                         
-                        <!-- AI Predictor -->
-                         <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-4 shadow-lg text-white relative overflow-hidden shrink-0">
+                        <!-- AI Predictor (Dynamic) -->
+                         <div id="aiTriageCard" class="hidden bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl p-4 shadow-lg text-white relative overflow-hidden shrink-0">
                             <div class="absolute -right-2 -bottom-2 opacity-20">
                                 <i data-lucide="brain-circuit" class="w-16 h-16"></i>
                             </div>
                             <div class="relative z-10 flex items-center gap-3">
                                 <div class="bg-white/20 p-2 rounded-lg backdrop-blur">
-                                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-yellow-300 animate-pulse"></i>
                                 </div>
-                                <div>
-                                    <div class="text-[10px] font-bold uppercase opacity-80 tracking-widest">AI Prediction</div>
-                                    <div class="text-xs font-black">Surgery Required: 88% Prob</div>
+                                <div class="flex-1">
+                                    <div class="text-[10px] font-bold uppercase opacity-80 tracking-widest">Live AI Triage</div>
+                                    <div id="aiTriageResult" class="text-[11px] font-black leading-tight drop-shadow-sm line-clamp-2">Analyzing...</div>
+                                    <div id="aiTriagePrep" class="text-[9px] mt-1 text-indigo-200">Processing vitals...</div>
                                 </div>
                             </div>
                          </div>
@@ -834,22 +839,7 @@
                 </div>
             </div>
 
-            <!-- Bottom Floating Chat Access -->
-            <div class="xl:fixed bottom-6 right-8 z-30 flex items-center gap-3">
-                <div id="hospChatSnippet" class="bg-white dark:bg-dark-panel p-3 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-border flex items-center gap-3 animate-in slide-in-from-right duration-500 hidden max-w-xs">
-                    <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white shrink-0">
-                        <i data-lucide="message-square" class="w-4 h-4"></i>
-                    </div>
-                    <div class="min-w-0">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase">Driver Message</div>
-                        <p class="text-xs truncate dark:text-gray-200 italic" id="hospChatSnippetMsg">"Patient condition stable..."</p>
-                    </div>
-                </div>
-                <button class="bg-brand-600 hover:bg-brand-700 text-white p-4 rounded-full shadow-2xl transform hover:scale-110 active:scale-95 transition-all outline-none hidden">
-                    <i data-lucide="phone-forwarded" class="w-6 h-6"></i>
-                </button>
-            </div>
-
+            <!-- Bottom chat interface removed as per instructions -->
         </div>
     </template>
 
@@ -901,5 +891,59 @@
     <script src="/js/socket.js?v=1774847707349"></script>
     <script src="/js/voice.js"></script>
     <script src="/js/map.js?v=1774847707349"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').then(reg => {
+            console.log('PWA Service Worker registered:', reg.scope);
+          });
+        });
+      }
+    </script>
+    <!-- Digital Chart Modal -->
+    <div id="digitalChartModal" class="fixed inset-0 z-[100] hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-slate-200 dark:border-slate-700 relative animate-in zoom-in duration-300">
+            <div class="bg-brand-600 p-4 text-white flex justify-between items-center">
+                <h2 class="text-xs focus:outline-none font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i> Patient Digital Chart
+                </h2>
+                <button onclick="document.getElementById('digitalChartModal').classList.add('hidden')" class="hover:bg-brand-700 p-1 rounded transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Ambulance ID</span>
+                        <div id="modalAmbId" class="text-sm font-black text-slate-800 dark:text-slate-200">WAITING</div>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Severity</span>
+                        <div id="modalSeverity" class="text-sm font-black text-slate-800 dark:text-slate-200">WAITING</div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Reported Condition</span>
+                    <div id="modalProblem" class="text-sm font-medium text-slate-800 dark:text-slate-200">No data transmitted yet.</div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/10 p-3 rounded-xl border border-red-100 dark:border-red-800/50 flex justify-between items-center">
+                        <span class="text-[10px] text-red-500 font-bold uppercase">Heart Rate</span>
+                        <div id="modalHR" class="text-sm font-black text-red-600 dark:text-red-400">-- BPM</div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/10 p-3 rounded-xl border border-blue-100 dark:border-blue-800/50 flex justify-between items-center">
+                        <span class="text-[10px] text-blue-500 font-bold uppercase">SPO2 Level</span>
+                        <div id="modalSPO2" class="text-sm font-black text-blue-600 dark:text-blue-400">-- %</div>
+                    </div>
+                </div>
+                <div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-500 p-3 rounded-r-xl">
+                     <span class="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase block mb-1">AI Automated Triage Recommendation</span>
+                     <div id="modalAITriage" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Wait for vehicle telemetry...</div>
+                </div>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800/50 p-4 border-t border-slate-200 dark:border-slate-700 grid grid-cols-2 gap-3">
+                <button onclick="document.getElementById('digitalChartModal').classList.add('hidden')" class="py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 font-bold rounded-lg text-xs transition dark:text-slate-200">Close Chart</button>
+                <button class="py-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg text-xs transition shadow-md"><i data-lucide="printer" class="w-3 h-3 inline mr-1"></i> Print ER Record</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

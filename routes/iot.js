@@ -16,9 +16,9 @@ router.post('/ambulance-detected', (req, res) => {
     const { direction, active } = req.body;
     
     if (active) {
-        logService.addLog(`Siren/Emergency override ACTIVATED for direction: ${direction || 'north'}`, 'warning');
-        trafficController.activateEmergencyMode(direction || 'north');
-        res.json({ message: 'Emergency mode forced active via manual admin override' });
+        logService.addLog(`Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.`, 'warning');
+        trafficController.activateAutoSiren(direction || 'north');
+        res.json({ message: 'AutoSiren active via intelligent hardware detection' });
     } else {
         logService.addLog(`Emergency override DEACTIVATED`, 'info');
         trafficController.deactivateEmergencyMode();

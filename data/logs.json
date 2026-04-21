@@ -1,5 +1,125 @@
 [
   {
+    "id": "1776792376846",
+    "timestamp": "2026-04-21T17:26:16.846Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1776792376844",
+    "timestamp": "2026-04-21T17:26:16.844Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1776792293593",
+    "timestamp": "2026-04-21T17:24:53.593Z",
+    "message": "Emergency alert sent to Apollo Life Care: mr gyaa bhaii",
+    "type": "warning"
+  },
+  {
+    "id": "1776791981606",
+    "timestamp": "2026-04-21T17:19:41.606Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1776791981600",
+    "timestamp": "2026-04-21T17:19:41.600Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1776791941543",
+    "timestamp": "2026-04-21T17:19:01.543Z",
+    "message": "Message from Hospital (Apollo Life Care): \"wait\"",
+    "type": "info"
+  },
+  {
+    "id": "1776791939486",
+    "timestamp": "2026-04-21T17:18:59.486Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776791929282",
+    "timestamp": "2026-04-21T17:18:49.282Z",
+    "message": "Emergency alert sent to Apollo Life Care: paain",
+    "type": "warning"
+  },
+  {
+    "id": "1776791909477",
+    "timestamp": "2026-04-21T17:18:29.477Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776791909472",
+    "timestamp": "2026-04-21T17:18:29.472Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776750865864",
+    "timestamp": "2026-04-21T05:54:25.864Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776750859786",
+    "timestamp": "2026-04-21T05:54:19.786Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1776750859784",
+    "timestamp": "2026-04-21T05:54:19.784Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1776750854730",
+    "timestamp": "2026-04-21T05:54:14.730Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1776750854728",
+    "timestamp": "2026-04-21T05:54:14.728Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1776750835847",
+    "timestamp": "2026-04-21T05:53:55.847Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776750835844",
+    "timestamp": "2026-04-21T05:53:55.845Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776750834267",
+    "timestamp": "2026-04-21T05:53:54.267Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776750804258",
+    "timestamp": "2026-04-21T05:53:24.258Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776750804256",
+    "timestamp": "2026-04-21T05:53:24.256Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
     "id": "1776589800605",
     "timestamp": "2026-04-19T09:10:00.605Z",
     "message": "Manual Override Cancelled. Restoring predictive/normal control.",
@@ -477,126 +597,6 @@
     "id": "1774783975144",
     "timestamp": "2026-03-29T11:32:55.144Z",
     "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783974163",
-    "timestamp": "2026-03-29T11:32:54.163Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-CEXONT8C4] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783974131",
-    "timestamp": "2026-03-29T11:32:54.131Z",
-    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783973152",
-    "timestamp": "2026-03-29T11:32:53.152Z",
-    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783972142",
-    "timestamp": "2026-03-29T11:32:52.142Z",
-    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783971127",
-    "timestamp": "2026-03-29T11:32:51.127Z",
-    "message": "Retrying hardware sync [CMD-CEXONT8C4] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783964046",
-    "timestamp": "2026-03-29T11:32:44.046Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-WNYVH9XE9] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783963035",
-    "timestamp": "2026-03-29T11:32:43.035Z",
-    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783962023",
-    "timestamp": "2026-03-29T11:32:42.023Z",
-    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783961027",
-    "timestamp": "2026-03-29T11:32:41.027Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-DKA4BJFMU] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783961011",
-    "timestamp": "2026-03-29T11:32:41.011Z",
-    "message": "Retrying hardware sync [CMD-WNYVH9XE9] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783960011",
-    "timestamp": "2026-03-29T11:32:40.011Z",
-    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783959001",
-    "timestamp": "2026-03-29T11:32:39.001Z",
-    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783957992",
-    "timestamp": "2026-03-29T11:32:37.992Z",
-    "message": "Retrying hardware sync [CMD-DKA4BJFMU] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783950914",
-    "timestamp": "2026-03-29T11:32:30.914Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-4S71BSK8H] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783949898",
-    "timestamp": "2026-03-29T11:32:29.898Z",
-    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783948885",
-    "timestamp": "2026-03-29T11:32:28.885Z",
-    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783947906",
-    "timestamp": "2026-03-29T11:32:27.906Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-O7F13WL7E] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783947875",
-    "timestamp": "2026-03-29T11:32:27.875Z",
-    "message": "Retrying hardware sync [CMD-4S71BSK8H] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783946897",
-    "timestamp": "2026-03-29T11:32:26.897Z",
-    "message": "Retrying hardware sync [CMD-O7F13WL7E] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783945886",
-    "timestamp": "2026-03-29T11:32:25.886Z",
-    "message": "Retrying hardware sync [CMD-O7F13WL7E] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   }
 ]

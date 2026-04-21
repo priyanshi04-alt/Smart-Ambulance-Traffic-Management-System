@@ -4,7 +4,18 @@ window.initSocket = function() {
     if (socket) return;
     
     // Connect socket
-    socket = io();
+    if (window.Capacitor && window.Capacitor.isNative) {
+        const storedIp = localStorage.getItem('server_ip');
+        let userIp = prompt('Native App Mode: Enter local Node.js Server IP (e.g., 192.168.1.5)', storedIp || '192.168.1.');
+        if (!userIp) userIp = '127.0.0.1';
+        localStorage.setItem('server_ip', userIp);
+        const baseUrl = `http://${userIp}:3000`;
+        window.apiBaseUrl = baseUrl;
+        socket = io(baseUrl);
+    } else {
+        window.apiBaseUrl = '';
+        socket = io();
+    }
     window.socket = socket;
 
     socket.on('connect', () => {
@@ -467,6 +478,44 @@ function updatePatientInfoPanel(data) {
         el('patientInfoSeverity').textContent = data.critical ? 'CRITICAL' : 'STABLE';
         el('patientInfoSeverity').className = `text-sm font-black uppercase tracking-wide ${data.critical ? 'text-red-500 animate-pulse' : 'text-green-500'}`;
     }
+    
+    // Dynamic AI Triage Logic
+    const hr = parseInt(vitals.hr) || 82;
+    const spo2 = parseInt(vitals.spo2) || 96;
+    let triageMessage = "Regular Ward Admission.";
+    let anomalyScore = 0;
+    
+    if (hr > 120 || hr < 50) anomalyScore += 2;
+    if (spo2 < 92) anomalyScore += 3;
+    if (data.critical) anomalyScore += 4;
+    
+    if (anomalyScore >= 5) {
+         triageMessage = "URGENT ICU PREP REQUIRED. High Risk.";
+    } else if (anomalyScore >= 3) {
+         triageMessage = "High Priority ER admission. Prepare oxygen.";
+    } else if (anomalyScore > 0) {
+         triageMessage = "Standard ER admission. Monitor vitals.";
+    }
+    
+    const uiTriageCard = el('aiTriageCard');
+    const uiTriageRes = el('aiTriageResult');
+    const uiTriagePrep = el('aiTriagePrep');
+    if (uiTriageCard && uiTriageRes && uiTriagePrep) {
+         uiTriageCard.classList.remove('hidden');
+         uiTriageRes.textContent = triageMessage;
+         uiTriageRes.className = anomalyScore >= 5 ? 'text-[11px] font-black leading-tight drop-shadow-sm line-clamp-2 text-red-200 animate-pulse' : 'text-[11px] font-black leading-tight drop-shadow-sm line-clamp-2 text-white';
+         uiTriagePrep.textContent = `Probable routing: ${dept}`;
+    }
+
+    // Modal data state
+    window.currentPatientChart = { 
+        ambId: `AMB-${data.alertId?data.alertId.substr(-4):'0000'}`, 
+        severity: data.critical ? 'CRITICAL' : 'STABLE', 
+        problem: p || 'No details given', 
+        hr: hr, 
+        spo2: spo2, 
+        triage: triageMessage 
+    };
     if (el('patientInfoAge')) el('patientInfoAge').textContent = 'Age: ' + (vitals.age || '42');
     if (el('patientInfoGender')) el('patientInfoGender').textContent = 'Gender: ' + (vitals.gender || 'M');
     if (el('vitalsHR_Hosp')) el('vitalsHR_Hosp').textContent = vitals.hr || '82';
@@ -605,3 +654,21 @@ window.updateTrafficVisuals = function(state) {
         if (activePlug) activePlug.classList.add('active');
     });
 }
+
+window.openDigitalChart = function() {
+    const modal = document.getElementById('digitalChartModal');
+    if (!modal) return;
+    
+    // Default fallback if no data yet
+    const data = window.currentPatientChart || { ambId: 'WAITING', severity: '--', problem: 'No data transmitted yet.', hr: '--', spo2: '--', triage: 'Wait for vehicle telemetry...' };
+
+    document.getElementById('modalAmbId').textContent = data.ambId;
+    document.getElementById('modalSeverity').textContent = data.severity;
+    document.getElementById('modalSeverity').className = data.severity === 'CRITICAL' ? 'text-sm font-black text-red-500 animate-pulse' : 'text-sm font-black text-green-500';
+    document.getElementById('modalProblem').textContent = data.problem;
+    document.getElementById('modalHR').textContent = data.hr + ' BPM';
+    document.getElementById('modalSPO2').textContent = data.spo2 + ' %';
+    document.getElementById('modalAITriage').textContent = data.triage;
+    
+    modal.classList.remove('hidden');
+};

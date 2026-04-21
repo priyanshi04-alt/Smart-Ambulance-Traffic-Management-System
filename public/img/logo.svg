@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Plate Background -->
+  <rect width="512" height="512" rx="128" fill="#0f172a" />
+
+  <!-- Abstract Orbit Rings (Traffic Cycle) -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#1e293b" stroke-width="8" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#2563eb" stroke-dasharray="10 20" stroke-width="4" opacity="0.5" />
+
+  <!-- Main Neon Green Ring -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#22c55e" stroke-width="16" filter="url(#neonGlow)" />
+
+  <!-- Bold Medical Cross -->
+  <path d="M220 156 h72 v64 h64 v72 h-64 v64 h-72 v-64 h-64 v-72 h64 z" fill="url(#crossGrad)" filter="url(#neonGlow)" />
+  
+  <!-- Center Core Light -->
+  <circle cx="256" cy="256" r="28" fill="#ffffff" opacity="0.9" />
+
+</svg>

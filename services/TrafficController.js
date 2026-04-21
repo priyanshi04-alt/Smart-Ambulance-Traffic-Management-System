@@ -1,13 +1,21 @@
 const logService = require('./LogService');
 const predictiveRouting = require('./PredictiveRoutingService');
+const hwSync = require('./HardwareSyncService');
 
 /**
- * Intelligent Traffic Decision Engine & Execution Layer
+ * Intelligent Traffic Decision Engine & Execution Layer (Hybrid Multi-Node)
  */
 class TrafficController {
     constructor() {
         this.io = null;
-        this.state = { north: 'green', south: 'green', east: 'red', west: 'red' };
+        
+        // Multi-Node Architecture (Hybrid Physical + Simulated)
+        this.intersections = {
+            'JUNC-01': { type: 'physical', state: { north: 'green', south: 'green', east: 'red', west: 'red' } },
+            'JUNC-02': { type: 'simulated', state: { north: 'green', south: 'green', east: 'red', west: 'red' } },
+            'JUNC-03': { type: 'simulated', state: { north: 'green', south: 'green', east: 'red', west: 'red' } }
+        };
+
         this.density = { north: 'low', south: 'low', east: 'low', west: 'low' };
 
         this.overrideManual = false;  
@@ -38,8 +46,8 @@ class TrafficController {
 
     startCycle() {
         if (this.isEmergencyMode || this.inYellowTransition) return;
-        this.setSignalState(this.currentPhase === 'NS' ? 'green' : 'red', 'NS');
-        this.setSignalState(this.currentPhase === 'EW' ? 'green' : 'red', 'EW');
+        this.setSignalState('ALL', this.currentPhase === 'NS' ? 'green' : 'red', 'NS');
+        this.setSignalState('ALL', this.currentPhase === 'EW' ? 'green' : 'red', 'EW');
         const greenTime = this.currentPhase === 'NS' 
             ? this.getMaxDensityTiming('north', 'south') 
             : this.getMaxDensityTiming('east', 'west');
@@ -60,7 +68,7 @@ class TrafficController {
     transitionCycle() {
         if (this.isEmergencyMode || this.inYellowTransition) return;
         this.inYellowTransition = true;
-        this.setSignalState('yellow', this.currentPhase);
+        this.setSignalState('ALL', 'yellow', this.currentPhase);
         this.broadcastState();
         setTimeout(() => {
             this.inYellowTransition = false;
@@ -70,19 +78,28 @@ class TrafficController {
         }, 3000); 
     }
 
-    setSignalState(color, phase) {
-        if (phase === 'NS') {
-            this.state.north = color; this.state.south = color;
-        } else if (phase === 'EW') {
-            this.state.east = color; this.state.west = color;
+    setSignalState(nodeId, color, phase) {
+        const updateNode = (id) => {
+            if (phase === 'NS') {
+                this.intersections[id].state.north = color; this.intersections[id].state.south = color;
+            } else if (phase === 'EW') {
+                this.intersections[id].state.east = color; this.intersections[id].state.west = color;
+            }
+        };
+
+        if (nodeId === 'ALL') {
+            Object.keys(this.intersections).forEach(id => updateNode(id));
+        } else if (this.intersections[nodeId]) {
+            updateNode(nodeId);
         }
     }
 
     // 1. Manual Admin Override
     activateEmergencyMode(direction) {
-        logService.addLog(`MANUAL OVERRIDE: Green corridor forced ${direction}.`, 'warning');
+        logService.addLog(`MANUAL OVERRIDE: Green corridor forced ${direction} on ALL nodes.`, 'warning');
         this.overrideManual = true;
-        this._executeEmergencyState(direction);
+        this._executeEmergencyState('ALL', direction, 'GREEN');
+        this.broadcastState();
     }
 
     deactivateEmergencyMode() {
@@ -91,46 +108,62 @@ class TrafficController {
         this._resolveState();
     }
 
-    // 2. Auto Siren Trigger
+    // 2. Auto Siren Trigger & Cooldown Defense Pipeline
     activateAutoSiren(direction) {
         if (this.overrideManual) return; 
         if (!this.overrideAutoSiren) {
-            logService.addLog(`ACOUSTIC TRIGGER: Verified siren detected from ${direction}. Corridor active.`, 'warning');
+            logService.addLog(`ACOUSTIC TRIGGER: Verified siren detected from ${direction}. Corridor active on real node (JUNC-01).`, 'warning');
             this.overrideAutoSiren = true;
-            this._executeEmergencyState(direction);
+            this._executeEmergencyState('JUNC-01', direction, 'GREEN');
+            this.broadcastState();
+        } else {
+            // Prevent repeated triggering during active acoustic block
+            logService.addLog(`Redundant acoustic trigger gracefully ignored due to active traffic lock.`, 'info');
         }
+
         if(this.sirenTimeout) clearTimeout(this.sirenTimeout);
+        
+        // Auto-Reset Protocol after simulated passing (30s completion logic)
         this.sirenTimeout = setTimeout(() => {
-            this.overrideAutoSiren = false;
-            logService.addLog(`Acoustic signal lost for 30s. Releasing siren corridor lock.`, 'info');
-            this._resolveState();
-        }, 30000);
+            this.handleCorridorCompletion();
+        }, 30000); 
+    }
+
+    handleCorridorCompletion() {
+        this.overrideAutoSiren = false;
+        logService.addLog(`AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.`, 'info');
+        this._resolveState();
     }
 
     // 3. Predictive Traffic Control Execution Layer
     processPredictiveTelemetry(gpsData) {
-        // Fetch raw Computation Layer ETAs (current + next 2)
         const priorityList = predictiveRouting.evaluateTrajectory(gpsData);
         
-        if (priorityList.length > 0) {
-            const nearestNode = priorityList[0]; 
-            const executionState = this._calculateExecutionState(nearestNode.eta);
+        let hasActiveGPSOverride = false;
 
+        priorityList.forEach(node => {
+            const executionState = this._calculateExecutionState(node.eta);
+            
             if (executionState !== 'NORMAL') {
+                hasActiveGPSOverride = true;
                 if (!this.overrideManual && !this.overrideAutoSiren) {
-                     if (!this.overrideAutoGPS) {
-                         logService.addLog(`PREDICTIVE EXECUTION: Assigned ${executionState} state for ETA ${nearestNode.eta.toFixed(1)}s at ${nearestNode.address}.`, 'info');
-                     }
-                     this.overrideAutoGPS = true;
-                     this._executeEmergencyState('south'); 
+                    this._executeEmergencyState(node.nodeId, 'south', executionState); 
+                    
+                    if (!this.overrideAutoGPS) {
+                        logService.addLog(`PREDICTIVE EXECUTION: Assigned ${executionState} state for ETA ${node.eta.toFixed(1)}s at ${node.address} (${node.nodeId}).`, 'info');
+                    }
                 }
-            } else {
-                 this.overrideAutoGPS = false;
-                 this._resolveState();
+            } else if (!this.overrideManual && !this.overrideAutoSiren) {
+                this._restoreNodeToCycle(node.nodeId);
             }
-        } else {
-             this.overrideAutoGPS = false;
-             this._resolveState();
+        });
+
+        if (hasActiveGPSOverride && !this.overrideManual && !this.overrideAutoSiren) {
+            this.overrideAutoGPS = true;
+            this.broadcastState();
+        } else if (!hasActiveGPSOverride && this.overrideAutoGPS) {
+            this.overrideAutoGPS = false;
+            this._resolveState();
         }
     }
 
@@ -141,31 +174,46 @@ class TrafficController {
         return 'NORMAL';
     }
 
-    _executeEmergencyState(direction) {
+    _executeEmergencyState(nodeId, direction, stage) {
         this.ambulanceDirection = direction;
         if (this.timerInterval) clearInterval(this.timerInterval);
         
-        this.state.north = 'red'; this.state.south = 'red';
-        this.state.east = 'red'; this.state.west = 'red';
-        
-        if (direction === 'north' || direction === 'south') {
-             this.state.north = 'green'; this.state.south = 'green';
-        } else if (direction === 'east' || direction === 'west') {
-             this.state.east = 'green'; this.state.west = 'green';
+        const applyStage = (id) => {
+            if (stage === 'GREEN' || stage === 'PREPARE') {
+                this.intersections[id].state.north = 'red'; this.intersections[id].state.south = 'red';
+                this.intersections[id].state.east = 'red'; this.intersections[id].state.west = 'red';
+                
+                if (direction === 'north' || direction === 'south') {
+                     this.intersections[id].state.north = 'green'; this.intersections[id].state.south = 'green';
+                } else if (direction === 'east' || direction === 'west') {
+                     this.intersections[id].state.east = 'green'; this.intersections[id].state.west = 'green';
+                }
+            } else if (stage === 'READY') {
+                this.intersections[id].state.north = 'yellow'; this.intersections[id].state.south = 'yellow';
+                this.intersections[id].state.east = 'yellow'; this.intersections[id].state.west = 'yellow';
+            }
+        };
+
+        if (nodeId === 'ALL') {
+            Object.keys(this.intersections).forEach(id => applyStage(id));
+        } else if (this.intersections[nodeId]) {
+            applyStage(nodeId);
         }
-        
-        this.broadcastState();
-        if (this.io) this.io.emit('emergency-alert', { active: true, direction });
+    }
+
+    _restoreNodeToCycle(nodeId) {
+        this.setSignalState(nodeId, this.currentPhase === 'NS' ? 'green' : 'red', 'NS');
+        this.setSignalState(nodeId, this.currentPhase === 'EW' ? 'green' : 'red', 'EW');
     }
 
     _resolveState() {
         if (this.overrideManual) return;
         if (this.overrideAutoSiren) {
-            this._executeEmergencyState('south'); 
+            this._executeEmergencyState('JUNC-01', 'south', 'GREEN'); 
+            this.broadcastState();
             return;
         }
         if (this.overrideAutoGPS) {
-            this._executeEmergencyState('south');
             return;
         }
 
@@ -184,8 +232,10 @@ class TrafficController {
     }
 
     getState() {
+        // BACKWARDS COMPATIBILITY FOR UI
         return {
-            signals: this.state,
+            signals: this.intersections['JUNC-01'].state, // Preserves visual grid compatibility
+            extendedNetwork: this.intersections,          
             emergencyMode: this.isEmergencyMode,
             ambulanceDirection: this.ambulanceDirection,
             hardware: this.hardwareStatus,
@@ -199,8 +249,8 @@ class TrafficController {
     broadcastState() {
         if (this.io) {
             this.io.emit('traffic-state', this.getState());
-            const hwSync = require('./HardwareSyncService');
-            hwSync.sendCommand('ESP32-NODE-01', this.state);
+            // Sync ONLY the physical node to the ESP32!
+            hwSync.sendCommand('ESP32-NODE-01', this.intersections['JUNC-01'].state);
         }
     }
 }

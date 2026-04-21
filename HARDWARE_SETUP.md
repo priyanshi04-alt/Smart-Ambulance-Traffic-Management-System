@@ -18,23 +18,41 @@ This ESP32 is placed on the ambulance (or acts as the listening node). It listen
 - **KY-037 AO (Analog Out)** -> ESP32 Pin 34
 
 ### Ambulance Unit Code (ESP32):
+
+Before compiling, install **arduinoFFT** from the Arduino Library Manager.
+
 ```cpp
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <arduinoFFT.h> // Make sure to install this library
 
 // Wi-Fi Credentials
 const char* ssid = "YOUR_WIFI_NAME";
 const char* password = "YOUR_WIFI_PASSWORD";
 
-// Server API Endpoint (Change 192.168.x.x to your computer's local IP running Node.js)
-const char* serverUrl = "http://192.168.x.x:3000/api/iot/ambulance-detected"; // Correct endpoint
+// Server API Endpoint
+const char* serverUrl = "http://192.168.x.x:3000/api/iot/ambulance-detected";
 
-const int micPin = 34; // Analog pin connected to KY-037
-const int threshold = 2500; // Adjust this based on your KY-037 sensitivity potentiometer
+const int micPin = 34;
+
+// FFT Configuration
+#define SAMPLES 64             // Must be a power of 2
+#define SAMPLING_FREQUENCY 4000 // Hz, Must be > twice max frequency 
+arduinoFFT FFT = arduinoFFT();
+unsigned int sampling_period_us;
+unsigned long microSeconds;
+double vReal[SAMPLES];
+double vImag[SAMPLES];
+
+// Validation Buffer & Cooldown
+int positiveDetects = 0;
+unsigned long lastTriggerTime = 0;
+const unsigned long COOLDOWN_MS = 20000; // 20s non-blocking cooldown
 
 void setup() {
   Serial.begin(115200);
   pinMode(micPin, INPUT);
+  sampling_period_us = round(1000000 * (1.0 / SAMPLING_FREQUENCY));
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -47,30 +65,53 @@ void setup() {
 }
 
 void loop() {
-  int sensorValue = analogRead(micPin);
+  // Check Non-Blocking Cooldown
+  if (millis() - lastTriggerTime < COOLDOWN_MS) {
+     return; 
+  }
+
+  /* 1. Sample Data */
+  for (int i = 0; i < SAMPLES; i++) {
+    microSeconds = micros();
+    vReal[i] = analogRead(micPin);
+    vImag[i] = 0;
+    while(micros() - microSeconds < sampling_period_us) {
+      // Accurate clock delay loop
+    }
+  }
+
+  /* 2. Compute FFT */
+  FFT.Windowing(vReal, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
+  FFT.Compute(vReal, vImag, SAMPLES, FFT_FORWARD);
+  FFT.ComplexToMagnitude(vReal, vImag, SAMPLES);
+
+  /* 3. Extract Peak Frequency */
+  double peakFrequency = FFT.MajorPeak(vReal, SAMPLES, SAMPLING_FREQUENCY);
   
-  if (sensorValue > threshold) {
-    Serial.println("Siren Detected! Sending Emergency Signal...");
+  // Frequency targeting (700Hz - 960Hz bucket typical of Yelp sirens) + Baseline volume checks
+  if (peakFrequency > 700 && peakFrequency < 960) {
+    positiveDetects++;
+  } else {
+    positiveDetects = 0; // Reset validation buffer if invalid noise
+  }
+
+  /* 4. Multi-Frame Validation */
+  if (positiveDetects >= 3) {
+    positiveDetects = 0;
+    Serial.println("Valid Siren Signature Confirmed! Triggering Green Corridor...");
     
-    if(WiFi.status() == WL_CONNECTED){
+    if(WiFi.status() == WL_CONNECTED) {
       HTTPClient http;
       http.begin(serverUrl);
       http.addHeader("Content-Type", "application/json");
-      
-      // Payload must match server: { direction: "north", active: true }
-      // Change "north" to whichever direction the ambulance is coming FROM
       String jsonPayload = "{\"direction\":\"north\",\"active\":true}";
-      int httpResponseCode = http.POST(jsonPayload);
-      
-      Serial.print("HTTP Response Code: ");
-      Serial.println(httpResponseCode);
+      int httpCode = http.POST(jsonPayload);
+      Serial.print("HTTP Code: "); Serial.println(httpCode);
       http.end();
       
-      // Wait 10 seconds before being able to trigger again
-      delay(10000); 
+      lastTriggerTime = millis(); // Lock into cooldown
     }
   }
-  delay(100);
 }
 ```
 
@@ -109,20 +150,22 @@ It polls `/api/iot/signal-status` every second and lights up all 4 signal sets s
 
 ### Intersection Unit Code (ESP32) — 4 Directions:
 
-Install **ArduinoJson** first: `Sketch → Include Library → Manage Libraries → search "ArduinoJson" by Benoit Blanchon → Install`
+Install **ArduinoJson** and **WebSockets** (by Markus Sattler) via Library Manager.
 
 ```cpp
 #include <WiFi.h>
-#include <HTTPClient.h>
+#include <WebSocketsClient.h>
 #include <ArduinoJson.h>
 
 // Wi-Fi Credentials
 const char* ssid = "YOUR_WIFI_NAME";
 const char* password = "YOUR_WIFI_PASSWORD";
 
-// Server endpoint — returns live signal state for all 4 directions
-// Change 192.168.x.x to your PC's local IP (run ipconfig on Windows)
-const char* serverUrl = "http://192.168.x.x:3000/api/iot/signal-status";
+// Server config
+const char* serverIp = "192.168.x.x";
+const int serverPort = 3000;
+
+WebSocketsClient webSocket;
 
 // ── PIN DEFINITIONS ──────────────────────────────────────────
 const int N_RED = 12, N_YLW = 14, N_GRN = 27; // North
@@ -130,7 +173,14 @@ const int S_RED = 26, S_YLW = 25, S_GRN = 33; // South
 const int E_RED = 32, E_YLW = 18, E_GRN = 19; // East
 const int W_RED = 21, W_YLW = 22, W_GRN = 23; // West
 
-// Helper: apply a color to one set of 3 LEDs
+// Networking & Failsafe Flags
+unsigned long disconnectTime = 0;
+bool isConnected = false;
+bool inFailSafeMode = false;
+unsigned long flashTimer = 0;
+bool flashState = false;
+
+// Apply color to one set of 3 LEDs
 void setLight(int redPin, int ylwPin, int grnPin, String color) {
   digitalWrite(redPin, LOW);
   digitalWrite(ylwPin, LOW);
@@ -140,10 +190,95 @@ void setLight(int redPin, int ylwPin, int grnPin, String color) {
   else if (color == "green")  digitalWrite(grnPin, HIGH);
 }
 
+void triggerFailSafeFlashing() {
+  inFailSafeMode = true;
+}
+
+void processFailSafeLoop() {
+  if (inFailSafeMode && millis() - flashTimer > 500) {
+    flashTimer = millis();
+    flashState = !flashState;
+    // Standard fail safe: Universal blinking yellow approach
+    digitalWrite(N_YLW, flashState); digitalWrite(N_RED, LOW); digitalWrite(N_GRN, LOW);
+    digitalWrite(S_YLW, flashState); digitalWrite(S_RED, LOW); digitalWrite(S_GRN, LOW);
+    digitalWrite(E_YLW, flashState); digitalWrite(E_RED, LOW); digitalWrite(E_GRN, LOW);
+    digitalWrite(W_YLW, flashState); digitalWrite(W_RED, LOW); digitalWrite(W_GRN, LOW);
+  }
+}
+
+// Websocket interceptor and protocol parsing
+void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
+  switch(type) {
+    case WStype_DISCONNECTED:
+      Serial.println("[WS] Disconnected!");
+      isConnected = false;
+      disconnectTime = millis();
+      break;
+
+    case WStype_CONNECTED:
+      Serial.println("[WS] Connected to Server!");
+      isConnected = true;
+      inFailSafeMode = false;
+      webSocket.sendTXT("40"); // Socket.IO engine v4 formal handshake
+      break;
+
+    case WStype_TEXT: {
+      String msg = String((char*)payload);
+      
+      // Socket.IO event intercept (Prefixed with 42)
+      if(msg.startsWith("42")) {
+        String jsonPayload = msg.substring(2);
+        
+        DynamicJsonDocument doc(2048);
+        DeserializationError err = deserializeJson(doc, jsonPayload);
+
+        if (!err) {
+          String eventName = doc[0].as<String>();
+          
+          if (eventName == "hardware-sync" || eventName == "traffic-state") {
+             JsonObject data = doc[1].as<JsonObject>();
+             
+             JsonObject signals;
+             String commandId = "";
+
+             if (eventName == "hardware-sync") {
+                signals = data["payload"].as<JsonObject>();
+                commandId = data["commandId"].as<String>();
+             } else {
+                signals = data["signals"].as<JsonObject>();
+             }
+
+             if (!signals.isNull() && !inFailSafeMode) {
+                String north = signals["north"].as<String>();
+                String south = signals["south"].as<String>();
+                String east  = signals["east"].as<String>();
+                String west  = signals["west"].as<String>();
+
+                setLight(N_RED, N_YLW, N_GRN, north);
+                setLight(S_RED, S_YLW, S_GRN, south);
+                setLight(E_RED, E_YLW, E_GRN, east);
+                setLight(W_RED, W_YLW, W_GRN, west);
+
+                Serial.println("Updated Physical Lights Mode N:" + north + " S:" + south + " E:" + east + " W:" + west);
+             }
+
+             // Pipeline Optimization & Reliability ACK Return (Only via explicit hardware-sync)
+             if (eventName == "hardware-sync" && commandId != "") {
+                String ackEvent = "42[\"node-ack\", {\"commandId\":\"" + commandId + "\", \"status\":\"SUCCESS\"}]";
+                webSocket.sendTXT(ackEvent);
+                Serial.println("[WS] Sent Delivery ACK for CMD: " + commandId);
+             }
+          }
+        }
+      }
+      break;
+    }
+  }
+}
+
 void setup() {
   Serial.begin(115200);
 
-  // Set all 12 LED pins as OUTPUT
   int pins[] = {N_RED,N_YLW,N_GRN, S_RED,S_YLW,S_GRN,
                 E_RED,E_YLW,E_GRN, W_RED,W_YLW,W_GRN};
   for (int pin : pins) {
@@ -151,52 +286,31 @@ void setup() {
     digitalWrite(pin, LOW);
   }
 
-  // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi...");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+    delay(500); Serial.print(".");
   }
-  Serial.println("\nConnected! IP: " + WiFi.localIP().toString());
+  Serial.println("\nWiFi Connected!");
+
+  // Event-Driven WebSocket Mount using engine.io standard
+  webSocket.begin(serverIp, serverPort, "/socket.io/?EIO=4&transport=websocket");
+  webSocket.onEvent(webSocketEvent);
+  webSocket.setReconnectInterval(5000); 
 }
 
 void loop() {
-  if (WiFi.status() == WL_CONNECTED) {
-    HTTPClient http;
-    http.begin(serverUrl);
-    int httpCode = http.GET();
-
-    if (httpCode > 0) {
-      String payload = http.getString();
-
-      // Response shape: { "signals": { "north":"green", "south":"green", "east":"red", "west":"red" }, ... }
-      DynamicJsonDocument doc(1024);
-      DeserializationError err = deserializeJson(doc, payload);
-
-      if (!err) {
-        String north = doc["signals"]["north"].as<String>();
-        String south = doc["signals"]["south"].as<String>();
-        String east  = doc["signals"]["east"].as<String>();
-        String west  = doc["signals"]["west"].as<String>();
-
-        // Apply colors to all 4 physical traffic lights
-        setLight(N_RED, N_YLW, N_GRN, north);
-        setLight(S_RED, S_YLW, S_GRN, south);
-        setLight(E_RED, E_YLW, E_GRN, east);
-        setLight(W_RED, W_YLW, W_GRN, west);
-
-        Serial.println("N:" + north + " S:" + south + " E:" + east + " W:" + west);
-      } else {
-        Serial.println("JSON parse error!");
-      }
-    } else {
-      Serial.println("HTTP GET failed. Is the server running?");
+  // Ultra-fast zero-latency event listener
+  webSocket.loop();
+  
+  // Fail-Safe check: 10s connection drop timeout fallback capability
+  if (!isConnected && (millis() - disconnectTime > 10000)) {
+    if (!inFailSafeMode) {
+      Serial.println("CRITICAL: Server lost for 10s. FALLBACK TO FAIL-SAFE AUTO-MODE.");
+      triggerFailSafeFlashing();
     }
-    http.end();
+    processFailSafeLoop(); // Flash yellow lights continually mapping alert.
   }
-
-  delay(1000); // Poll server every 1 second
 }
 ```
 
