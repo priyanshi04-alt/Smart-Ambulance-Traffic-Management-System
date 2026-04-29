@@ -1,6 +1,6 @@
 {
-  "name": "Smart Ambulance System",
-  "short_name": "Smart Amb",
+  "name": "ResQRoute",
+  "short_name": "ResQRoute",
   "description": "Green Corridor & Traffic Override Application",
   "start_url": "/",
   "display": "standalone",
@@ -8,9 +8,9 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "/img/logo.svg",
+      "src": "/img/LOGO.jpeg",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {

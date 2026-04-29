@@ -1,5 +1,365 @@
 [
   {
+    "id": "1777465795317",
+    "timestamp": "2026-04-29T12:29:55.317Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1777465787791",
+    "timestamp": "2026-04-29T12:29:47.791Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1777465787787",
+    "timestamp": "2026-04-29T12:29:47.787Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1777465786737",
+    "timestamp": "2026-04-29T12:29:46.737Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1777465765409",
+    "timestamp": "2026-04-29T12:29:25.409Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1777465765405",
+    "timestamp": "2026-04-29T12:29:25.405Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1777465765298",
+    "timestamp": "2026-04-29T12:29:25.298Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1777465765293",
+    "timestamp": "2026-04-29T12:29:25.293Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1777465753638",
+    "timestamp": "2026-04-29T12:29:13.638Z",
+    "message": "Message from Hospital (City General Hospital): \"ok\"",
+    "type": "info"
+  },
+  {
+    "id": "1777465740274",
+    "timestamp": "2026-04-29T12:29:00.274Z",
+    "message": "Emergency alert sent to City General Hospital: pa",
+    "type": "info"
+  },
+  {
+    "id": "1777465538363",
+    "timestamp": "2026-04-29T12:25:38.363Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1777465538359",
+    "timestamp": "2026-04-29T12:25:38.359Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1777465530168",
+    "timestamp": "2026-04-29T12:25:30.168Z",
+    "message": "Emergency alert sent to City General Hospital: pain",
+    "type": "warning"
+  },
+  {
+    "id": "1776836177658",
+    "timestamp": "2026-04-22T05:36:17.658Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776836157338",
+    "timestamp": "2026-04-22T05:35:57.338Z",
+    "message": "Traffic density forcefully set to MEDIUM for east",
+    "type": "info"
+  },
+  {
+    "id": "1776836154512",
+    "timestamp": "2026-04-22T05:35:54.512Z",
+    "message": "Traffic density forcefully set to HIGH for north",
+    "type": "info"
+  },
+  {
+    "id": "1776836153984",
+    "timestamp": "2026-04-22T05:35:53.984Z",
+    "message": "Traffic density forcefully set to MEDIUM for north",
+    "type": "info"
+  },
+  {
+    "id": "1776836147646",
+    "timestamp": "2026-04-22T05:35:47.646Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776836147643",
+    "timestamp": "2026-04-22T05:35:47.643Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776836147325",
+    "timestamp": "2026-04-22T05:35:47.325Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776836147323",
+    "timestamp": "2026-04-22T05:35:47.323Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776836146679",
+    "timestamp": "2026-04-22T05:35:46.679Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776836146677",
+    "timestamp": "2026-04-22T05:35:46.677Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776836144766",
+    "timestamp": "2026-04-22T05:35:44.766Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776836144764",
+    "timestamp": "2026-04-22T05:35:44.764Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776836097339",
+    "timestamp": "2026-04-22T05:34:57.339Z",
+    "message": "Traffic density forcefully set to HIGH for south",
+    "type": "info"
+  },
+  {
+    "id": "1776836092352",
+    "timestamp": "2026-04-22T05:34:52.352Z",
+    "message": "Traffic density forcefully set to HIGH for north",
+    "type": "info"
+  },
+  {
+    "id": "1776836091238",
+    "timestamp": "2026-04-22T05:34:51.238Z",
+    "message": "Traffic density forcefully set to MEDIUM for north",
+    "type": "info"
+  },
+  {
+    "id": "1776836090033",
+    "timestamp": "2026-04-22T05:34:50.033Z",
+    "message": "Traffic density forcefully set to HIGH for north",
+    "type": "info"
+  },
+  {
+    "id": "1776835960884",
+    "timestamp": "2026-04-22T05:32:40.884Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776835930868",
+    "timestamp": "2026-04-22T05:32:10.868Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835930866",
+    "timestamp": "2026-04-22T05:32:10.866Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835930369",
+    "timestamp": "2026-04-22T05:32:10.369Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835930367",
+    "timestamp": "2026-04-22T05:32:10.367Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835927405",
+    "timestamp": "2026-04-22T05:32:07.405Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835927403",
+    "timestamp": "2026-04-22T05:32:07.403Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835926958",
+    "timestamp": "2026-04-22T05:32:06.958Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835926956",
+    "timestamp": "2026-04-22T05:32:06.956Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835926577",
+    "timestamp": "2026-04-22T05:32:06.577Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835926576",
+    "timestamp": "2026-04-22T05:32:06.576Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835925962",
+    "timestamp": "2026-04-22T05:32:05.962Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835925960",
+    "timestamp": "2026-04-22T05:32:05.960Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835923919",
+    "timestamp": "2026-04-22T05:32:03.919Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835923917",
+    "timestamp": "2026-04-22T05:32:03.917Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835923187",
+    "timestamp": "2026-04-22T05:32:03.187Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835923184",
+    "timestamp": "2026-04-22T05:32:03.184Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835922928",
+    "timestamp": "2026-04-22T05:32:02.928Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835922926",
+    "timestamp": "2026-04-22T05:32:02.926Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835922405",
+    "timestamp": "2026-04-22T05:32:02.405Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835922403",
+    "timestamp": "2026-04-22T05:32:02.403Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835921898",
+    "timestamp": "2026-04-22T05:32:01.898Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1776835921896",
+    "timestamp": "2026-04-22T05:32:01.896Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835920522",
+    "timestamp": "2026-04-22T05:32:00.522Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776835920520",
+    "timestamp": "2026-04-22T05:32:00.520Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1776835508039",
+    "timestamp": "2026-04-22T05:25:08.039Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1776835496476",
+    "timestamp": "2026-04-22T05:24:56.476Z",
+    "message": "Traffic density forcefully set to HIGH for east",
+    "type": "info"
+  },
+  {
+    "id": "1776835486750",
+    "timestamp": "2026-04-22T05:24:46.750Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1776835486738",
+    "timestamp": "2026-04-22T05:24:46.739Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1776835477965",
+    "timestamp": "2026-04-22T05:24:37.965Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1776835477928",
+    "timestamp": "2026-04-22T05:24:37.928Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
     "id": "1776792376846",
     "timestamp": "2026-04-21T17:26:16.846Z",
     "message": "Manual Override Cancelled. Restoring predictive/normal control.",
@@ -237,366 +597,6 @@
     "id": "1775449788399",
     "timestamp": "2026-04-06T04:29:48.399Z",
     "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1775449784872",
-    "timestamp": "2026-04-06T04:29:44.872Z",
-    "message": "Emergency alert sent to Apollo Life Care: pain",
-    "type": "warning"
-  },
-  {
-    "id": "1775449758165",
-    "timestamp": "2026-04-06T04:29:18.165Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1775449726809",
-    "timestamp": "2026-04-06T04:28:46.809Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1775449724687",
-    "timestamp": "2026-04-06T04:28:44.687Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1775449711355",
-    "timestamp": "2026-04-06T04:28:31.355Z",
-    "message": "Emergency alert sent to City General Hospital: pain",
-    "type": "warning"
-  },
-  {
-    "id": "1775449521172",
-    "timestamp": "2026-04-06T04:25:21.172Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1775449520315",
-    "timestamp": "2026-04-06T04:25:20.316Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1774846017295",
-    "timestamp": "2026-03-30T04:46:57.295Z",
-    "message": "City General Hospital acknowledged: READY",
-    "type": "info"
-  },
-  {
-    "id": "1774845995809",
-    "timestamp": "2026-03-30T04:46:35.809Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845993988",
-    "timestamp": "2026-03-30T04:46:33.988Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1774845967332",
-    "timestamp": "2026-03-30T04:46:07.332Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845964761",
-    "timestamp": "2026-03-30T04:46:04.761Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774845945233",
-    "timestamp": "2026-03-30T04:45:45.234Z",
-    "message": "Emergency alert sent to City General Hospital: jkjf",
-    "type": "warning"
-  },
-  {
-    "id": "1774845356462",
-    "timestamp": "2026-03-30T04:35:56.462Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845293425",
-    "timestamp": "2026-03-30T04:34:53.425Z",
-    "message": "Emergency alert sent to Apollo Life Care: cghvh",
-    "type": "warning"
-  },
-  {
-    "id": "1774845201023",
-    "timestamp": "2026-03-30T04:33:21.023Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845179357",
-    "timestamp": "2026-03-30T04:32:59.357Z",
-    "message": "Emergency alert sent to Apollo Life Care: dfndijnd",
-    "type": "warning"
-  },
-  {
-    "id": "1774845133598",
-    "timestamp": "2026-03-30T04:32:13.598Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774845079704",
-    "timestamp": "2026-03-30T04:31:19.704Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845051891",
-    "timestamp": "2026-03-30T04:30:51.891Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845033527",
-    "timestamp": "2026-03-30T04:30:33.527Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774845031351",
-    "timestamp": "2026-03-30T04:30:31.351Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774786653013",
-    "timestamp": "2026-03-29T12:17:33.013Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774786651616",
-    "timestamp": "2026-03-29T12:17:31.616Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1774786626071",
-    "timestamp": "2026-03-29T12:17:06.071Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774786623774",
-    "timestamp": "2026-03-29T12:17:03.774Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774786621977",
-    "timestamp": "2026-03-29T12:17:01.977Z",
-    "message": "City General Hospital acknowledged: READY",
-    "type": "info"
-  },
-  {
-    "id": "1774786613248",
-    "timestamp": "2026-03-29T12:16:53.248Z",
-    "message": "Emergency alert sent to City General Hospital: painn",
-    "type": "warning"
-  },
-  {
-    "id": "1774786287643",
-    "timestamp": "2026-03-29T12:11:27.643Z",
-    "message": "City General Hospital acknowledged: READY",
-    "type": "info"
-  },
-  {
-    "id": "1774786235686",
-    "timestamp": "2026-03-29T12:10:35.686Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774786234827",
-    "timestamp": "2026-03-29T12:10:34.827Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1774786215903",
-    "timestamp": "2026-03-29T12:10:15.903Z",
-    "message": "Emergency alert sent to City General Hospital: painn",
-    "type": "warning"
-  },
-  {
-    "id": "1774785978491",
-    "timestamp": "2026-03-29T12:06:18.491Z",
-    "message": "City General Hospital acknowledged: READY",
-    "type": "info"
-  },
-  {
-    "id": "1774785975049",
-    "timestamp": "2026-03-29T12:06:15.049Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774785974020",
-    "timestamp": "2026-03-29T12:06:14.020Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1774785950322",
-    "timestamp": "2026-03-29T12:05:50.322Z",
-    "message": "Emergency alert sent to City General Hospital:  gh j",
-    "type": "info"
-  },
-  {
-    "id": "1774785073426",
-    "timestamp": "2026-03-29T11:51:13.426Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774785006267",
-    "timestamp": "2026-03-29T11:50:06.267Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774784198475",
-    "timestamp": "2026-03-29T11:36:38.475Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774784169114",
-    "timestamp": "2026-03-29T11:36:09.114Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1774784166801",
-    "timestamp": "2026-03-29T11:36:06.801Z",
-    "message": "MANUAL OVERRIDE: Green corridor forced south.",
-    "type": "warning"
-  },
-  {
-    "id": "1774784003381",
-    "timestamp": "2026-03-29T11:33:23.381Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-0EPDBGCEH] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774784002364",
-    "timestamp": "2026-03-29T11:33:22.364Z",
-    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774784001353",
-    "timestamp": "2026-03-29T11:33:21.353Z",
-    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774784000350",
-    "timestamp": "2026-03-29T11:33:20.350Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-KU0EYLE57] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774784000335",
-    "timestamp": "2026-03-29T11:33:20.335Z",
-    "message": "Retrying hardware sync [CMD-0EPDBGCEH] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783999340",
-    "timestamp": "2026-03-29T11:33:19.340Z",
-    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783998329",
-    "timestamp": "2026-03-29T11:33:18.329Z",
-    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783997319",
-    "timestamp": "2026-03-29T11:33:17.319Z",
-    "message": "Retrying hardware sync [CMD-KU0EYLE57] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783990253",
-    "timestamp": "2026-03-29T11:33:10.253Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-ZS89JT5HZ] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783989246",
-    "timestamp": "2026-03-29T11:33:09.247Z",
-    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783988241",
-    "timestamp": "2026-03-29T11:33:08.241Z",
-    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783987263",
-    "timestamp": "2026-03-29T11:33:07.263Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-3WONOEZ3N] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783987232",
-    "timestamp": "2026-03-29T11:33:07.232Z",
-    "message": "Retrying hardware sync [CMD-ZS89JT5HZ] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783986250",
-    "timestamp": "2026-03-29T11:33:06.250Z",
-    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783985238",
-    "timestamp": "2026-03-29T11:33:05.238Z",
-    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 2)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783984222",
-    "timestamp": "2026-03-29T11:33:04.222Z",
-    "message": "Retrying hardware sync [CMD-3WONOEZ3N] -> ESP32-NODE-01 (Attempt 1)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783977171",
-    "timestamp": "2026-03-29T11:32:57.171Z",
-    "message": "HARDWARE FAULT: Node ESP32-NODE-01 failed to acknowledge command [CMD-FNR98FNQL] after 3 attempts.",
-    "type": "warning"
-  },
-  {
-    "id": "1774783976156",
-    "timestamp": "2026-03-29T11:32:56.156Z",
-    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 3)",
-    "type": "warning"
-  },
-  {
-    "id": "1774783975144",
-    "timestamp": "2026-03-29T11:32:55.144Z",
-    "message": "Retrying hardware sync [CMD-FNR98FNQL] -> ESP32-NODE-01 (Attempt 2)",
     "type": "warning"
   }
 ]

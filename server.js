@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const WebSocket = require('ws');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -15,6 +16,47 @@ const io = new Server(server, {
     origin: '*',
   }
 });
+
+// ── RAW WEBSOCKET SERVER FOR ESP32 HARDWARE NODES ──────────
+const wss = new WebSocket.Server({ noServer: true });
+const hardwareClients = new Set();
+
+wss.on('connection', (ws) => {
+  console.log('[HW-WS] ESP32 Node Connected!');
+  hardwareClients.add(ws);
+
+  // Send current traffic state immediately on connect
+  try {
+    const state = trafficController ? trafficController.getState() : null;
+    if (state) ws.send(JSON.stringify({ event: 'traffic-state', data: state }));
+  } catch(e) {}
+
+  ws.on('message', (msg) => {
+    console.log('[HW-WS] Message from ESP32:', msg.toString());
+  });
+
+  ws.on('close', () => {
+    console.log('[HW-WS] ESP32 Node Disconnected.');
+    hardwareClients.delete(ws);
+  });
+});
+
+// Upgrade HTTP to raw WS only on /hardware-ws path
+server.on('upgrade', (req, socket, head) => {
+  if (req.url === '/hardware-ws') {
+    wss.handleUpgrade(req, socket, head, (ws) => {
+      wss.emit('connection', ws, req);
+    });
+  }
+});
+
+// Helper: broadcast traffic state to all connected ESP32 nodes
+global.broadcastToHardware = (state) => {
+  const payload = JSON.stringify({ event: 'traffic-state', data: state });
+  hardwareClients.forEach(ws => {
+    if (ws.readyState === WebSocket.OPEN) ws.send(payload);
+  });
+};
 
 // Middleware
 app.use(cors());
