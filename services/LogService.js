@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const cloudSyncService = require('./CloudSyncService');
+
 class LogService {
     constructor() {
         this.logsFilePath = path.join(__dirname, '../data/logs.json');
@@ -46,14 +48,17 @@ class LogService {
         
         this.logs.unshift(log); // Add to beginning
         
-        // Keep only last 100 logs
+        // Keep only last 100 logs locally
         if (this.logs.length > 100) {
             this.logs.pop();
         }
 
         this.saveLogs();
+        
+        // Asynchronous Cloud Sync (Does not block the signal logic)
+        cloudSyncService.syncLog(log);
 
-        // Broadcast to all clients
+        // Broadcast to all clients (Real-time dashboard)
         if (this.io) {
             this.io.emit('new-log', log);
         }

@@ -71,6 +71,67 @@ function handleLogout() {
     window.location.href = '/';
 }
 
+// ===== DRAGGABLE MASCOT =====
+function initDraggableMascot() {
+    const el = document.getElementById('floatingMascot');
+    if (!el) return;
+
+    // Restore saved position
+    const saved = JSON.parse(localStorage.getItem('mascotPos') || 'null');
+    if (saved) {
+        el.style.left = saved.left;
+        el.style.top  = saved.top;
+        el.style.right  = 'auto';
+        el.style.bottom = 'auto';
+    }
+
+    let dragging = false, ox = 0, oy = 0;
+
+    function onStart(e) {
+        dragging = true;
+        el.style.cursor = 'grabbing';
+        el.style.animation = 'none';
+        const touch = e.touches ? e.touches[0] : e;
+        const rect = el.getBoundingClientRect();
+        ox = touch.clientX - rect.left;
+        oy = touch.clientY - rect.top;
+        e.preventDefault();
+    }
+
+    function onMove(e) {
+        if (!dragging) return;
+        const touch = e.touches ? e.touches[0] : e;
+        let x = touch.clientX - ox;
+        let y = touch.clientY - oy;
+        // Clamp inside viewport
+        x = Math.max(0, Math.min(window.innerWidth  - el.offsetWidth,  x));
+        y = Math.max(0, Math.min(window.innerHeight - el.offsetHeight, y));
+        el.style.left   = x + 'px';
+        el.style.top    = y + 'px';
+        el.style.right  = 'auto';
+        el.style.bottom = 'auto';
+        e.preventDefault();
+    }
+
+    function onEnd() {
+        if (!dragging) return;
+        dragging = false;
+        el.style.cursor  = 'grab';
+        el.style.animation = '';
+        localStorage.setItem('mascotPos', JSON.stringify({ left: el.style.left, top: el.style.top }));
+    }
+
+    el.addEventListener('mousedown',  onStart, { passive: false });
+    window.addEventListener('mousemove', onMove,  { passive: false });
+    window.addEventListener('mouseup',   onEnd);
+
+    el.addEventListener('touchstart', onStart, { passive: false });
+    window.addEventListener('touchmove',  onMove, { passive: false });
+    window.addEventListener('touchend',   onEnd);
+}
+
+document.addEventListener('DOMContentLoaded', initDraggableMascot);
+
 function showLogin() {
     document.getElementById('loginScreen').classList.remove('hidden');
     document.getElementById('mainHeader').classList.add('hidden');
@@ -84,23 +145,37 @@ function showDashboard() {
     
     document.getElementById('userRoleBadge').textContent = currentUser.role;
     
+    // Show/hide admin-only navbar controls
+    const navAddUserBtn = document.getElementById('navAddUserBtn');
+    if (navAddUserBtn) {
+        if (currentUser.role === 'admin') {
+            navAddUserBtn.classList.remove('hidden');
+            navAddUserBtn.classList.add('flex');
+        } else {
+            navAddUserBtn.classList.add('hidden');
+            navAddUserBtn.classList.remove('flex');
+        }
+    }
+    
     const mainContent = document.getElementById('mainContent');
     mainContent.innerHTML = '';
-    
+    const wrapper = document.createElement('div');
+    wrapper.className = 'max-w-7xl mx-auto w-full h-full';
+
     if (currentUser.role === 'admin') {
         const template = document.getElementById('adminDashboardTemplate');
-        const clone = template.content.cloneNode(true);
-        console.log("Template cloned. Elements in clone:", clone.children.length);
-        mainContent.appendChild(clone);
-        console.log("Template appended. mainContent HTML length:", mainContent.innerHTML.length);
+        wrapper.appendChild(template.content.cloneNode(true));
+        mainContent.appendChild(wrapper);
         initAdminDashboard();
     } else if (currentUser.role === 'driver') {
         const template = document.getElementById('driverDashboardTemplate');
-        mainContent.appendChild(template.content.cloneNode(true));
+        wrapper.appendChild(template.content.cloneNode(true));
+        mainContent.appendChild(wrapper);
         initDriverDashboard();
     } else if (currentUser.role === 'hospital') {
         const template = document.getElementById('hospitalDashboardTemplate');
-        mainContent.appendChild(template.content.cloneNode(true));
+        wrapper.appendChild(template.content.cloneNode(true));
+        mainContent.appendChild(wrapper);
         initHospitalDashboard();
     }
     
@@ -109,6 +184,75 @@ function showDashboard() {
     
     // Connect Socket.io after auth
     if (window.initSocket) window.initSocket();
+    
+    // Build floating navigation after DOM is ready
+    setTimeout(buildFloatingNav, 100);
+}
+
+function buildFloatingNav() {
+    // Remove existing if any
+    const existing = document.getElementById('floatingQuickNav');
+    if (existing) existing.remove();
+
+    const sections = document.querySelectorAll('#mainContent .glass-panel');
+    if (sections.length === 0) return;
+
+    const navContainer = document.createElement('div');
+    navContainer.id = 'floatingQuickNav';
+    // Sleek vertical pill container
+    navContainer.className = 'fixed right-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-1 p-1.5 bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg rounded-full shadow-xl border border-slate-200/50 dark:border-slate-700/50';
+
+    sections.forEach((section, index) => {
+        const titleEl = section.querySelector('h3');
+        if (!titleEl) return;
+        
+        const titleText = titleEl.textContent.trim();
+        
+        // Extract icon name properly, handling both pre-render <i> and post-render <svg>
+        let iconName = 'hash';
+        const iEl = titleEl.querySelector('i');
+        const svgEl = titleEl.querySelector('svg');
+        
+        if (iEl && iEl.hasAttribute('data-lucide')) {
+            iconName = iEl.getAttribute('data-lucide');
+        } else if (svgEl) {
+            const classAttr = svgEl.getAttribute('class') || '';
+            const match = classAttr.match(/lucide-([a-zA-Z0-9-]+)/);
+            if (match) {
+                iconName = match[1];
+            }
+        }
+
+        // Give section an ID if it doesn't have one
+        const sectionId = section.id || `section-nav-${index}`;
+        section.id = sectionId;
+
+        const btn = document.createElement('button');
+        // Sleeker button style
+        btn.className = 'w-8 h-8 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm transition-all relative group';
+        
+        btn.innerHTML = `
+            <i data-lucide="${iconName}" class="w-4 h-4 pointer-events-none"></i>
+            <span class="absolute right-full mr-3 opacity-0 group-hover:opacity-100 bg-slate-800 dark:bg-slate-700 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-opacity pointer-events-none shadow-lg">${titleText}</span>
+        `;
+        
+        btn.onclick = () => {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Add a brief highlight effect
+            section.classList.add('ring-2', 'ring-brand-500', 'ring-offset-2', 'dark:ring-offset-slate-900', 'transition-shadow', 'duration-500');
+            setTimeout(() => {
+                section.classList.remove('ring-2', 'ring-brand-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
+            }, 1500);
+        };
+        
+        navContainer.appendChild(btn);
+    });
+
+    // Only append if it actually has buttons
+    if (navContainer.children.length > 0) {
+        document.body.appendChild(navContainer);
+        if (window.lucide) window.lucide.createIcons();
+    }
 }
 
 function initTheme() {
@@ -117,8 +261,7 @@ function initTheme() {
     const moonIcon = document.getElementById('moonIcon');
     const sunIcon = document.getElementById('sunIcon');
     
-    const isDark = localStorage.getItem('theme') === 'dark' || 
-                  (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = localStorage.getItem('theme') === 'dark';
                   
     if (isDark) {
         html.classList.add('dark');
@@ -262,7 +405,8 @@ function initAdminDashboard() {
             e.preventDefault();
             const username = document.getElementById('newUsername').value;
             const password = document.getElementById('newPassword').value;
-            const role = document.getElementById('newRole').value;
+            const roleEl = document.querySelector('input[name="newRole"]:checked');
+            const role = roleEl ? roleEl.value : 'driver';
 
             // --- FRONTEND STRONG PASSWORD CHECK ---
             const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -295,26 +439,30 @@ function initAdminDashboard() {
                     addUserForm.reset();
                     if (window.speak) window.speak("New login created successfully.");
                     lucide.createIcons(); // For any new status icons if added
+                    
+                    // Close modal automatically on success
+                    setTimeout(() => {
+                        const modal = document.getElementById('addUserModal');
+                        if (modal) modal.classList.add('hidden');
+                        addUserStatus.classList.add('hidden');
+                    }, 1500);
                 } else {
                     addUserStatus.textContent = data.message || "Failed to create user";
                     addUserStatus.classList.replace('text-slate-400', 'text-red-500');
+                    setTimeout(() => addUserStatus.classList.add('hidden'), 3000);
                 }
             } catch (err) {
                 console.error(err);
                 addUserStatus.textContent = "Server error";
                 addUserStatus.classList.replace('text-slate-400', 'text-red-500');
+                setTimeout(() => addUserStatus.classList.add('hidden'), 3000);
             }
-
-            setTimeout(() => {
-                addUserStatus.classList.add('hidden');
-            }, 3000);
         });
     }
 
     // Init Maps
     setTimeout(() => {
         if (window.initMap) window.initMap('adminCityMap', 'admin');
-        if (window.initAdminSecondaryMap) window.initAdminSecondaryMap('adminGlobalMap');
     }, 500); 
 
     // Create icons again after template injection
@@ -443,10 +591,20 @@ function initDriverDashboard() {
         stopTripBtn.classList.add('hidden');
         emergencyBtn.classList.add('opacity-50', 'cursor-not-allowed', 'hidden');
         
-    const copilotCard = document.getElementById('aiCopilotActiveCard');
-    if (copilotCard) copilotCard.classList.add('hidden');
     const activeInstr = document.getElementById('activeInstruction');
-    if (activeInstr) activeInstr.innerHTML = 'Waiting for navigation to start...';
+    if (activeInstr) activeInstr.textContent = 'Waiting...';
+
+    // Hide floating mascot
+    const mascot = document.getElementById('floatingMascot');
+    const mascotBubble = document.getElementById('mascotBubble');
+    if (mascot) {
+        mascot.classList.add('hidden');
+        mascot.classList.remove('flex', 'show');
+    }
+    if (mascotBubble) {
+        mascotBubble.classList.add('opacity-0', 'translate-y-2', 'scale-95');
+        mascotBubble.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
+    }
     
     const alertsBox = document.getElementById('driverAlertsBox');
     if (alertsBox) {

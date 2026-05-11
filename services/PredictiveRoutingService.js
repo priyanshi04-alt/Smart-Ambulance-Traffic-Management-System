@@ -7,14 +7,14 @@ const logService = require('./LogService');
 class PredictiveRoutingService {
     constructor() {
         this.nodes = [
-            { id: 'JUNC-01', lat: 28.62, lng: 77.215, address: 'Main St & 1st Ave' },
-            { id: 'JUNC-02', lat: 28.625, lng: 77.220, address: 'Main St & 2nd Ave' },
-            { id: 'JUNC-03', lat: 28.63, lng: 77.225, address: 'Metro Boulevard' }
+            { id: 'JUNC-01', lat: 28.62, lng: 77.215, address: 'Main St & 1st Ave', congestion: 1.0 }, // Clear
+            { id: 'JUNC-02', lat: 28.625, lng: 77.220, address: 'Main St & 2nd Ave', congestion: 2.5 }, // Jams (High factor)
+            { id: 'JUNC-03', lat: 28.63, lng: 77.225, address: 'Metro Boulevard', congestion: 1.2 }  // Moderate
         ];
     }
 
     /**
-     * @returns {Array} priorities - Junction priority list with ETAs
+     * @returns {Array} priorities - Junction priority list with Congestion-Weighted ETAs
      */
     evaluateTrajectory(data) {
         const { lat, lng, speed } = data;
@@ -26,20 +26,33 @@ class PredictiveRoutingService {
 
         this.nodes.forEach(node => {
             const distanceMeters = this._calculateDistance(lat, lng, node.lat, node.lng);
-            const etaSeconds = distanceMeters / speedMs;
+            
+            // Congestion-Weighted ETA (The core innovation)
+            // Real ETA = distance / speed
+            // Adjusted ETA = (distance / speed) * congestionFactor
+            const baseEta = distanceMeters / speedMs;
+            const adjustedEta = baseEta * node.congestion;
 
             actions.push({
                 nodeId: node.id,
                 address: node.address,
                 distance: distanceMeters,
-                eta: etaSeconds
+                baseEta: baseEta,
+                eta: adjustedEta, // Use adjusted ETA for signal planning
+                congestion: node.congestion
             });
         });
         
-        // Output junction priority list sorted by ETA (closest first)
+        // Sort by ADJUSTED ETA (Priority to the fastest route, not just shortest)
         actions.sort((a, b) => a.eta - b.eta);
         
-        // Strip out and return only current + next 2 intersections (max 3)
+        if (actions.length > 0) {
+            const best = actions[0];
+            if (best.congestion > 1.5) {
+                logService.addLog(`High Congestion Detected at ${best.address}. Recalculating Optimal Corridor...`, 'warning');
+            }
+        }
+
         return actions.slice(0, 3);
     }
 

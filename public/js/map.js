@@ -596,27 +596,51 @@ function addAlertBox(message, type) {
     const box = document.getElementById('driverAlertsBox');
     const empty = document.getElementById('alertsEmptyState');
     const activeInstr = document.getElementById('activeInstruction');
-    const copilotCard = document.getElementById('aiCopilotActiveCard');
     const statusText = document.getElementById('copilotStatusText');
     
     if (!box) return;
     if (empty) empty.classList.add('hidden');
-    if (copilotCard) copilotCard.classList.remove('hidden');
-    
+
+    // Show floating mascot when trip starts
+    const mascot = document.getElementById('floatingMascot');
+    const mascotBubble = document.getElementById('mascotBubble');
+    if (mascot && mascot.classList.contains('hidden')) {
+        mascot.classList.remove('hidden');
+        mascot.classList.add('flex', 'show');
+        if (mascotBubble) {
+            setTimeout(() => {
+                mascotBubble.classList.remove('opacity-0', 'translate-y-2', 'scale-95', 'pointer-events-none');
+                mascotBubble.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+            }, 300);
+        }
+    }
+
     // Update Live Co-Pilot Card for major instructions
     if (activeInstr) {
-        // If it's a navigation instruction or a major AI alert, highlight it
         if (message.includes('In 50 meters') || message.includes('Instruction') || message.includes('AI Copilot') || type === 'warning') {
-            activeInstr.innerHTML = message.replace('Instruction: ', '').replace('AI Copilot: ', '');
-            activeInstr.classList.add('animate-in', 'zoom-in-95', 'duration-300');
-            setTimeout(() => activeInstr.classList.remove('animate-in', 'zoom-in-95'), 300);
-            
+            const clean = message.replace('Instruction: ', '').replace('AI Copilot: ', '').replace('In 50 meters, ', '');
+
+            // Animate words floating in one by one
+            const words = clean.split(' ');
+            activeInstr.innerHTML = words.map((w, i) =>
+                `<span class="copilot-word" style="animation-delay:${i * 0.08}s">${w}&nbsp;</span>`
+            ).join('');
+
+            // Update mascot speech bubble animation
+            if (mascotBubble) {
+                mascotBubble.classList.add('scale-95', 'opacity-50');
+                setTimeout(() => {
+                    mascotBubble.classList.remove('scale-95', 'opacity-50');
+                }, 150);
+            }
+
             if (statusText) {
-                statusText.textContent = type === 'warning' ? 'Warning' : 'Navigating';
-                statusText.className = `text-[10px] font-bold uppercase transition-colors ${type === 'warning' ? 'text-yellow-300' : 'text-green-400'}`;
+                statusText.textContent = type === 'warning' ? '⚠ Alert' : '● Live';
+                statusText.className = `text-[10px] font-bold uppercase transition-colors ${type === 'warning' ? 'text-amber-500' : 'text-brand-500'}`;
             }
         }
     }
+
 
     const div = document.createElement('div');
     const icon = type === 'warning' ? '<i data-lucide="alert-triangle" class="text-amber-500 w-4 h-4"></i>' : 

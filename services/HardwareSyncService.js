@@ -71,6 +71,13 @@ class HardwareSyncService {
             }
         }, this.RETRY_INTERVAL_MS);
     }
+
+    handleHealthCheck(report) {
+        const { nodeId, sensorStatus, signalHealth } = report;
+        if (sensorStatus === 'ERROR' || signalHealth === 'ERROR') {
+            logService.addLog(`HARDWARE FAULT DETECTED: Node ${nodeId} [Sensor: ${sensorStatus}, Signal: ${signalHealth}]`, 'warning');
+        }
+    }
 }
 
 module.exports = new HardwareSyncService();

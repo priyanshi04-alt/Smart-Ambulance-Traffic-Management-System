@@ -7,11 +7,11 @@ const logService = require('./LogService');
  */
 class SirenDetectionService {
     constructor() {
-        this.detectionHistory = [];
-        this.HISTORY_LIMIT = 10;
-        this.REQUIRED_CONSECUTIVE_HITS = 3; // Temporal validation
-        this.TARGET_FREQ_MIN = 700; // Hz
-        this.TARGET_FREQ_MAX = 960; // Hz
+        this.frequencyHistory = [];
+        this.HISTORY_LIMIT = 15;
+        this.TARGET_FREQ_MIN = 500; // Expanded for real-world sweeps
+        this.TARGET_FREQ_MAX = 1500; // Expanded for real-world sweeps
+        this.REQUIRED_DELTA_SUM = 200; // Min total frequency movement to confirm a sweep
         
         // Machine Learning Scaffold
         this.mlDataset = []; 
@@ -23,65 +23,73 @@ class SirenDetectionService {
      * @returns {Object} { isValid: boolean, confidence: number }
      */
     processAudioFrames(data) {
-        const { dominantFrequency, amplitude, timestamp } = data;
+        const { dominantFrequency, amplitude } = data;
         
-        // 1. Noise Rejection: Discard low amplitude (environmental noise)
-        if (amplitude < 50) {
-            this._addHistory(false);
+        // 1. Noise Rejection
+        if (amplitude < 40) {
+            this._addHistory(0);
             return { isValid: false, confidence: 0 };
         }
 
-        // 2. Band-pass filtering (700-960 Hz check)
-        const isSirenFreq = dominantFrequency >= this.TARGET_FREQ_MIN && dominantFrequency <= this.TARGET_FREQ_MAX;
+        // 2. Frequency Window Check
+        const inWindow = dominantFrequency >= this.TARGET_FREQ_MIN && dominantFrequency <= this.TARGET_FREQ_MAX;
+        this._addHistory(inWindow ? dominantFrequency : 0);
+
+        // 3. Pattern Recognition: Is it sweeping?
+        const isSweeping = this._detectSweep();
+        const confidence = this._calculateConfidence(inWindow, isSweeping);
         
-        // 3. Temporal Validation & Confidence Scoring
-        this._addHistory(isSirenFreq);
-        const confidence = this._calculateConfidence();
-        
-        // ML dataset logging for confirmed patterns
         if (confidence > 80) {
             this._logMLSignature(dominantFrequency, amplitude);
         }
 
-        const isValid = confidence >= 80; // Require 80% confidence
+        const isValid = confidence >= 75; // Slightly lower threshold for pattern match
         
         if (isValid) {
-            logService.addLog(`Robust Siren Pattern Confirmed! Config: ${confidence}% freq: ~${dominantFrequency}Hz`, 'warning');
+            logService.addLog(`Siren Pattern Confirmed! Confidence: ${confidence}% Sweep: ${isSweeping ? 'YES' : 'NO'}`, 'warning');
         }
 
         return { isValid, confidence };
     }
 
-    _addHistory(isHit) {
-        this.detectionHistory.push(isHit ? 1 : 0);
-        if (this.detectionHistory.length > this.HISTORY_LIMIT) {
-            this.detectionHistory.shift();
+    _addHistory(freq) {
+        this.frequencyHistory.push(freq);
+        if (this.frequencyHistory.length > this.HISTORY_LIMIT) {
+            this.frequencyHistory.shift();
         }
     }
 
-    _calculateConfidence() {
-        if (this.detectionHistory.length === 0) return 0;
+    /**
+     * Detects if the frequency is rising or falling (Sweeping).
+     * This distinguishes sirens from constant tones like horns.
+     */
+    _detectSweep() {
+        if (this.frequencyHistory.length < 5) return false;
         
-        // Check temporal consistency (must have consecutive hits recently)
-        let consecutiveHits = 0;
-        for (let i = this.detectionHistory.length - 1; i >= 0; i--) {
-            if (this.detectionHistory[i] === 1) consecutiveHits++;
-            else break;
+        let totalDelta = 0;
+        for (let i = 1; i < this.frequencyHistory.length; i++) {
+            if (this.frequencyHistory[i] > 0 && this.frequencyHistory[i-1] > 0) {
+                totalDelta += Math.abs(this.frequencyHistory[i] - this.frequencyHistory[i-1]);
+            }
         }
         
-        if (consecutiveHits < this.REQUIRED_CONSECUTIVE_HITS) {
-            return 0; // Fails temporal validation (e.g., brief horn beep)
-        }
+        // If the frequency is jumping around enough, it's likely a modulated siren
+        return totalDelta > this.REQUIRED_DELTA_SUM;
+    }
 
-        // Overall consistency in the window
-        const hits = this.detectionHistory.reduce((a, b) => a + b, 0);
-        return Math.round((hits / this.HISTORY_LIMIT) * 100);
+    _calculateConfidence(inWindow, isSweeping) {
+        if (this.frequencyHistory.length < 5) return 0;
+        
+        const validFrames = this.frequencyHistory.filter(f => f >= this.TARGET_FREQ_MIN).length;
+        const consistencyScore = (validFrames / this.HISTORY_LIMIT) * 60; // 60% weight on frequency
+        const patternScore = isSweeping ? 40 : 0; // 40% weight on pattern (sweep)
+
+        return Math.min(100, Math.round(consistencyScore + patternScore));
     }
     
     _logMLSignature(freq, amp) {
         this.mlDataset.push({ freq, amp, timestamp: Date.now(), label: 'siren' });
-        // Keep dataset from blowing memory
-        if(this.mlDataset.length > 1000) this.mlDataset.shift();
+        if(this.mlDataset.length > 500) this.mlDataset.shift();
     }
     
     getStats() {

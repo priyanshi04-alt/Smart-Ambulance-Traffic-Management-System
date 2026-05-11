@@ -1,6 +1,6 @@
 {
-  "name": "ResQRoute",
-  "short_name": "ResQRoute",
+  "name": "Smart Ambulance Traffic Management System Using IOT & Sound Detection",
+  "short_name": "Smart Ambulance",
   "description": "Green Corridor & Traffic Override Application",
   "start_url": "/",
   "display": "standalone",

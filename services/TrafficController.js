@@ -75,7 +75,7 @@ class TrafficController {
             if (this.isEmergencyMode) return;
             this.currentPhase = this.currentPhase === 'NS' ? 'EW' : 'NS';
             this.startCycle();
-        }, 3000); 
+        }, 5000); 
     }
 
     setSignalState(nodeId, color, phase) {
@@ -142,36 +142,150 @@ class TrafficController {
         let hasActiveGPSOverride = false;
 
         priorityList.forEach(node => {
-            const executionState = this._calculateExecutionState(node.eta);
+            const intersection = this.intersections[node.nodeId];
+            
+            // Trajectory Abandonment Check
+            if (intersection.lastDistance && node.distance > (intersection.lastDistance + 2)) {
+                if (intersection.inEmergency) {
+                    logService.addLog(`ABANDONMENT DETECTED: Ambulance changed route near ${node.nodeId}.`, 'warning');
+                    this.confirmClearance(node.nodeId);
+                    return;
+                }
+            }
+            intersection.lastDistance = node.distance;
+
+            // Starvation Check
+            if (this.checkStarvation(node.nodeId)) return;
+
+            if (node.distance < 5 || node.eta < 0.5) {
+                this.confirmClearance(node.nodeId);
+                return;
+            }
+
+            // THE DIAMOND FIX: Confidence-Scaled Staging
+            // We pass the confidence score (0.0 to 1.0) to the state machine
+            logService.addLog(`Predictive tracking for ${node.nodeId}: Confidence ${node.confidence || 1.0}`, 'debug');
+            const executionState = this._calculateExecutionState(node.nodeId, node.eta, node.confidence || 1.0);
             
             if (executionState !== 'NORMAL') {
                 hasActiveGPSOverride = true;
                 if (!this.overrideManual && !this.overrideAutoSiren) {
                     this._executeEmergencyState(node.nodeId, 'south', executionState); 
-                    
-                    if (!this.overrideAutoGPS) {
-                        logService.addLog(`PREDICTIVE EXECUTION: Assigned ${executionState} state for ETA ${node.eta.toFixed(1)}s at ${node.address} (${node.nodeId}).`, 'info');
-                    }
                 }
-            } else if (!this.overrideManual && !this.overrideAutoSiren) {
-                this._restoreNodeToCycle(node.nodeId);
             }
         });
+        
+        // ... rest of logic
+    }
 
-        if (hasActiveGPSOverride && !this.overrideManual && !this.overrideAutoSiren) {
-            this.overrideAutoGPS = true;
+    /**
+     * Confidence-Scaled State Machine
+     * Caps the aggressiveness of the preemption based on predictive reliability.
+     */
+    _calculateExecutionState(nodeId, newEta, confidence) {
+        const node = this.intersections[nodeId];
+        const prevState = node.lastPredictedState || 'NORMAL';
+        
+        let targetState = 'NORMAL';
+        if (newEta < 5) targetState = 'GREEN';
+        else if (newEta < 15) targetState = 'PREPARE';
+        else if (newEta < 30) targetState = 'READY';
+
+        // THE CORE LOGIC: Scale aggressiveness
+        // If confidence is low, we NEVER go to GREEN. We stay at READY/PREPARE.
+        if (confidence < 0.6 && (targetState === 'GREEN' || targetState === 'PREPARE')) {
+            targetState = 'READY'; // Downgrade to cautious state
+        } else if (confidence < 0.4) {
+            targetState = 'NORMAL'; // Reject low-confidence predictions
+        }
+
+        // Apply Hysteresis
+        if (this._isStateHigher(prevState, targetState)) {
+            const buffer = 3;
+            if (newEta < (this._getThreshold(prevState) + buffer)) {
+                targetState = prevState;
+            }
+        }
+
+        node.lastPredictedState = targetState;
+        return targetState;
+    }
+
+    /**
+     * Starvation Prevention Logic
+     * Prevents 'Infinitely Green' corridors from blocking the city.
+     */
+    checkStarvation(nodeId) {
+        const MAX_HOLD = 60000; // 60 Seconds
+        const RECOVERY_TIME = 15000; // 15 Seconds mandatory break
+        
+        const node = this.intersections[nodeId];
+        if (!node.lockStartTime) return false;
+
+        const duration = Date.now() - node.lockStartTime;
+        
+        if (duration > MAX_HOLD) {
+            logService.addLog(`STARVATION ALERT: Node ${nodeId} locked for >60s. Forcing recovery window for civilian traffic.`, 'danger');
+            this.confirmClearance(nodeId);
+            node.recoveryUntil = Date.now() + RECOVERY_TIME;
+            return true;
+        }
+
+        if (node.recoveryUntil && Date.now() < node.recoveryUntil) {
+            return true; // Still in recovery window
+        }
+
+        return false;
+    }
+
+    /**
+     * Asynchronous Dynamic Release
+     * Immediately reverts a specific node to normal cycle once vehicle clearance is confirmed.
+     */
+    confirmClearance(nodeId) {
+        if (this.intersections[nodeId].inEmergency) {
+            logService.addLog(`CLEARANCE CONFIRMED: Ambulance passed ${nodeId}. Releasing intersection asynchronously.`, 'success');
+            this.intersections[nodeId].inEmergency = false;
+            this.intersections[nodeId].lockStartTime = null; // Reset starvation timer
+            this._restoreNodeToCycle(nodeId);
             this.broadcastState();
-        } else if (!hasActiveGPSOverride && this.overrideAutoGPS) {
-            this.overrideAutoGPS = false;
-            this._resolveState();
         }
     }
 
-    _calculateExecutionState(etaSeconds) {
-        if (etaSeconds < 5) return 'GREEN';
-        if (etaSeconds < 15) return 'PREPARE';
-        if (etaSeconds < 30) return 'READY';
-        return 'NORMAL';
+    /**
+     * Hysteresis-Based Signal Stabilization
+     * Prevents signal 'flickering' by adding a temporal buffer to state transitions.
+     */
+    _calculateExecutionState(nodeId, newEta) {
+        const node = this.intersections[nodeId];
+        const prevState = node.lastPredictedState || 'NORMAL';
+        
+        let newState = 'NORMAL';
+        if (newEta < 5) newState = 'GREEN';
+        else if (newEta < 15) newState = 'PREPARE';
+        else if (newEta < 30) newState = 'READY';
+
+        // Apply Hysteresis: If we are in a higher state (e.g., GREEN), 
+        // don't drop back to a lower state (e.g., PREPARE) unless the ETA is significantly higher (+3s)
+        if (this._isStateHigher(prevState, newState)) {
+            const buffer = 3; // 3-second hysteresis window
+            if (newEta < (this._getThreshold(prevState) + buffer)) {
+                newState = prevState;
+            }
+        }
+
+        node.lastPredictedState = newState;
+        return newState;
+    }
+
+    _isStateHigher(prev, next) {
+        const rank = { 'NORMAL': 0, 'READY': 1, 'PREPARE': 2, 'GREEN': 3 };
+        return rank[prev] > rank[next];
+    }
+
+    _getThreshold(state) {
+        const thresholds = { 'GREEN': 5, 'PREPARE': 15, 'READY': 30, 'NORMAL': 999 };
+        return thresholds[state];
     }
 
     _executeEmergencyState(nodeId, direction, stage) {
@@ -180,6 +294,10 @@ class TrafficController {
         
         const applyStage = (id) => {
             if (stage === 'GREEN' || stage === 'PREPARE') {
+                this.intersections[id].inEmergency = true;
+                if (!this.intersections[id].lockStartTime) {
+                    this.intersections[id].lockStartTime = Date.now();
+                }
                 this.intersections[id].state.north = 'red'; this.intersections[id].state.south = 'red';
                 this.intersections[id].state.east = 'red'; this.intersections[id].state.west = 'red';
                 
@@ -251,6 +369,11 @@ class TrafficController {
             this.io.emit('traffic-state', this.getState());
             // Sync ONLY the physical node to the ESP32!
             hwSync.sendCommand('ESP32-NODE-01', this.intersections['JUNC-01'].state);
+            
+            // Broadcast to the raw WebSocket (ESP32 LEDs)
+            if (typeof global.broadcastToHardware === 'function') {
+                global.broadcastToHardware(this.getState());
+            }
         }
     }
 }
