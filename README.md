@@ -1,6 +1,6 @@
 # 🚑 Smart Ambulance Traffic Management System
 
-> A real-time, IoT-integrated web system that autonomously creates a **Green Corridor** for ambulances by overriding traffic signals, dynamically rerouting around congestion, and providing voice-assisted AI Co-Pilot navigation.
+> A real-time, IoT-integrated web system that autonomously creates a **Green Corridor** for ambulances by overriding traffic signals, dynamically rerouting around congestion, and providing voice-assisted ResQ Bot navigation.
 
 ---
 
@@ -15,7 +15,7 @@
 - 🗺️ **Live Map Tracking** — Real-time ambulance position on an interactive Leaflet.js map
 - 🚦 **Green Corridor** — Automatic traffic signal override via ESP32 + KY-037 siren detection
 - 🔀 **Dynamic Re-routing** — Congestion detected → alternate route calculated and drawn instantly
-- 🎙️ **AI Co-Pilot** — Voice-guided navigation using Web Speech API with priority interrupt queue
+- 🎙️ **ResQ Bot** — Voice-guided navigation using Web Speech API with priority interrupt queue
 - 🏥 **Hospital Integration** — Remote patient monitoring (SPO2, Heart Rate) transmitted to hospital dashboard
 - 📊 **Trip Performance Analytics** — Post-trip summaries showing distance, time saved, and signal overrides
 - 📱 **Civilian Alert Simulator** — Real-time emergency notifications simulated on smartphone UI
@@ -82,7 +82,7 @@ smart-ambulance/
 │       ├── app.js            # Auth, dashboard init, role routing
 │       ├── socket.js         # WebSocket event handlers
 │       ├── map.js            # Leaflet map, route drawing, ambulance animation
-│       └── voice.js          # TTS Co-Pilot + Web Audio API siren
+│       └── voice.js          # TTS ResQ Bot + Web Audio API siren
 ├── data/
 │   └── logs.json             # Persistent event logs (auto-created)
 └── test.js / test-nearest.js # Puppeteer UI test scripts

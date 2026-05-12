@@ -24,7 +24,7 @@ The system seamlessly connects three distinct entities—the Ambulance Driver, t
 ### C. Paramedic / Driver Dashboard (Mobile First)
 * **One-Click Green Corridor Initiation:** Drivers possess an emergency highly visible red "Request Green Corridor" button. When triggered, the system calculates the path to their destination and begins systematically forcing signals to turn green ahead of the vehicle.
 * **Advanced Patient & Vitals Handshake:** Rather than calling ahead, the driver inputs key patient data—Condition, Heart Rate (BPM), Blood Oxygen (SPO2), and Critical Status Checkbox—which is transferred encrypted and immediately to the destination hospital's UI.
-* **AI Co-Pilot Assist:** A predictive sidebar analyzes the ongoing trip data and provides the driver with continuous background diagnostics (e.g., "Analyzing traffic delays," "Warning Hospital of massive trauma").
+* **ResQ Bot Assist:** A predictive sidebar analyzes the ongoing trip data and provides the driver with continuous background diagnostics (e.g., "Analyzing traffic delays," "Warning Hospital of massive trauma").
 
 ### D. Destination Hospital Tracking Bay
 * **Live ETA Countdown Timer:** Replaces guesswork with a massive, live digital countdown timer calculating exactly how many minutes/seconds until the ambulance hits the emergency room doors.

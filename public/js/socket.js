@@ -214,6 +214,14 @@ window.initSocket = function() {
             // Global alert sound
             playSiren();
             if(!window.isEmergencyActive) speak(`EMERGENCY ALERT. Ambulance detected. Please clear the road. Green corridor active for ${data.direction} approach.`);
+            
+            // Visual Overlay
+            const visualOverlay = document.getElementById('emergencyVisualOverlay');
+            if (visualOverlay) {
+                visualOverlay.classList.remove('hidden');
+                setTimeout(() => visualOverlay.classList.add('opacity-100'), 10);
+                document.body.classList.add('overflow-hidden');
+            }
         } else {
             if (banner) {
                 banner.style.setProperty('display', 'none', 'important');
@@ -223,6 +231,14 @@ window.initSocket = function() {
             if (centerIcon) centerIcon.classList.add('opacity-0');
             if (driverBanner) {
                 driverBanner.style.setProperty('display', 'none', 'important');
+            }
+
+            // Visual Overlay Remove
+            const visualOverlay = document.getElementById('emergencyVisualOverlay');
+            if (visualOverlay) {
+                visualOverlay.classList.remove('opacity-100');
+                setTimeout(() => visualOverlay.classList.add('hidden'), 500);
+                document.body.classList.remove('overflow-hidden');
             }
 
             // Reset Civilian Mock UI (NEW)

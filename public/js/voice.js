@@ -17,10 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function speak(text) {
     if (window.isMuted) return;
     
-    // If currently speaking, queue it! 
-    // BUT if the new message is an Emergency Alert, interrupt the current speech immediately
-    if (synth.speaking && (text.includes("EMERGENCY") || text.includes("Alert") || text.includes("Critical") || text.includes("Warning"))) {
-         synth.cancel(); // Interrupt for high priority
+    // Prevent Speech Synthesis queue from clogging up and speaking old messages randomly
+    if (synth.speaking) {
+         synth.cancel(); 
     }
     
     const utterance = new SpeechSynthesisUtterance(text);

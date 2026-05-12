@@ -33,7 +33,90 @@ document.addEventListener('DOMContentLoaded', () => {
             handleLogout();
         }
     });
+
+    initChatbot();
 });
+
+function initChatbot() {
+    const triggerBtn = document.getElementById('triggerChatBtn');
+    const modal = document.getElementById('aiChatModal');
+    const form = document.getElementById('aiChatForm');
+    const input = document.getElementById('aiChatInput');
+    const messages = document.getElementById('aiChatMessages');
+
+    if (!triggerBtn || !modal || !form || !input || !messages) return;
+
+    triggerBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        input.focus();
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        // User message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'flex items-start gap-3 justify-end';
+        userMsg.innerHTML = `
+            <div class="bg-brand-500 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm">
+                ${text}
+            </div>
+            <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                <i data-lucide="user" class="w-4 h-4 text-slate-600 dark:text-slate-300"></i>
+            </div>
+        `;
+        messages.appendChild(userMsg);
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+        if(window.lucide) window.lucide.createIcons();
+
+        // Bot interactive response logic
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'flex items-start gap-3';
+            let responseText = "I am ResQ Bot. I'm monitoring the network. You can ask me to 'start trip', 'trigger siren', or 'status'.";
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('siren') || lowerText.includes('trigger') || lowerText.includes('clear')) {
+                responseText = "Executing override! Requesting green corridor immediately.";
+                // Trigger actual backend override
+                fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ direction: 'north', active: true })
+                }).catch(console.error);
+            } 
+            else if (lowerText.includes('start') || lowerText.includes('trip') || lowerText.includes('navigate')) {
+                responseText = "Starting navigation sequence to the selected hospital.";
+                const startBtn = document.getElementById('startTripBtn');
+                if(startBtn) startBtn.click();
+            }
+            else if (lowerText.includes('hospital') || lowerText.includes('notify')) {
+                responseText = "Hospital notified of incoming emergency and patient vitals.";
+                const notifyBtn = document.getElementById('notifyHospitalBtn');
+                if(notifyBtn) notifyBtn.click();
+            }
+            else if (lowerText.includes('status') || lowerText.includes('traffic')) {
+                responseText = "Traffic signals are currently running in standard cyclic mode. No active corridors.";
+            }
+            
+            botMsg.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4 text-brand-600 dark:text-brand-400"></i>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-200">
+                    ${responseText}
+                </div>
+            `;
+            messages.appendChild(botMsg);
+            messages.scrollTop = messages.scrollHeight;
+            if(window.lucide) window.lucide.createIcons();
+            if (window.speak) window.speak(responseText);
+        }, 1000);
+    });
+}
 
 async function handleLogin(e) {
     e.preventDefault();
@@ -136,6 +219,8 @@ function showLogin() {
     document.getElementById('loginScreen').classList.remove('hidden');
     document.getElementById('mainHeader').classList.add('hidden');
     document.getElementById('mainContent').classList.add('hidden');
+    const triggerChatBtn = document.getElementById('triggerChatBtn');
+    if (triggerChatBtn) triggerChatBtn.classList.add('hidden');
 }
 
 function showDashboard() {
@@ -157,10 +242,14 @@ function showDashboard() {
         }
     }
     
+    // Always show the global chatbot floating button when logged in
+    const triggerChatBtn = document.getElementById('triggerChatBtn');
+    if (triggerChatBtn) triggerChatBtn.classList.remove('hidden');
+    
     const mainContent = document.getElementById('mainContent');
     mainContent.innerHTML = '';
     const wrapper = document.createElement('div');
-    wrapper.className = 'max-w-7xl mx-auto w-full h-full';
+    wrapper.className = 'w-full h-full flex flex-col';
 
     if (currentUser.role === 'admin') {
         const template = document.getElementById('adminDashboardTemplate');

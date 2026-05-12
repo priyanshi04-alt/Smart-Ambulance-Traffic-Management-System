@@ -288,7 +288,7 @@ window.startDriverSimulation = function(waypoints) {
              
              if (isGreenLight || window.isEmergencyActive) {
                  window.isStuckAtRed = false;
-                 console.log("Co-Pilot: Green Corridor secured. Traffic cleared. Resuming journey.");
+                 console.log("ResQ Bot: Green Corridor secured. Traffic cleared. Resuming journey.");
                  speak("Green Corridor secured. Traffic cleared. Resuming journey at high speed.");
                  addAlertBox("Green Corridor Activated", "success");
                  dynamicSpeed = 20; // Slight boost after getting unstuck
@@ -394,7 +394,7 @@ window.startDriverSimulation = function(waypoints) {
              if(window.speechSynthesis) window.speechSynthesis.cancel(); // Clear old TTS queue
              
              speak("Calculating route. Requesting green corridor.");
-             addAlertBox("AI Copilot: Pre-clearing 3 upcoming intersections (West, Main, East)...", "info");
+             addAlertBox("ResQ Bot: Pre-clearing 3 upcoming intersections (West, Main, East)...", "info");
              
              setTimeout(() => {
                   speak("Corridor secured. Nodes locked to green.");
@@ -507,9 +507,9 @@ window.startDriverSimulation = function(waypoints) {
               }
 
               if (isAlreadyGreen) {
-                  console.log("Co-Pilot: Signal is already green. Skipping emergency trigger.");
+                  console.log("ResQ Bot: Signal is already green. Skipping emergency trigger.");
                   speak("Approaching intersection. Signal is currently green. Proceed safely without overriding.");
-                  addAlertBox("AI Copilot: Network shows green light ahead. Override unnecessary.", "success");
+                  addAlertBox("ResQ Bot: Network shows green light ahead. Override unnecessary.", "success");
               } else {
                   console.log("Stuck in Traffic Demo Sequence Initiated...");
                   
@@ -596,7 +596,7 @@ function addAlertBox(message, type) {
     const box = document.getElementById('driverAlertsBox');
     const empty = document.getElementById('alertsEmptyState');
     const activeInstr = document.getElementById('activeInstruction');
-    const statusText = document.getElementById('copilotStatusText');
+    const statusText = document.getElementById('ResQ BotStatusText');
     
     if (!box) return;
     if (empty) empty.classList.add('hidden');
@@ -615,15 +615,15 @@ function addAlertBox(message, type) {
         }
     }
 
-    // Update Live Co-Pilot Card for major instructions
+    // Update Live ResQ Bot Card for major instructions
     if (activeInstr) {
-        if (message.includes('In 50 meters') || message.includes('Instruction') || message.includes('AI Copilot') || type === 'warning') {
-            const clean = message.replace('Instruction: ', '').replace('AI Copilot: ', '').replace('In 50 meters, ', '');
+        if (message.includes('In 50 meters') || message.includes('Instruction') || message.includes('ResQ Bot') || type === 'warning') {
+            const clean = message.replace('Instruction: ', '').replace('ResQ Bot: ', '').replace('In 50 meters, ', '');
 
             // Animate words floating in one by one
             const words = clean.split(' ');
             activeInstr.innerHTML = words.map((w, i) =>
-                `<span class="copilot-word" style="animation-delay:${i * 0.08}s">${w}&nbsp;</span>`
+                `<span class="ResQ Bot-word" style="animation-delay:${i * 0.08}s">${w}&nbsp;</span>`
             ).join('');
 
             // Update mascot speech bubble animation

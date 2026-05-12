@@ -11,7 +11,7 @@ To date, the **Software Control Dashboard** has been fully developed, refined, a
 
 **Key Features Developed in the Dashboard:**
 - **Live GPS Map Simulation:** A real-time tracking interface built using Leaflet.js that accurately plots the ambulance’s journey through city streets.
-- **AI Co-Pilot Integration:** A complete Text-to-Speech (TTS) integration that vocally announces critical alerts, congestion warnings, and route changes to the driver.
+- **ResQ Bot Integration:** A complete Text-to-Speech (TTS) integration that vocally announces critical alerts, congestion warnings, and route changes to the driver.
 - **Dynamic Re-Routing:** The system mathematically analyzes traffic conditions. As demonstrated in Scenario 2, if the main route is congested, the AI immediately wipes the old route from the map and draws a faster detour through side streets in real-time.
 - **Smart Node Server Override (The "Green Corridor"):** A complex backend architecture using Node.js and Socket.io. When an ambulance approaches a red light (as seen in Scenarios 1 and 3), the system digitally overrides the traffic light state across the network.
 - **Hospital-Side Integration & Vitals Tracking:** A real-time data link that transmits patient vitals (SPO2, Heart Rate) directly from the ambulance to the hospital dashboard, allowing doctors to prepare for the specific emergency before arrival.
@@ -55,9 +55,9 @@ During the development of the Smart Ambulance Traffic Management Dashboard, we e
 * **Scenario of Failure:** When an ambulance approached a major intersection (Scenario 1), the visual map marker would sometimes continue driving straight through a red light on the dashboard *before* the backend Node.js server had actually triggered the "Green Corridor" override. This resulted in a visual desynchronization where the UI showed the ambulance safely passing, but the system logic stated it was still waiting.
 * **The Fix:** We implemented a stricter **Event-Driven Architecture** using WebSockets (`Socket.io`). We decoupled the map animation from a simple timer and tied it directly to server confirmations. The ambulance's JavaScript movement logic was updated to halt at specific junction coordinates until a definitive `TRAFFIC_CLEARED` event was received from the server, ensuring perfect sync between the UI and the backend.
 
-### B. Audio Overlap & Event Spamming (The "Chaotic Co-Pilot" Problem)
+### B. Audio Overlap & Event Spamming (The "Chaotic ResQ Bot" Problem)
 * **The Issue:** Managing multiple asynchronous Text-to-Speech (TTS) alerts simultaneously.
-* **Scenario of Failure:** During rapid, dynamic events—such as detecting heavy congestion right as the emergency override was triggered—the AI Co-Pilot would attempt to speak multiple alerts at exactly the same time. The browser's speech synthesis would queue these up or overlap them, resulting in the system stuttering, talking over itself, and delivering garbled, confusing instructions to the driver.
+* **Scenario of Failure:** During rapid, dynamic events—such as detecting heavy congestion right as the emergency override was triggered—the ResQ Bot would attempt to speak multiple alerts at exactly the same time. The browser's speech synthesis would queue these up or overlap them, resulting in the system stuttering, talking over itself, and delivering garbled, confusing instructions to the driver.
 * **The Fix:** We engineered a custom **Audio Queue Manager with Priority Cancellation**. We categorized alerts by priority levels. If a maximum-priority alert (e.g., *"Emergency Override Activated!"*) was triggered, the JavaScript function was written to immediately invoke `window.speechSynthesis.cancel()`, flush any pending low-priority alerts from the queue, and immediately speak the critical instruction, ensuring clear and concise audio feedback.
 
 ### C. Route Recalculation Rendering Glitches (The "Spaghetti Map" Problem)

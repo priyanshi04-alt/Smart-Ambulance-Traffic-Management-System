@@ -9,9 +9,9 @@ class SirenDetectionService {
     constructor() {
         this.frequencyHistory = [];
         this.HISTORY_LIMIT = 15;
-        this.TARGET_FREQ_MIN = 500; // Expanded for real-world sweeps
-        this.TARGET_FREQ_MAX = 1500; // Expanded for real-world sweeps
-        this.REQUIRED_DELTA_SUM = 200; // Min total frequency movement to confirm a sweep
+        this.TARGET_FREQ_MIN = 300; // Lowered to capture deeper siren tones
+        this.TARGET_FREQ_MAX = 2000; // Expanded to capture higher Yelp sweeps
+        this.REQUIRED_DELTA_SUM = 120; // Reduced strictness for sweep detection
         
         // Machine Learning Scaffold
         this.mlDataset = []; 
@@ -26,7 +26,7 @@ class SirenDetectionService {
         const { dominantFrequency, amplitude } = data;
         
         // 1. Noise Rejection
-        if (amplitude < 40) {
+        if (amplitude < 25) { // Lowered threshold (was 40) for sensitive microphones
             this._addHistory(0);
             return { isValid: false, confidence: 0 };
         }
@@ -43,7 +43,7 @@ class SirenDetectionService {
             this._logMLSignature(dominantFrequency, amplitude);
         }
 
-        const isValid = confidence >= 75; // Slightly lower threshold for pattern match
+        const isValid = confidence >= 60; // Lowered confidence threshold (was 75)
         
         if (isValid) {
             logService.addLog(`Siren Pattern Confirmed! Confidence: ${confidence}% Sweep: ${isSweeping ? 'YES' : 'NO'}`, 'warning');
