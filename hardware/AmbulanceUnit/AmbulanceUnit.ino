@@ -4,7 +4,7 @@
 
 const char* ssid = "S25 ultra";
 const char* password = "25100903";
-const char* serverUrl = "http://10.85.57.215:3000/api/iot/ambulance-detected";
+const char* serverUrl = "http://10.20.26.10:3000/api/iot/ambulance-detected";
 
 const int micPin = 32;
 

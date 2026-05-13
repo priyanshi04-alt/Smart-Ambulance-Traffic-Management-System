@@ -1,5 +1,347 @@
 [
   {
+    "id": "1778687591168",
+    "timestamp": "2026-05-13T15:53:11.168Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778687587421",
+    "timestamp": "2026-05-13T15:53:07.421Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778687587420",
+    "timestamp": "2026-05-13T15:53:07.420Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778687586077",
+    "timestamp": "2026-05-13T15:53:06.077Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1778687561406",
+    "timestamp": "2026-05-13T15:52:41.406Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778687561402",
+    "timestamp": "2026-05-13T15:52:41.402Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778687561164",
+    "timestamp": "2026-05-13T15:52:41.164Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778687561161",
+    "timestamp": "2026-05-13T15:52:41.161Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778687530854",
+    "timestamp": "2026-05-13T15:52:10.854Z",
+    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
+    "type": "info"
+  },
+  {
+    "id": "1778687088987",
+    "timestamp": "2026-05-13T15:44:48.987Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778687088984",
+    "timestamp": "2026-05-13T15:44:48.984Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778687088027",
+    "timestamp": "2026-05-13T15:44:48.027Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1778687072736",
+    "timestamp": "2026-05-13T15:44:32.736Z",
+    "message": "Message from Driver (driver1): \"OK\"",
+    "type": "info"
+  },
+  {
+    "id": "1778687061201",
+    "timestamp": "2026-05-13T15:44:21.201Z",
+    "message": "Message from Hospital (City General Hospital): \"HEYY\"",
+    "type": "info"
+  },
+  {
+    "id": "1778687053007",
+    "timestamp": "2026-05-13T15:44:13.008Z",
+    "message": "Emergency alert sent to City General Hospital: [Patient: DFSDCCDSCDC] CDC",
+    "type": "info"
+  },
+  {
+    "id": "1778686942761",
+    "timestamp": "2026-05-13T15:42:22.761Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778686942758",
+    "timestamp": "2026-05-13T15:42:22.758Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778686941793",
+    "timestamp": "2026-05-13T15:42:21.793Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1778686760459",
+    "timestamp": "2026-05-13T15:39:20.459Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778686760449",
+    "timestamp": "2026-05-13T15:39:20.449Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778686759344",
+    "timestamp": "2026-05-13T15:39:19.344Z",
+    "message": "Message from Hospital (City General Hospital): \"hty\"",
+    "type": "info"
+  },
+  {
+    "id": "1778686758755",
+    "timestamp": "2026-05-13T15:39:18.755Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1778686743406",
+    "timestamp": "2026-05-13T15:39:03.407Z",
+    "message": "Message from Hospital (City General Hospital): \"cdvd\"",
+    "type": "info"
+  },
+  {
+    "id": "1778686721298",
+    "timestamp": "2026-05-13T15:38:41.298Z",
+    "message": "Emergency alert sent to City General Hospital: vdcdc",
+    "type": "warning"
+  },
+  {
+    "id": "1778686701699",
+    "timestamp": "2026-05-13T15:38:21.699Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778686701694",
+    "timestamp": "2026-05-13T15:38:21.694Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778686631645",
+    "timestamp": "2026-05-13T15:37:11.645Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778686601628",
+    "timestamp": "2026-05-13T15:36:41.628Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778686601623",
+    "timestamp": "2026-05-13T15:36:41.623Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675653662",
+    "timestamp": "2026-05-13T12:34:13.662Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675623615",
+    "timestamp": "2026-05-13T12:33:43.615Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675623602",
+    "timestamp": "2026-05-13T12:33:43.602Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675594399",
+    "timestamp": "2026-05-13T12:33:14.399Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675564372",
+    "timestamp": "2026-05-13T12:32:44.372Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675564330",
+    "timestamp": "2026-05-13T12:32:44.330Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675511932",
+    "timestamp": "2026-05-13T12:31:51.932Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675481914",
+    "timestamp": "2026-05-13T12:31:21.914Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675481906",
+    "timestamp": "2026-05-13T12:31:21.906Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675479510",
+    "timestamp": "2026-05-13T12:31:19.510Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675449494",
+    "timestamp": "2026-05-13T12:30:49.494Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675449490",
+    "timestamp": "2026-05-13T12:30:49.490Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675401242",
+    "timestamp": "2026-05-13T12:30:01.242Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675371203",
+    "timestamp": "2026-05-13T12:29:31.203Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675371182",
+    "timestamp": "2026-05-13T12:29:31.182Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675314781",
+    "timestamp": "2026-05-13T12:28:34.781Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675284768",
+    "timestamp": "2026-05-13T12:28:04.768Z",
+    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "type": "info"
+  },
+  {
+    "id": "1778675284760",
+    "timestamp": "2026-05-13T12:28:04.760Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675256598",
+    "timestamp": "2026-05-13T12:27:36.598Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675256595",
+    "timestamp": "2026-05-13T12:27:36.595Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778675240301",
+    "timestamp": "2026-05-13T12:27:20.301Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778675210288",
+    "timestamp": "2026-05-13T12:26:50.288Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778675210284",
+    "timestamp": "2026-05-13T12:26:50.284Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
+    "id": "1778672789405",
+    "timestamp": "2026-05-13T11:46:29.405Z",
+    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "type": "info"
+  },
+  {
+    "id": "1778672789401",
+    "timestamp": "2026-05-13T11:46:29.401Z",
+    "message": "Emergency override DEACTIVATED",
+    "type": "info"
+  },
+  {
+    "id": "1778672695320",
+    "timestamp": "2026-05-13T11:44:55.320Z",
+    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "type": "info"
+  },
+  {
+    "id": "1778672665310",
+    "timestamp": "2026-05-13T11:44:25.310Z",
+    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "type": "warning"
+  },
+  {
+    "id": "1778672665303",
+    "timestamp": "2026-05-13T11:44:25.303Z",
+    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "type": "warning"
+  },
+  {
     "id": "1778605275942",
     "timestamp": "2026-05-12T17:01:15.942Z",
     "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
@@ -256,347 +598,5 @@
     "timestamp": "2026-05-12T14:05:12.086Z",
     "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
     "type": "info"
-  },
-  {
-    "id": "1778594682076",
-    "timestamp": "2026-05-12T14:04:42.076Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594682070",
-    "timestamp": "2026-05-12T14:04:42.070Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594580962",
-    "timestamp": "2026-05-12T14:03:00.962Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778594550961",
-    "timestamp": "2026-05-12T14:02:30.961Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594550956",
-    "timestamp": "2026-05-12T14:02:30.956Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594546506",
-    "timestamp": "2026-05-12T14:02:26.506Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778594516489",
-    "timestamp": "2026-05-12T14:01:56.489Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778594516487",
-    "timestamp": "2026-05-12T14:01:56.487Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594496625",
-    "timestamp": "2026-05-12T14:01:36.625Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594496619",
-    "timestamp": "2026-05-12T14:01:36.619Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594489810",
-    "timestamp": "2026-05-12T14:01:29.810Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778594459794",
-    "timestamp": "2026-05-12T14:00:59.795Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594459788",
-    "timestamp": "2026-05-12T14:00:59.788Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594428447",
-    "timestamp": "2026-05-12T14:00:28.447Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778594398432",
-    "timestamp": "2026-05-12T13:59:58.432Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778594398428",
-    "timestamp": "2026-05-12T13:59:58.428Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594380042",
-    "timestamp": "2026-05-12T13:59:40.042Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778594380038",
-    "timestamp": "2026-05-12T13:59:40.038Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594379822",
-    "timestamp": "2026-05-12T13:59:39.822Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778594379816",
-    "timestamp": "2026-05-12T13:59:39.816Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594378628",
-    "timestamp": "2026-05-12T13:59:38.628Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778594378624",
-    "timestamp": "2026-05-12T13:59:38.624Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594377218",
-    "timestamp": "2026-05-12T13:59:37.218Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594377214",
-    "timestamp": "2026-05-12T13:59:37.214Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778594286217",
-    "timestamp": "2026-05-12T13:58:06.217Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778594256210",
-    "timestamp": "2026-05-12T13:57:36.210Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778594256206",
-    "timestamp": "2026-05-12T13:57:36.206Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593868168",
-    "timestamp": "2026-05-12T13:51:08.168Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778593838152",
-    "timestamp": "2026-05-12T13:50:38.153Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593838147",
-    "timestamp": "2026-05-12T13:50:38.147Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593827115",
-    "timestamp": "2026-05-12T13:50:27.115Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778593827108",
-    "timestamp": "2026-05-12T13:50:27.108Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593803526",
-    "timestamp": "2026-05-12T13:50:03.526Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778593773519",
-    "timestamp": "2026-05-12T13:49:33.519Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593773517",
-    "timestamp": "2026-05-12T13:49:33.517Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593759721",
-    "timestamp": "2026-05-12T13:49:19.721Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593759719",
-    "timestamp": "2026-05-12T13:49:19.719Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593741294",
-    "timestamp": "2026-05-12T13:49:01.294Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593741292",
-    "timestamp": "2026-05-12T13:49:01.292Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593715990",
-    "timestamp": "2026-05-12T13:48:35.990Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778593715988",
-    "timestamp": "2026-05-12T13:48:35.988Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593699316",
-    "timestamp": "2026-05-12T13:48:19.316Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778593669317",
-    "timestamp": "2026-05-12T13:47:49.317Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593669314",
-    "timestamp": "2026-05-12T13:47:49.314Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593648320",
-    "timestamp": "2026-05-12T13:47:28.320Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778593648317",
-    "timestamp": "2026-05-12T13:47:28.317Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593632155",
-    "timestamp": "2026-05-12T13:47:12.155Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778593602154",
-    "timestamp": "2026-05-12T13:46:42.154Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778593602149",
-    "timestamp": "2026-05-12T13:46:42.149Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593598772",
-    "timestamp": "2026-05-12T13:46:38.772Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778593568766",
-    "timestamp": "2026-05-12T13:46:08.766Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593568761",
-    "timestamp": "2026-05-12T13:46:08.761Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593555863",
-    "timestamp": "2026-05-12T13:45:55.863Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593555858",
-    "timestamp": "2026-05-12T13:45:55.858Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593545326",
-    "timestamp": "2026-05-12T13:45:45.326Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778593545322",
-    "timestamp": "2026-05-12T13:45:45.322Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778593532623",
-    "timestamp": "2026-05-12T13:45:32.623Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
   }
 ]

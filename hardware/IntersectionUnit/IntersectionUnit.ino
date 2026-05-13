@@ -4,6 +4,8 @@
 
 const char* ssid     = "S25 ultra";
 const char* password = "25100903";
+
+// Updated to your current active IP
 const char* serverIp   = "10.85.57.215"; 
 const int   serverPort = 3000;
 

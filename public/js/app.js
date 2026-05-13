@@ -75,8 +75,8 @@ function initChatbot() {
         // Bot interactive response logic
         setTimeout(() => {
             const botMsg = document.createElement('div');
-            botMsg.className = 'flex items-start gap-3';
-            let responseText = "I am ResQ Bot. I'm monitoring the network. You can ask me to 'start trip', 'trigger siren', or 'status'.";
+            botMsg.className = 'flex items-start gap-3 w-full';
+            let responseText = "I am ResQ Bot. I can provide real-time updates on ETA, traffic status, hospital bed availability, and patient details. How can I help?";
             const lowerText = text.toLowerCase();
             
             if (lowerText.includes('siren') || lowerText.includes('trigger') || lowerText.includes('clear')) {
@@ -100,6 +100,27 @@ function initChatbot() {
             }
             else if (lowerText.includes('status') || lowerText.includes('traffic')) {
                 responseText = "Traffic signals are currently running in standard cyclic mode. No active corridors.";
+            }
+            else if (lowerText.includes('bed') || lowerText.includes('icu') || lowerText.includes('availability')) {
+                const icu = document.getElementById('icuCount')?.textContent || '3';
+                responseText = `We currently have ${icu} ICU beds available and 5 Emergency Ward beds ready. Operation Theater is on standby.`;
+            }
+            else if (lowerText.includes('eta') || lowerText.includes('time') || lowerText.includes('arrive')) {
+                const eta = document.getElementById('hospitalEtaTimer')?.textContent || 'N/A';
+                if (eta !== '--:--' && eta !== 'N/A') {
+                    responseText = `The closest ambulance is approximately ${eta} away.`;
+                } else {
+                    responseText = "There are currently no active incoming ambulances with an ETA.";
+                }
+            }
+            else if (lowerText.includes('patient') || lowerText.includes('sneha') || lowerText.includes('details')) {
+                responseText = "Patient Sneha Reddy (PT-1004) is en route. Critical condition. Blood Group A+ POS. Allergies: Aspirin. Vitals are being monitored continuously via Med-Link.";
+            }
+            else if (lowerText.includes('doctor') || lowerText.includes('staff')) {
+                responseText = "Dr. Sharma (Trauma) and Nurse Mehra (ER) have been assigned and notified. OT Team 4 is on standby.";
+            }
+            else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('hey')) {
+                responseText = "Hello! I am your ResQ Bot. I can assist with route status, hospital availability, patient information, and overriding traffic signals. What do you need?";
             }
             
             botMsg.innerHTML = `
@@ -811,6 +832,69 @@ window.isEmergencyActive = false;
 function initHospitalDashboard() {
     console.log("Initializing Hospital Dashboard...");
     
+    // Render demo patient database
+    const demoPatients = [
+        { id: 'PT-1004', name: 'Sneha Reddy', age: 41, gender: 'F', type: 'GENERAL', dept: 'EMERGENCY', severity: 'CRITICAL', blood: 'A+ POS', allergies: 'ASPIRIN', hr: '78', spo2: '67%', bp: '120/80', match: 'DB MATCH FOUND', matchClass: 'bg-brand-100 text-brand-700' },
+        { id: 'PT-1001', name: 'Aarav Sharma', age: 54, gender: 'M', type: 'CARDIAC', dept: 'ICU', severity: 'CRITICAL', blood: 'B+ POS', allergies: 'PENICILLIN', hr: '110', spo2: '88%', bp: '150/90', match: 'DB MATCH FOUND', matchClass: 'bg-brand-100 text-brand-700' },
+        { id: 'PT-1002', name: 'Priya Patel', age: 28, gender: 'F', type: 'TRAUMA', dept: 'SURGERY', severity: 'MODERATE', blood: 'O- NEG', allergies: 'NONE', hr: '95', spo2: '98%', bp: '110/70', match: 'DB MATCH FOUND', matchClass: 'bg-brand-100 text-brand-700' }
+    ];
+
+    const dbContainer = document.getElementById('demoPatientDatabase');
+    if (dbContainer) {
+        dbContainer.innerHTML = demoPatients.map(p => `
+            <div class="p-2 border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition flex justify-between items-center patient-card" data-id="${p.id}">
+                <div>
+                    <div class="font-bold text-slate-700 dark:text-slate-200 text-xs">${p.name}</div>
+                    <div class="text-[9px] text-slate-500">${p.age} Yrs • ${p.blood} • ${p.match}</div>
+                </div>
+                <div class="text-xs font-black text-slate-400">${p.id}</div>
+            </div>
+        `).join('');
+
+        dbContainer.querySelectorAll('.patient-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const p = demoPatients.find(x => x.id === card.dataset.id);
+                if (p) {
+                    document.getElementById('patientInfoName').textContent = `[${p.id}] ${p.name}`;
+                    const matchStatus = document.getElementById('patientMatchStatus');
+                    matchStatus.textContent = p.match;
+                    matchStatus.className = `bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400 text-[8px] px-1.5 py-0.5 rounded font-black tracking-widest ml-2`;
+                    
+                    document.getElementById('patientInfoAge').textContent = `Age: ${p.age}`;
+                    document.getElementById('patientInfoGender').textContent = `Gender: ${p.gender}`;
+                    document.getElementById('patientInfoType').textContent = p.type;
+                    document.getElementById('patientInfoDept').textContent = p.dept;
+                    document.getElementById('patientInfoSeverity').textContent = p.severity;
+                    document.getElementById('patientInfoBlood').textContent = p.blood;
+                    document.getElementById('patientInfoAllergies').textContent = p.allergies;
+                    
+                    document.getElementById('vitalsHR_Hosp').textContent = p.hr;
+                    document.getElementById('vitalsSPO2_Hosp').textContent = p.spo2;
+                    document.getElementById('vitalsBP_Hosp').textContent = p.bp;
+
+                    const markReadyBtn = document.getElementById('markReadyBtn');
+                    if (markReadyBtn) markReadyBtn.classList.remove('hidden');
+                    
+                    const aiTriageCard = document.getElementById('aiTriageCard');
+                    if (aiTriageCard) {
+                        aiTriageCard.classList.remove('hidden');
+                        document.getElementById('aiTriageResultContainer').innerHTML = `
+                            <div class="bg-red-500/20 border border-red-500/30 p-3 rounded-xl flex items-center gap-3 text-white">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-red-300"></i>
+                                <span class="text-xs font-bold">URGENT ICU PREP REQUIRED. High Risk.</span>
+                            </div>
+                            <div class="bg-white/10 border border-white/10 p-3 rounded-xl flex items-center gap-3 text-white mt-2">
+                                <i data-lucide="map" class="w-4 h-4 text-indigo-300"></i>
+                                <span class="text-xs font-medium">Probable routing: Emergency</span>
+                            </div>
+                        `;
+                        if(window.lucide) window.lucide.createIcons();
+                    }
+                }
+            });
+        });
+    }
+
     // 1. Initialize Map with fix for hidden containers
     setTimeout(() => {
         const mapContainer = document.getElementById('hospitalMap');
@@ -867,6 +951,8 @@ async function sendHospitalAlert() {
     const hospitalId = window.currentDestId;
     const hospitalName = window.currentDestName;
     
+    const patientNameInput = document.getElementById('patientName')?.value || '';
+    
     // New Advanced Vitals
     const spo2 = document.getElementById('vitalsSPO2')?.value || '98';
     const hr = document.getElementById('vitalsHR')?.value || '75';
@@ -875,6 +961,10 @@ async function sendHospitalAlert() {
 
     if (!problem || !problem.trim()) {
         problem = "Emergency Response Requested"; // Default filler so user demo doesn't fail silently
+    }
+    
+    if (patientNameInput.trim()) {
+        problem = `[Patient: ${patientNameInput}] ${problem}`;
     }
 
     const alertBtn = document.getElementById('notifyHospitalBtn');
@@ -886,6 +976,7 @@ async function sendHospitalAlert() {
         window.socket.emit('hospital-alert', {
             driverId: currentUser.id,
             driverName: currentUser.username,
+            patientName: patientNameInput,
             hospitalId,
             hospitalName,
             problem,
@@ -927,6 +1018,22 @@ document.addEventListener('click', (e) => {
     if (e && (e.target.id === 'sendReplyBtn' || e.target.closest('#sendReplyBtn'))) {
         sendDriverReply();
     }
+    if (e && (e.target.id === 'strategicBroadcastBtn' || e.target.closest('#strategicBroadcastBtn'))) {
+        const input = document.getElementById('strategicBroadcastInput');
+        if (input && input.value.trim()) {
+            const val = input.value.trim();
+            if (window.addAlertBox) {
+                window.addAlertBox("Strategic Broadcast Sent", "success");
+            }
+            // Update the display text above the input
+            const container = e.target.closest('.group');
+            if (container) {
+                const textEl = container.querySelector('p.italic');
+                if (textEl) textEl.textContent = `"${val}"`;
+            }
+            input.value = '';
+        }
+    }
 });
 
 async function sendDriverReply() {
@@ -958,6 +1065,28 @@ async function sendDriverReply() {
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
     if (btn && btn.textContent && btn.textContent.includes('View Digital Chart')) {
-        alert('Digital Patient Chart & Medical History successfully retrieved from cloud database.');
+        openDigitalChart();
     }
 });
+
+window.openDigitalChart = function() {
+    const modal = document.getElementById('digitalChartModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        // Let's populate the chart with the current patient data if available
+        const nameHeader = document.getElementById('patientInfoName')?.textContent || '';
+        if (nameHeader && nameHeader.includes('PT-')) {
+            const patientName = nameHeader.replace(/\[PT-\d+\]/, '').trim();
+            const ageStr = document.getElementById('patientInfoAge')?.textContent || '';
+            const typeStr = document.getElementById('patientInfoType')?.textContent || '';
+            const severityStr = document.getElementById('patientInfoSeverity')?.textContent || '';
+            
+            document.getElementById('modalAmbId').textContent = 'LOCAL-HOSP';
+            document.getElementById('modalSeverity').textContent = severityStr;
+            document.getElementById('modalProblem').textContent = `Patient ${patientName}. ${ageStr}. Case: ${typeStr}. Records retrieved from DB.`;
+            document.getElementById('modalHR').textContent = document.getElementById('vitalsHR_Hosp')?.textContent + ' BPM' || '-- BPM';
+            document.getElementById('modalSPO2').textContent = document.getElementById('vitalsSPO2_Hosp')?.textContent || '-- %';
+            document.getElementById('modalAITriage').textContent = 'Patient history matches incoming vitals. Standard ER protocol.';
+        }
+    }
+};
