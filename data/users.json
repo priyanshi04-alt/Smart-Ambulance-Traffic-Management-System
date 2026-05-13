@@ -46,5 +46,11 @@
     "username": "ram",
     "password": "$2b$10$6.Z1I8WqHSfeHddsH0m5J.8pf9sfTXz6G2nV7lNAfZEKSVXp9ErqG",
     "role": "driver"
+  },
+  {
+    "id": 9,
+    "username": "jack",
+    "password": "$2b$10$ilYg3HKtCXeNBB5lG/odXeM/vJ7eFOIEzUoxgasD3FZo.sNb6ph5C",
+    "role": "driver"
   }
 ]
