@@ -34,5 +34,17 @@
     "username": "priya",
     "password": "$2a$10$T8VqU8hI5yN4d4.sO1zRZe.Y1iS8Yj6b/sA8n.tZ.2wQ6u1Z3Q3mO",
     "role": "driver"
+  },
+  {
+    "id": 7,
+    "username": "jackel",
+    "password": "$2b$10$1znhQn65DlYUqFFGZvJ04uQ5h4xFkElo/KR.sU5tGh2AF.7KZ7Bvm",
+    "role": "driver"
+  },
+  {
+    "id": 8,
+    "username": "ram",
+    "password": "$2b$10$6.Z1I8WqHSfeHddsH0m5J.8pf9sfTXz6G2nV7lNAfZEKSVXp9ErqG",
+    "role": "driver"
   }
 ]

@@ -518,18 +518,17 @@ function initAdminDashboard() {
             const roleEl = document.querySelector('input[name="newRole"]:checked');
             const role = roleEl ? roleEl.value : 'driver';
 
-            // --- FRONTEND STRONG PASSWORD CHECK ---
-            const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            if (!strongPasswordRegex.test(password)) {
-                addUserStatus.textContent = "Weak Password: 8+ chars, 1 Upper, 1 Lower, 1 Number, 1 Special Char required.";
+            // --- FRONTEND STRONG PASSWORD CHECK (DISABLED FOR DEMO) ---
+            if (password.length < 3) {
+                addUserStatus.textContent = "Password must be at least 3 characters.";
                 addUserStatus.classList.remove('hidden', 'text-green-500', 'text-slate-400');
                 addUserStatus.classList.add('text-red-500');
                 return;
             }
 
             addUserStatus.textContent = "Creating user...";
-            addUserStatus.classList.remove('hidden', 'text-green-500', 'text-red-500');
-            addUserStatus.classList.add('text-slate-400');
+            addUserStatus.classList.remove('hidden', 'text-green-500', 'text-red-500', 'bg-red-50', 'bg-green-50');
+            addUserStatus.classList.add('text-slate-600', 'bg-slate-100');
 
             try {
                 const response = await fetch(`${window.apiBaseUrl || ''}/api/auth/register`, {
@@ -544,11 +543,13 @@ function initAdminDashboard() {
                 const data = await response.json();
 
                 if (response.ok) {
-                    addUserStatus.textContent = "User created successfully!";
-                    addUserStatus.classList.replace('text-slate-400', 'text-green-500');
+                    addUserStatus.textContent = "✔ User created successfully!";
+                    addUserStatus.classList.remove('text-slate-600', 'bg-slate-100');
+                    addUserStatus.classList.add('text-green-600', 'bg-green-100');
                     addUserForm.reset();
                     if (window.speak) window.speak("New login created successfully.");
-                    lucide.createIcons(); // For any new status icons if added
+                    
+                    if (window.lucide) window.lucide.createIcons();
                     
                     // Close modal automatically on success
                     setTimeout(() => {
@@ -557,15 +558,17 @@ function initAdminDashboard() {
                         addUserStatus.classList.add('hidden');
                     }, 1500);
                 } else {
-                    addUserStatus.textContent = data.message || "Failed to create user";
-                    addUserStatus.classList.replace('text-slate-400', 'text-red-500');
-                    setTimeout(() => addUserStatus.classList.add('hidden'), 3000);
+                    addUserStatus.textContent = "❌ " + (data.message || "Failed to create user");
+                    addUserStatus.classList.remove('text-slate-600', 'bg-slate-100');
+                    addUserStatus.classList.add('text-red-600', 'bg-red-100');
+                    setTimeout(() => addUserStatus.classList.add('hidden'), 5000);
                 }
             } catch (err) {
                 console.error(err);
-                addUserStatus.textContent = "Server error";
-                addUserStatus.classList.replace('text-slate-400', 'text-red-500');
-                setTimeout(() => addUserStatus.classList.add('hidden'), 3000);
+                addUserStatus.textContent = "❌ Server error. Please check backend.";
+                addUserStatus.classList.remove('text-slate-600', 'bg-slate-100');
+                addUserStatus.classList.add('text-red-600', 'bg-red-100');
+                setTimeout(() => addUserStatus.classList.add('hidden'), 5000);
             }
         });
     }
