@@ -137,12 +137,25 @@ window.initSocket = function() {
                 // Only show last 5 for driver so it doesn't overflow
                 const recentLogs = logs.slice().reverse().slice(0, 5);
                 recentLogs.forEach(log => {
-                     const time = new Date(log.timestamp).toLocaleTimeString();
-                     const color = log.type === 'warning' ? 'text-amber-400' : 'text-slate-400';
-                     const icon = log.type === 'warning' ? '<i data-lucide="triangle-alert" class="w-3 h-3 inline pb-0.5"></i>' : '<i data-lucide="info" class="w-3 h-3 inline pb-0.5"></i>';
+                     const time = new Date(log.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12:true});
+                     const isWarning = log.type === 'warning';
+                     const color = isWarning ? 'text-amber-500' : 'text-blue-500';
+                     const bgClass = isWarning ? 'bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800/50' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-700';
+                     const iconStr = isWarning ? 'triangle-alert' : 'info';
+                     const badgeType = isWarning ? 'WARNING' : 'INFO';
+                     
                      const div = document.createElement('div');
-                     div.className = `py-1 border-b border-slate-800 ${color}`;
-                     div.innerHTML = `<span class="opacity-50 inline-block w-16">[${time}]</span> ${icon} ${log.message}`;
+                     div.className = `p-2 rounded-lg flex items-start gap-2 border ${bgClass}`;
+                     div.innerHTML = `
+                         <div class="mt-0.5 flex-shrink-0"><i data-lucide="${iconStr}" class="${color} w-4 h-4"></i></div>
+                         <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${time}</span>
+                                <span class="text-[8px] px-1 bg-slate-200 dark:bg-slate-700 rounded text-slate-500">${badgeType}</span>
+                            </div>
+                            <span class="text-[11px] leading-tight dark:text-slate-300 block truncate" title="${log.message}">${log.message}</span>
+                         </div>
+                     `;
                      driverContainer.appendChild(div);
                 });
                 if(window.lucide) window.lucide.createIcons();
@@ -170,12 +183,25 @@ window.initSocket = function() {
             if (driverContainer && emptyState) {
                 emptyState.classList.add('hidden');
                 
-                const time = new Date(log.timestamp).toLocaleTimeString();
-                const color = log.type === 'warning' ? 'text-amber-400' : 'text-slate-400';
-                const icon = log.type === 'warning' ? '<i data-lucide="triangle-alert" class="w-3 h-3 inline pb-0.5"></i>' : '<i data-lucide="info" class="w-3 h-3 inline pb-0.5"></i>';
+                const time = new Date(log.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12:true});
+                const isWarning = log.type === 'warning';
+                const color = isWarning ? 'text-amber-500' : 'text-blue-500';
+                const bgClass = isWarning ? 'bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800/50' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-700';
+                const iconStr = isWarning ? 'triangle-alert' : 'info';
+                const badgeType = isWarning ? 'WARNING' : 'INFO';
+                
                 const div = document.createElement('div');
-                div.className = `py-1 border-b border-slate-800 ${color}`;
-                div.innerHTML = `<span class="opacity-50 inline-block w-16">[${time}]</span> ${icon} ${log.message}`;
+                div.className = `p-2 rounded-lg flex items-start gap-2 border ${bgClass} animate-in slide-in-from-top-2 fade-in duration-300`;
+                div.innerHTML = `
+                    <div class="mt-0.5 flex-shrink-0"><i data-lucide="${iconStr}" class="${color} w-4 h-4"></i></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${time}</span>
+                            <span class="text-[8px] px-1 bg-slate-200 dark:bg-slate-700 rounded text-slate-500">${badgeType}</span>
+                        </div>
+                        <span class="text-[11px] leading-tight dark:text-slate-300 block truncate" title="${log.message}">${log.message}</span>
+                    </div>
+                `;
                 
                 driverContainer.insertBefore(div, driverContainer.firstChild);
                 if(window.lucide) window.lucide.createIcons();
