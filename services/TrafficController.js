@@ -96,14 +96,15 @@ class TrafficController {
 
     // 1. Manual Admin Override
     activateEmergencyMode(direction) {
-        logService.addLog(`MANUAL OVERRIDE: Green corridor forced ${direction} on ALL nodes.`, 'warning');
+        logService.addLog(`[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for ${direction.toUpperCase()}-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).`, 'warning');
         this.overrideManual = true;
         this._executeEmergencyState('ALL', direction, 'GREEN');
+        if (this.io) this.io.emit('emergency-alert', { active: true, direction, message: `Admin manual override activated. Forcing green corridor for ${direction} bound traffic on all city nodes.` });
         this.broadcastState();
     }
 
     deactivateEmergencyMode() {
-        logService.addLog(`Manual Override Cancelled. Restoring predictive/normal control.`, 'info');
+        logService.addLog(`[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.`, 'info');
         this.overrideManual = false;
         this._resolveState();
     }
@@ -112,13 +113,14 @@ class TrafficController {
     activateAutoSiren(direction) {
         if (this.overrideManual) return; 
         if (!this.overrideAutoSiren) {
-            logService.addLog(`ACOUSTIC TRIGGER: Verified siren detected from ${direction}. Corridor active on real node (JUNC-01).`, 'warning');
+            logService.addLog(`[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from ${direction.toUpperCase()}. Forcing GREEN CORRIDOR on physical node [JUNC-01].`, 'warning');
             this.overrideAutoSiren = true;
             this._executeEmergencyState('JUNC-01', direction, 'GREEN');
+            if (this.io) this.io.emit('emergency-alert', { active: true, direction, message: `Emergency siren detected. Physical hardware node JUNC-01 has locked traffic for ${direction} approach.` });
             this.broadcastState();
         } else {
             // Prevent repeated triggering during active acoustic block
-            logService.addLog(`Redundant acoustic trigger gracefully ignored due to active traffic lock.`, 'info');
+            logService.addLog(`[STATUS: COOLDOWN] Ignoring duplicate acoustic trigger from ${direction.toUpperCase()}. Node [JUNC-01] is already locked in emergency state.`, 'info');
         }
 
         if(this.sirenTimeout) clearTimeout(this.sirenTimeout);
@@ -131,7 +133,7 @@ class TrafficController {
 
     handleCorridorCompletion() {
         this.overrideAutoSiren = false;
-        logService.addLog(`AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.`, 'info');
+        logService.addLog(`[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.`, 'info');
         this._resolveState();
     }
 
@@ -147,7 +149,7 @@ class TrafficController {
             // Trajectory Abandonment Check
             if (intersection.lastDistance && node.distance > (intersection.lastDistance + 2)) {
                 if (intersection.inEmergency) {
-                    logService.addLog(`ABANDONMENT DETECTED: Ambulance changed route near ${node.nodeId}.`, 'warning');
+                    logService.addLog(`[ALERT: ROUTE ABANDONED] Ambulance deviated near node [${node.nodeId}]. Distance increased unexpectedly. Aborting preemptive green.`, 'warning');
                     this.confirmClearance(node.nodeId);
                     return;
                 }
@@ -164,13 +166,16 @@ class TrafficController {
 
             // THE DIAMOND FIX: Confidence-Scaled Staging
             // We pass the confidence score (0.0 to 1.0) to the state machine
-            logService.addLog(`Predictive tracking for ${node.nodeId}: Confidence ${node.confidence || 1.0}`, 'debug');
+            logService.addLog(`[GPS TELEMETRY] Node [${node.nodeId}] ETA: ${node.eta.toFixed(1)}s. Execution Confidence: ${((node.confidence || 1.0) * 100).toFixed(0)}%`, 'debug');
             const executionState = this._calculateExecutionState(node.nodeId, node.eta, node.confidence || 1.0);
             
             if (executionState !== 'NORMAL') {
                 hasActiveGPSOverride = true;
                 if (!this.overrideManual && !this.overrideAutoSiren) {
                     this._executeEmergencyState(node.nodeId, 'south', executionState); 
+                    if (this.io && executionState === 'GREEN') {
+                        this.io.emit('emergency-alert', { active: true, direction: 'south', message: `Predictive AI activated. Ambulance approaching node ${node.nodeId}. Activating green corridor.` });
+                    }
                 }
             }
         });
@@ -225,7 +230,7 @@ class TrafficController {
         const duration = Date.now() - node.lockStartTime;
         
         if (duration > MAX_HOLD) {
-            logService.addLog(`STARVATION ALERT: Node ${nodeId} locked for >60s. Forcing recovery window for civilian traffic.`, 'danger');
+            logService.addLog(`[ALERT: STARVATION DETECTED] Node [${nodeId}] locked in GREEN for >60s! Forcing immediate civilian recovery window (15s).`, 'danger');
             this.confirmClearance(nodeId);
             node.recoveryUntil = Date.now() + RECOVERY_TIME;
             return true;
@@ -244,7 +249,7 @@ class TrafficController {
      */
     confirmClearance(nodeId) {
         if (this.intersections[nodeId].inEmergency) {
-            logService.addLog(`CLEARANCE CONFIRMED: Ambulance passed ${nodeId}. Releasing intersection asynchronously.`, 'success');
+            logService.addLog(`[STATUS: CLEARANCE CONFIRMED] Ambulance successfully passed node [${nodeId}]. Releasing intersection asynchronously.`, 'success');
             this.intersections[nodeId].inEmergency = false;
             this.intersections[nodeId].lockStartTime = null; // Reset starvation timer
             this._restoreNodeToCycle(nodeId);

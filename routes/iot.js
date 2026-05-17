@@ -16,11 +16,25 @@ router.post('/ambulance-detected', (req, res) => {
     const { direction, active } = req.body;
     
     if (active) {
-        logService.addLog(`Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.`, 'warning');
+        logService.addLog(`[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for ${direction || 'north'} direction.`, 'warning');
         trafficController.activateAutoSiren(direction || 'north');
         res.json({ message: 'AutoSiren active via intelligent hardware detection' });
     } else {
-        logService.addLog(`Emergency override DEACTIVATED`, 'info');
+        logService.addLog(`[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.`, 'info');
+        trafficController.deactivateEmergencyMode();
+        res.json({ message: 'Emergency manual override deactivated' });
+    }
+});
+
+router.post('/manual-override', (req, res) => {
+    const { direction, active } = req.body;
+    
+    if (active) {
+        logService.addLog(`[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: ${direction.toUpperCase()}.`, 'warning');
+        trafficController.activateEmergencyMode(direction || 'north');
+        res.json({ message: 'Manual override active' });
+    } else {
+        logService.addLog(`[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.`, 'info');
         trafficController.deactivateEmergencyMode();
         res.json({ message: 'Emergency manual override deactivated' });
     }
@@ -35,7 +49,20 @@ router.post('/siren-audio-data', (req, res) => {
         trafficController.activateAutoSiren('south');
         res.json({ status: 'ACTION_TAKEN', confidence: result.confidence });
     } else {
-        res.json({ status: 'IGNORED_NOISE', confidence: result.confidence });
+        // --- NEW IMPLEMENTATION: Dual-Purpose Sensor ---
+        // If it's NOT an ambulance, use the background noise amplitude to calculate traffic density!
+        let densityLevel = 'low';
+        if (data.amplitude > 85) densityLevel = 'high';        // High noise = Heavy Traffic
+        else if (data.amplitude > 50) densityLevel = 'medium'; // Moderate noise = Medium Traffic
+        
+        // Dynamically update the traffic density for that lane based on ambient noise
+        trafficController.updateDensity('south', densityLevel);
+        
+        res.json({ 
+            status: 'NOISE_USED_FOR_DENSITY', 
+            ambientDensitySet: densityLevel, 
+            confidence: result.confidence 
+        });
     }
 });
 
@@ -50,7 +77,7 @@ router.post('/traffic-density', (req, res) => {
     if (!direction || !level) return res.status(400).json({ message: 'Direction and level are required' });
     const updated = trafficController.updateDensity(direction, level);
     if (updated) {
-        logService.addLog(`Traffic density forcefully set to ${level.toUpperCase()} for ${direction}`, 'info');
+        logService.addLog(`[API: ADMIN/IOT] Traffic density forcefully updated to ${level.toUpperCase()} for ${direction.toUpperCase()} lane. Adjusting base timing.`, 'info');
         res.json({ message: `Density updated for ${direction}` });
     }
     else res.status(400).json({ message: 'Invalid density level' });
@@ -62,7 +89,7 @@ router.get('/signal-status', (req, res) => {
 
 router.post('/hazard-alert', (req, res) => {
     const { type, location } = req.body;
-    logService.addLog(`Danger/Hazard reported: ${type} near ${location}`, 'warning');
+    logService.addLog(`[API: HAZARD] Danger/Hazard reported: ${type.toUpperCase()} near ${location.toUpperCase()}. Alert broadcasted.`, 'warning');
     res.json({ message: 'Hazard broadcasted' });
 });
 

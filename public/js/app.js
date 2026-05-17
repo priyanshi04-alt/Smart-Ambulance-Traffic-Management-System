@@ -73,56 +73,150 @@ function initChatbot() {
         if(window.lucide) window.lucide.createIcons();
 
         // Bot interactive response logic
-        setTimeout(() => {
+        setTimeout(async () => {
             const botMsg = document.createElement('div');
             botMsg.className = 'flex items-start gap-3 w-full';
-            let responseText = "I am ResQ Bot. I can provide real-time updates on ETA, traffic status, hospital bed availability, and patient details. How can I help?";
-            const lowerText = text.toLowerCase();
             
-            if (lowerText.includes('siren') || lowerText.includes('trigger') || lowerText.includes('clear')) {
-                responseText = "Executing override! Requesting green corridor immediately.";
-                // Trigger actual backend override
-                fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ direction: 'north', active: true })
-                }).catch(console.error);
-            } 
-            else if (lowerText.includes('start') || lowerText.includes('trip') || lowerText.includes('navigate')) {
-                responseText = "Starting navigation sequence to the selected hospital.";
-                const startBtn = document.getElementById('startTripBtn');
-                if(startBtn) startBtn.click();
-            }
-            else if (lowerText.includes('hospital') || lowerText.includes('notify')) {
-                responseText = "Hospital notified of incoming emergency and patient vitals.";
-                const notifyBtn = document.getElementById('notifyHospitalBtn');
-                if(notifyBtn) notifyBtn.click();
-            }
-            else if (lowerText.includes('status') || lowerText.includes('traffic')) {
-                responseText = "Traffic signals are currently running in standard cyclic mode. No active corridors.";
-            }
-            else if (lowerText.includes('bed') || lowerText.includes('icu') || lowerText.includes('availability')) {
-                const icu = document.getElementById('icuCount')?.textContent || '3';
-                responseText = `We currently have ${icu} ICU beds available and 5 Emergency Ward beds ready. Operation Theater is on standby.`;
-            }
-            else if (lowerText.includes('eta') || lowerText.includes('time') || lowerText.includes('arrive')) {
-                const eta = document.getElementById('hospitalEtaTimer')?.textContent || 'N/A';
-                if (eta !== '--:--' && eta !== 'N/A') {
-                    responseText = `The closest ambulance is approximately ${eta} away.`;
-                } else {
-                    responseText = "There are currently no active incoming ambulances with an ETA.";
+            const lowerText = text.toLowerCase();
+            let responseText = "";
+
+            // Conversational patterns
+            const patterns = [
+                {
+                    match: /siren|trigger|clear|emergency|override/i,
+                    responses: ["Executing override! Requesting green corridor immediately.", "Emergency protocol initiated. Clearing the path for the ambulance.", "Signal override triggered. Sirens are active."]
+                },
+                {
+                    match: /start|trip|navigate|route/i,
+                    responses: ["Starting navigation sequence to the selected hospital.", "Route calculated. Beginning navigation now."]
+                },
+                {
+                    match: /hospital|notify/i,
+                    responses: ["Hospital notified of incoming emergency and patient vitals.", "Alert sent to the destination hospital. They are on standby."]
+                },
+                {
+                    match: /status|traffic|congestion/i,
+                    responses: ["Traffic signals are currently running in standard cyclic mode. No active corridors.", "Current traffic flow is normal. Corridors are clear for emergency vehicles."]
+                },
+                {
+                    match: /bed|icu|availability/i,
+                    responses: [
+                        () => `We currently have ${document.getElementById('icuCount')?.textContent || '3'} ICU beds available and 5 Emergency Ward beds ready. Operation Theater is on standby.`
+                    ]
+                },
+                {
+                    match: /eta|time|arrive/i,
+                    responses: [
+                        () => {
+                            const eta = document.getElementById('hospitalEtaTimer')?.textContent || 'N/A';
+                            return (eta !== '--:--' && eta !== 'N/A') 
+                                ? `The closest ambulance is approximately ${eta} away.` 
+                                : "There are currently no active incoming ambulances with an ETA.";
+                        }
+                    ]
+                },
+                {
+                    match: /patient|sneha|details|vitals/i,
+                    responses: ["Patient Sneha Reddy (PT-1004) is en route. Critical condition. Blood Group A+ POS. Allergies: Aspirin. Vitals are being monitored continuously via Med-Link."]
+                },
+                {
+                    match: /doctor|staff|nurse/i,
+                    responses: ["Dr. Sharma (Trauma) and Nurse Mehra (ER) have been assigned and notified. OT Team 4 is on standby."]
+                },
+                {
+                    match: /hi|hello|hey|greetings/i,
+                    responses: ["Hello! I am your ResQ Bot. I can assist with route status, hospital availability, patient information, and overriding traffic signals. What do you need?", "Hi there! ResQ Bot at your service. How can I help today?"]
+                },
+                {
+                    match: /how are you/i,
+                    responses: ["I'm operating at 100% efficiency and ready to assist with emergency routing! How can I help you?", "All systems are green. Ready to manage traffic and ambulances!"]
+                },
+                {
+                    match: /thank/i,
+                    responses: ["You're welcome! Let me know if you need any further assistance.", "Glad to help! Stay safe."]
+                },
+                {
+                    match: /who are you|what are you/i,
+                    responses: ["I am the ResQ Bot, an AI assistant dedicated to managing ambulance traffic overrides and hospital coordination."]
+                },
+                {
+                    match: /weather|temperature/i,
+                    responses: ["I'm optimized for traffic and medical routing, but I hope the roads are clear out there!"]
+                },
+                {
+                    match: /yes|ok|okay|sure/i,
+                    responses: ["Great! Let me know if you need anything else.", "Acknowledged. Standing by."]
+                },
+                {
+                    match: /no|cancel/i,
+                    responses: ["Understood. Canceling previous action.", "Alright, standing down."]
+                },
+                {
+                    match: /name/i,
+                    responses: ["My name is ResQ Bot! I am the intelligent assistant for the Smart Ambulance system."]
+                },
+                {
+                    match: /joke|funny/i,
+                    responses: ["Why did the ambulance cross the road? To get to the hospital on the other side... in a green corridor!", "What do you call an ambulance that plays music? A jam-bulance!"]
+                }
+            ];
+
+            let matched = false;
+            for (const p of patterns) {
+                if (p.match.test(lowerText)) {
+                    const resp = p.responses[Math.floor(Math.random() * p.responses.length)];
+                    responseText = typeof resp === 'function' ? resp() : resp;
+                    matched = true;
+                    
+                    // Side effects
+                    if (p.match.toString().includes('siren')) {
+                        fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ direction: 'north', active: true })
+                        }).catch(console.error);
+                    } else if (p.match.toString().includes('start')) {
+                        const startBtn = document.getElementById('startTripBtn');
+                        if(startBtn) startBtn.click();
+                    } else if (p.match.toString().includes('hospital')) {
+                        const notifyBtn = document.getElementById('notifyHospitalBtn');
+                        if(notifyBtn) notifyBtn.click();
+                    }
+                    break;
                 }
             }
-            else if (lowerText.includes('patient') || lowerText.includes('sneha') || lowerText.includes('details')) {
-                responseText = "Patient Sneha Reddy (PT-1004) is en route. Critical condition. Blood Group A+ POS. Allergies: Aspirin. Vitals are being monitored continuously via Med-Link.";
+
+            if (!matched) {
+                // Interactive fallback: Wikipedia API for dynamic answers to general queries
+                try {
+                    // Extract query by removing common filler words
+                    let searchParam = text.replace(/what is|who is|tell me about|explain|do you know/gi, '').trim();
+                    if (searchParam.endsWith('?')) searchParam = searchParam.slice(0, -1).trim();
+                    
+                    if (searchParam.length > 2) {
+                        const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(searchParam)}`);
+                        if (wikiRes.ok) {
+                            const wikiData = await wikiRes.json();
+                            if (wikiData.extract && wikiData.type !== 'disambiguation') {
+                                // Take first two sentences
+                                responseText = wikiData.extract.split('. ').slice(0, 2).join('. ') + '.';
+                            }
+                        }
+                    }
+                } catch(e) {
+                    console.warn("Wikipedia fallback failed", e);
+                }
+
+                if (!responseText) {
+                    const fallbacks = [
+                        "I didn't quite catch that. Could you rephrase your question about ambulances or traffic?",
+                        "I'm specialized in ResQRoute operations. Try asking about hospital beds, ETAs, or emergency overrides.",
+                        "That's an interesting question. My main focus is managing emergency traffic and hospital data. How can I assist you with those?"
+                    ];
+                    responseText = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+                }
             }
-            else if (lowerText.includes('doctor') || lowerText.includes('staff')) {
-                responseText = "Dr. Sharma (Trauma) and Nurse Mehra (ER) have been assigned and notified. OT Team 4 is on standby.";
-            }
-            else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('hey')) {
-                responseText = "Hello! I am your ResQ Bot. I can assist with route status, hospital availability, patient information, and overriding traffic signals. What do you need?";
-            }
-            
+
             botMsg.innerHTML = `
                 <div class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center shrink-0">
                     <i data-lucide="bot" class="w-4 h-4 text-brand-600 dark:text-brand-400"></i>
@@ -135,7 +229,8 @@ function initChatbot() {
             messages.scrollTop = messages.scrollHeight;
             if(window.lucide) window.lucide.createIcons();
             if (window.speak) window.speak(responseText);
-        }, 1000);
+
+        }, 600 + Math.random() * 800); // Varied response time for realism
     });
 }
 
@@ -462,7 +557,7 @@ function initAdminDashboard() {
         btn.addEventListener('click', async (e) => {
             const dir = e.currentTarget.dataset.dir;
             try {
-                await fetch('/api/iot/ambulance-detected', {
+                await fetch('/api/iot/manual-override', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ direction: dir, active: true })
@@ -474,13 +569,71 @@ function initAdminDashboard() {
         });
     });
     
+    // Global City-Wide Simulation Function
+    window.runCitySimulation = function() {
+        console.log("Starting City-Wide Simulation...");
+        if (window.addAlertBox) window.addAlertBox("City Simulation Started: Tracking AMB-SIM-01", "info");
+        
+        const path = [
+            { lat: 28.6110, lng: 77.2090 },
+            { lat: 28.6120, lng: 77.2090 },
+            { lat: 28.6130, lng: 77.2090 },
+            { lat: 28.6139, lng: 77.2090 },
+            { lat: 28.6150, lng: 77.2090 },
+            { lat: 28.6160, lng: 77.2100 },
+            { lat: 28.6170, lng: 77.2120 },
+            { lat: 28.6180, lng: 77.2140 },
+            { lat: 28.6200, lng: 77.2150 } 
+        ];
+        
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i >= path.length) {
+                clearInterval(interval);
+                if (window.addAlertBox) window.addAlertBox("Simulation Complete: Arrival at Hospital", "success");
+                return;
+            }
+            if (window.socket) {
+                const data = {
+                    alertId: 'AMB-SIM-01',
+                    lat: path[i].lat,
+                    lng: path[i].lng,
+                    hospitalId: 'city'
+                };
+                window.socket.emit('ambulance-location-update', data);
+                
+                // ALSO update local map immediately so the user sees it
+                if (window.adminMap) {
+                    if (!window.adminAmbulanceMarkers) window.adminAmbulanceMarkers = {};
+                    const ambId = data.alertId;
+                    if (window.adminAmbulanceMarkers[ambId]) {
+                        window.adminAmbulanceMarkers[ambId].setLatLng([data.lat, data.lng]);
+                    } else {
+                        const iconHtml = `<div class="w-10 h-10 flex items-center justify-center relative">
+                                           <div class="absolute inset-0 bg-red-500 rounded-full opacity-20 animate-ping"></div>
+                                           <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-brand-500 amb-marker-pulse relative z-10">
+                                              <i data-lucide="ambulance" class="w-4 h-4 text-brand-600"></i>
+                                           </div>
+                                         </div>`;
+                        window.adminAmbulanceMarkers[ambId] = L.marker([data.lat, data.lng], {
+                            icon: L.divIcon({ html: iconHtml, className: '', iconSize: [40, 40], iconAnchor: [20, 20] })
+                        }).addTo(window.adminMap).bindPopup(`<b>Ambulance: ${ambId}</b><br>Simulation Active`);
+                        if (window.lucide) window.lucide.createIcons();
+                    }
+                }
+            }
+            i++;
+        }, 1500);
+    };
+    
     document.getElementById('disableEmergencyBtn').addEventListener('click', async () => {
          try {
-             await fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
+             await fetch(`${window.apiBaseUrl || ''}/api/iot/manual-override`, {
                  method: 'POST',
                  headers: { 'Content-Type': 'application/json' },
                  body: JSON.stringify({ active: false })
              });
+             if (window.addAlertBox) window.addAlertBox("City-wide emergency state cleared", "success");
          } catch (err) {
              console.error(err);
          }
@@ -875,24 +1028,19 @@ function initHospitalDashboard() {
                     document.getElementById('vitalsSPO2_Hosp').textContent = p.spo2;
                     document.getElementById('vitalsBP_Hosp').textContent = p.bp;
 
-                    const markReadyBtn = document.getElementById('markReadyBtn');
-                    if (markReadyBtn) markReadyBtn.classList.remove('hidden');
                     
-                    const aiTriageCard = document.getElementById('aiTriageCard');
-                    if (aiTriageCard) {
-                        aiTriageCard.classList.remove('hidden');
-                        document.getElementById('aiTriageResultContainer').innerHTML = `
-                            <div class="bg-red-500/20 border border-red-500/30 p-3 rounded-xl flex items-center gap-3 text-white">
-                                <i data-lucide="alert-triangle" class="w-4 h-4 text-red-300"></i>
-                                <span class="text-xs font-bold">URGENT ICU PREP REQUIRED. High Risk.</span>
-                            </div>
-                            <div class="bg-white/10 border border-white/10 p-3 rounded-xl flex items-center gap-3 text-white mt-2">
-                                <i data-lucide="map" class="w-4 h-4 text-indigo-300"></i>
-                                <span class="text-xs font-medium">Probable routing: Emergency</span>
-                            </div>
-                        `;
-                        if(window.lucide) window.lucide.createIcons();
-                    }
+                    // Sync with Digital Chart State for History Records
+                    window.currentPatientChart = { 
+                        ambId: p.id, 
+                        patientName: p.name,
+                        severity: p.severity, 
+                        problem: `Retrieved from Hospital Database. Clinical history of ${p.type}.`, 
+                        hr: p.hr, 
+                        spo2: p.spo2.replace('%',''), 
+                        bp: p.bp,
+                        temp: '98.6', // Default for history demo
+                        triage: "Database match. Ready for immediate admission." 
+                    };
                 }
             });
         });
@@ -1025,15 +1173,27 @@ document.addEventListener('click', (e) => {
         const input = document.getElementById('strategicBroadcastInput');
         if (input && input.value.trim()) {
             const val = input.value.trim();
-            if (window.addAlertBox) {
-                window.addAlertBox("Strategic Broadcast Sent", "success");
-            }
-            // Update the display text above the input
-            const container = e.target.closest('.group');
+            
+            // Manage rolling history (last 3)
+            if (!window.recentBroadcasts) window.recentBroadcasts = [];
+            window.recentBroadcasts.push({
+                msg: val,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            if (window.recentBroadcasts.length > 3) window.recentBroadcasts.shift();
+
+            // Update UI container
+            const container = document.getElementById('broadcastLogsContainer');
             if (container) {
-                const textEl = container.querySelector('p.italic');
-                if (textEl) textEl.textContent = `"${val}"`;
+                container.innerHTML = window.recentBroadcasts.map(b => `
+                    <div class="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800/50 rounded-xl p-2.5 shadow-inner animate-in slide-in-from-bottom-2">
+                        <p class="text-[10px] font-bold text-slate-700 dark:text-slate-300 italic leading-tight">"${b.msg}"</p>
+                        <div class="text-[7px] font-black text-orange-500 uppercase tracking-widest mt-1 opacity-60">Broadcasted at ${b.time}</div>
+                    </div>
+                `).join('');
             }
+
+            if (window.addAlertBox) window.addAlertBox("Strategic Broadcast Sent", "success");
             input.value = '';
         }
     }

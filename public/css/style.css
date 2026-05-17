@@ -132,104 +132,49 @@
     transition: all 0.3s ease;
 }
 
-/* Active States */
+/* Active States with Neon Glow */
 .traffic-light-box .light.red.active {
-    background-color: #ef4444;
-    box-shadow: 0 0 15px 5px rgba(239, 68, 68, 0.6), inset 0 0 5px rgba(255,255,255,0.5);
+    background-color: #ff0000;
+    box-shadow: 0 0 25px 8px rgba(255, 0, 0, 0.7), inset 0 0 10px rgba(255,255,255,0.8);
+    filter: brightness(1.2);
 }
 
 .traffic-light-box .light.yellow.active {
-    background-color: #eab308;
-    box-shadow: 0 0 15px 5px rgba(234, 179, 8, 0.6), inset 0 0 5px rgba(255,255,255,0.5);
+    background-color: #ffcc00;
+    box-shadow: 0 0 25px 8px rgba(255, 204, 0, 0.7), inset 0 0 10px rgba(255,255,255,0.8);
+    filter: brightness(1.2);
 }
 
 .traffic-light-box .light.green.active {
-    background-color: #22c55e;
-    box-shadow: 0 0 15px 5px rgba(34, 197, 94, 0.6), inset 0 0 5px rgba(255,255,255,0.5);
+    background-color: #00ff00;
+    box-shadow: 0 0 25px 8px rgba(0, 255, 0, 0.7), inset 0 0 10px rgba(255,255,255,0.8);
+    filter: brightness(1.2);
 }
 
-/* Custom Scrollbar for Logs */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #475569;
-    border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+/* Marker Animations */
+@keyframes marker-pulse {
+    0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { transform: scale(1.1); opacity: 0.9; box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+    100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
-/* Base button animations */
-.emp-btn {
-    padding: 0.75rem 1rem;
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.75rem;
-    font-weight: 600;
-    color: #475569;
-    transition: all 0.2s;
-}
-.dark .emp-btn {
-    background-color: #1e293b;
-    border-color: #334155;
-    color: #cbd5e1;
-}
-
-.emp-btn:hover {
-    border-color: #cbd5e1;
-    background-color: #e2e8f0;
-}
-.dark .emp-btn:hover {
-    border-color: #475569;
-    background-color: #334155;
-}
-
-.log-entry {
-    border-left: 3px solid transparent;
-    padding-left: 8px;
-    margin-bottom: 4px;
-    animation: slideIn 0.3s ease-out;
-}
-
-.log-info { border-left-color: #3b82f6; }
-.log-warning { border-left-color: #ef4444; color: #fca5a5; font-weight: bold; }
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-/* Range sliders */
-input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 16px;
-    width: 16px;
+.amb-marker-pulse {
+    animation: marker-pulse 2s infinite;
     border-radius: 50%;
-    background: currentColor;
-    cursor: pointer;
-    margin-top: -6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    background: #cbd5e1;
-    border-radius: 2px;
+/* Glassmorphism Overdrive */
+.glass-panel-heavy {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
 }
-.dark input[type=range]::-webkit-slider-runnable-track {
-    background: #334155;
+
+.dark .glass-panel-heavy {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Restore standard scrolling for better UX */

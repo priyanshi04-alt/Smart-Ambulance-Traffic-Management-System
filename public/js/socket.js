@@ -170,10 +170,10 @@ window.initSocket = function() {
             const container = document.getElementById('logsContainer');
             if (container) appendLog(log, container, true);
             
-            // Voice reading for admin logs - only major events
-            if (log.type === 'warning' || log.message.includes('EMERGENCY')) {
-                speak(log.message);
-            }
+            // Voice reading for admin logs disabled for presentation clarity
+            // if (log.type === 'warning' || log.message.includes('EMERGENCY')) {
+            //    speak(log.message);
+            // }
         }
         
         // Update Driver
@@ -217,15 +217,21 @@ window.initSocket = function() {
         const driverBanner = document.getElementById('driverEmergencyTopBanner');
         
         if (data.active) {
+            // Disabled as per user request: Top Header Banner
+            /*
             if (banner) {
                 banner.style.setProperty('display', 'flex', 'important');
             }
+            */
             
             if (centerVis) centerVis.classList.remove('opacity-0');
             if (centerIcon) centerIcon.classList.remove('opacity-0');
+            // Disabled as per user request
+            /*
             if (driverBanner) {
                 driverBanner.style.setProperty('display', 'flex', 'important');
             }
+            */
 
             // Update Civilian Mock UI (NEW)
             const civNormal = document.getElementById('civNormalState');
@@ -237,35 +243,48 @@ window.initSocket = function() {
                 civScreen.classList.replace('bg-slate-900', 'bg-red-900');
             }
             
-            // Global alert sound
-            playSiren();
-            if(!window.isEmergencyActive) speak(`EMERGENCY ALERT. Ambulance detected. Please clear the road. Green corridor active for ${data.direction} approach.`);
+            // Global alert sound disabled as per request
+            // playSiren();
+            if(!window.isEmergencyActive) {
+                if (data.message) speak(data.message);
+                else speak(`EMERGENCY ALERT. Ambulance detected. Please clear the road. Green corridor active for ${data.direction} approach.`);
+            }
             
-            // Visual Overlay
+            // Visual Overlay disabled as per request
+            /*
             const visualOverlay = document.getElementById('emergencyVisualOverlay');
             if (visualOverlay) {
                 visualOverlay.classList.remove('hidden');
                 setTimeout(() => visualOverlay.classList.add('opacity-100'), 10);
                 document.body.classList.add('overflow-hidden');
             }
+            */
         } else {
+            // Disabled as per user request: Top Header Banner
+            /*
             if (banner) {
                 banner.style.setProperty('display', 'none', 'important');
             }
+            */
             
             if (centerVis) centerVis.classList.add('opacity-0');
             if (centerIcon) centerIcon.classList.add('opacity-0');
+            // Disabled as per user request
+            /*
             if (driverBanner) {
                 driverBanner.style.setProperty('display', 'none', 'important');
             }
+            */
 
-            // Visual Overlay Remove
+            // Visual Overlay Remove disabled as per request
+            /*
             const visualOverlay = document.getElementById('emergencyVisualOverlay');
             if (visualOverlay) {
                 visualOverlay.classList.remove('opacity-100');
                 setTimeout(() => visualOverlay.classList.add('hidden'), 500);
                 document.body.classList.remove('overflow-hidden');
             }
+            */
 
             // Reset Civilian Mock UI (NEW)
             const civNormal = document.getElementById('civNormalState');
@@ -277,7 +296,7 @@ window.initSocket = function() {
                 civScreen.classList.replace('bg-red-900', 'bg-slate-900');
             }
             
-            stopSiren();
+            // stopSiren(); disabled as per request
             if(window.isEmergencyActive) speak("Emergency mode deactivated. Resuming normal traffic.");
         }
     });
@@ -420,7 +439,31 @@ window.initSocket = function() {
                         icon: L.divIcon({ html: ambIconHtml, className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
                     }).addTo(window.hMap);
                 }
+
+                // Fit map bounds to show only the relevant portion where the ambulance is traveling to the hospital
+                if (window.hMap) {
+                    const ambLatLng = L.latLng(data.lat, data.lng);
+                    const hospLatLng = L.latLng(targetHosp.lat, targetHosp.lng);
+                    const bounds = L.latLngBounds([ambLatLng, hospLatLng]);
+                    window.hMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+                }
             });
+        }
+
+        // --- NEW: Admin Map Tracking ---
+        if (currentUser && currentUser.role === 'admin' && window.adminMap) {
+            if (!window.adminAmbulanceMarkers) window.adminAmbulanceMarkers = {};
+            const ambId = data.alertId || 'AMB-GLOBAL';
+            if (window.adminAmbulanceMarkers[ambId]) {
+                window.adminAmbulanceMarkers[ambId].setLatLng([data.lat, data.lng]);
+            } else {
+                const iconHtml = `<div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-brand-500">
+                                   <div class="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                                 </div>`;
+                window.adminAmbulanceMarkers[ambId] = L.marker([data.lat, data.lng], {
+                    icon: L.divIcon({ html: iconHtml, className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
+                }).addTo(window.adminMap).bindPopup(`<b>Ambulance: ${ambId}</b><br>Live Tracking`);
+            }
         }
     });
 
@@ -552,10 +595,13 @@ function updatePatientInfoPanel(data) {
     // Modal data state
     window.currentPatientChart = { 
         ambId: `AMB-${data.alertId?data.alertId.substr(-4):'0000'}`, 
+        patientName: data.patientName || 'Emergency Case',
         severity: data.critical ? 'CRITICAL' : 'STABLE', 
         problem: p || 'No details given', 
         hr: hr, 
         spo2: spo2, 
+        bp: vitals.bp || '120/80',
+        temp: vitals.temp || '98.6',
         triage: triageMessage 
     };
     if (el('patientInfoAge')) el('patientInfoAge').textContent = 'Age: ' + (vitals.age || '42');
@@ -705,11 +751,14 @@ window.openDigitalChart = function() {
     const data = window.currentPatientChart || { ambId: 'WAITING', severity: '--', problem: 'No data transmitted yet.', hr: '--', spo2: '--', triage: 'Wait for vehicle telemetry...' };
 
     document.getElementById('modalAmbId').textContent = data.ambId;
+    if (document.getElementById('modalPatientName')) document.getElementById('modalPatientName').textContent = data.patientName || 'Anonymous';
     document.getElementById('modalSeverity').textContent = data.severity;
     document.getElementById('modalSeverity').className = data.severity === 'CRITICAL' ? 'text-sm font-black text-red-500 animate-pulse' : 'text-sm font-black text-green-500';
     document.getElementById('modalProblem').textContent = data.problem;
-    document.getElementById('modalHR').textContent = data.hr + ' BPM';
-    document.getElementById('modalSPO2').textContent = data.spo2 + ' %';
+    document.getElementById('modalHR').textContent = (data.hr || '--') + ' BPM';
+    document.getElementById('modalSPO2').textContent = (data.spo2 || '--') + ' %';
+    if (document.getElementById('modalBP')) document.getElementById('modalBP').textContent = data.bp || '--/--';
+    if (document.getElementById('modalTemp')) document.getElementById('modalTemp').textContent = (data.temp || '98.6') + '°F';
     document.getElementById('modalAITriage').textContent = data.triage;
     
     modal.classList.remove('hidden');

@@ -44,7 +44,12 @@ window.initMap = function(containerId, role) {
     }).setView(initialCenter, initialZoom);
     
     if (role === 'hospital') window.hMap = map;
-    if (role === 'admin') window.adminMap = map;
+    if (role === 'admin') {
+        window.adminMap = map;
+        if (typeof simulateDummyAmbulances === 'function') {
+            simulateDummyAmbulances(map);
+        }
+    }
     if (role === 'driver') window.driverMap = map;
     
     // Add custom styled tiles
@@ -154,8 +159,52 @@ window.initAdminSecondaryMap = function(containerId) {
     });
     
     window.adminGlobalMapInstance = secMap;
+    
+    // Simulate multiple dummy ambulances for admin dashboard feel
+    simulateDummyAmbulances(secMap);
+    
     return secMap;
 };
+
+function simulateDummyAmbulances(mapInstance) {
+    const dummyAmbulances = [
+        { lat: 28.6100, lng: 77.2100, id: 'AMB-D1', speed: 0.0001, latDir: 1, lngDir: 1 },
+        { lat: 28.6250, lng: 77.2150, id: 'AMB-D2', speed: 0.00015, latDir: -1, lngDir: 0.5 },
+        { lat: 28.6050, lng: 77.1900, id: 'AMB-D3', speed: 0.00012, latDir: 0.5, lngDir: -1 },
+        { lat: 28.6180, lng: 77.2000, id: 'AMB-D4', speed: 0.00008, latDir: -0.5, lngDir: 1 },
+        { lat: 28.6130, lng: 77.2250, id: 'AMB-D5', speed: 0.00014, latDir: 1, lngDir: -0.8 }
+    ];
+    
+    const iconHtml = `
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.3)] border border-slate-200">
+               <div class="w-6 h-6 bg-red-500 rounded-sm absolute flex items-center justify-center animate-pulse">
+               </div>
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ambulance z-10"><path d="M10 10H6"/><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11h2"/><path d="M19 18h2a2 2 0 0 0 2-2v-3.26a1 1 0 0 0-.2-.6l-3-4.5a1 1 0 0 0-.8-.4H14"/><circle cx="17" cy="18" r="2"/><circle cx="6" cy="18" r="2"/></svg>
+            </div>
+    `;
+    const icon = L.divIcon({ html: iconHtml, className: '', iconSize: [40, 40], iconAnchor: [20, 20] });
+    
+    dummyAmbulances.forEach(amb => {
+        amb.marker = L.marker([amb.lat, amb.lng], { icon }).addTo(mapInstance).bindPopup(`<b>Ambulance: ${amb.id}</b>`);
+    });
+    
+    setInterval(() => {
+        dummyAmbulances.forEach(amb => {
+            amb.lat += amb.speed * amb.latDir;
+            amb.lng += amb.speed * amb.lngDir;
+            
+            // Randomly change direction slightly to keep them in bounds
+            if (amb.lat > 28.6300 || amb.lat < 28.5900) amb.latDir *= -1;
+            if (amb.lng > 77.2300 || amb.lng < 77.1800) amb.lngDir *= -1;
+            if (Math.random() > 0.95) {
+                amb.latDir = (Math.random() - 0.5) * 2;
+                amb.lngDir = (Math.random() - 0.5) * 2;
+            }
+            
+            amb.marker.setLatLng([amb.lat, amb.lng]);
+        });
+    }, 1000);
+}
 
 window.calculateAndDrawRoute = async function(destinationLat, destinationLng) {
     if (!map || !ambulanceMarker) return null;

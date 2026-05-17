@@ -515,11 +515,12 @@
             </div>
 
             <!-- Admin Global Map View -->
-            <div class="glass-panel dark:glass-panel rounded-2xl shadow-lg border border-white/40 dark:border-slate-700/50 overflow-hidden relative min-h-[400px] flex-1">
-                <div class="p-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur z-10 absolute top-0 w-full shadow-sm flex items-center justify-between pointer-events-none">
-                    <h3 class="text-sm font-bold flex items-center gap-2"><i data-lucide="map" class="text-brand-500 w-4 h-4"></i> City Network Map</h3>
+            <div class="lg:col-span-1 glass-panel-heavy rounded-2xl shadow-2xl border border-brand-500/30 overflow-hidden relative min-h-[400px] flex flex-col">
+                <div class="p-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur z-10 w-full shadow-sm flex items-center justify-between">
+                    <h3 class="text-[11px] font-black uppercase tracking-widest flex items-center gap-2 pointer-events-none text-brand-600"><i data-lucide="radio-tower" class="w-4 h-4"></i> Command Map</h3>
                 </div>
-                <div id="adminCityMap" class="w-full h-full bg-slate-200 dark:bg-slate-800 z-0 absolute inset-0"></div>
+                <div id="adminCityMap" class="w-full flex-1 bg-slate-200 dark:bg-slate-800 z-0"></div>
+
             </div>
             
             </div> <!-- End Center Column Wrapper -->
@@ -541,16 +542,19 @@
                             <span class="relative z-10 flex flex-col items-center gap-1">
                                 <i data-lucide="arrow-down" class="w-5 h-5"></i> South
                             </span>
+                            <div class="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left text-white z-0 rounded-lg"></div>
                         </button>
                         <button class="emp-btn shadow-md hover:-translate-y-0.5 hover:shadow-lg btn-trigger relative overflow-hidden group" data-dir="east">
                             <span class="relative z-10 flex flex-col items-center gap-1">
                                 <i data-lucide="arrow-right" class="w-5 h-5"></i> East
                             </span>
+                            <div class="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left text-white z-0 rounded-lg"></div>
                         </button>
                         <button class="emp-btn shadow-md hover:-translate-y-0.5 hover:shadow-lg btn-trigger relative overflow-hidden group" data-dir="west">
                             <span class="relative z-10 flex flex-col items-center gap-1">
                                 <i data-lucide="arrow-left" class="w-5 h-5"></i> West
                             </span>
+                            <div class="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left text-white z-0 rounded-lg"></div>
                         </button>
                     </div>
                     
@@ -1125,9 +1129,12 @@
                         </div>
                         
                         <div class="p-4 flex-1 flex flex-col justify-end gap-3">
-                            <div class="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800/50 rounded-xl p-3 shadow-inner">
-                                <p class="text-xs font-bold text-slate-700 dark:text-slate-300 italic mb-1">"OT Team 2 proceed to prep Room 4"</p>
-                                <div class="text-[8px] font-bold text-orange-500 uppercase tracking-wider">Sent to all departments</div>
+                            <!-- Dynamic Broadcast Logs -->
+                            <div id="broadcastLogsContainer" class="space-y-2 min-h-[100px] flex flex-col justify-end">
+                                <div class="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800/50 rounded-xl p-2.5 shadow-inner">
+                                    <p class="text-[10px] font-bold text-slate-700 dark:text-slate-300 italic">"Strategic Hub Online. Awaiting instructions..."</p>
+                                    <div class="text-[7px] font-black text-orange-500 uppercase tracking-widest mt-1 opacity-60">System Ready</div>
+                                </div>
                             </div>
                             
                             <div class="flex items-center gap-2 mt-auto relative z-10">
@@ -1251,13 +1258,17 @@
             <div class="p-6 space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Ambulance ID</span>
-                        <div id="modalAmbId" class="text-sm font-black text-slate-800 dark:text-slate-200">WAITING</div>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Patient ID</span>
+                        <div id="modalAmbId" class="text-sm font-black text-slate-800 dark:text-slate-200">--</div>
                     </div>
                     <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Severity</span>
-                        <div id="modalSeverity" class="text-sm font-black text-slate-800 dark:text-slate-200">WAITING</div>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Patient Name</span>
+                        <div id="modalPatientName" class="text-sm font-black text-slate-800 dark:text-slate-200">--</div>
                     </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Clinical Severity</span>
+                    <div id="modalSeverity" class="text-sm font-black uppercase tracking-wider">--</div>
                 </div>
                 <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
                     <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Reported Condition</span>
@@ -1271,6 +1282,16 @@
                     <div class="bg-blue-50 dark:bg-blue-900/10 p-3 rounded-xl border border-blue-100 dark:border-blue-800/50 flex justify-between items-center">
                         <span class="text-[10px] text-blue-500 font-bold uppercase">SPO2 Level</span>
                         <div id="modalSPO2" class="text-sm font-black text-blue-600 dark:text-blue-400">-- %</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-orange-50 dark:bg-orange-900/10 p-2 rounded-lg border border-orange-100 dark:border-orange-800/50 text-center">
+                        <span class="text-[8px] text-orange-500 font-bold uppercase block">BP</span>
+                        <div id="modalBP" class="text-xs font-black">--</div>
+                    </div>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/10 p-2 rounded-lg border border-yellow-100 dark:border-yellow-800/50 text-center">
+                        <span class="text-[8px] text-yellow-600 font-bold uppercase block">Temp</span>
+                        <div id="modalTemp" class="text-xs font-black">--</div>
                     </div>
                 </div>
                 <div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-500 p-3 rounded-r-xl">
