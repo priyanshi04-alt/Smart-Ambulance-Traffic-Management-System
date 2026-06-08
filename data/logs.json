@@ -1,5 +1,29 @@
 [
   {
+    "id": "1780906312692",
+    "timestamp": "2026-06-08T08:11:52.692Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1780906312689",
+    "timestamp": "2026-06-08T08:11:52.689Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1780906288295",
+    "timestamp": "2026-06-08T08:11:28.296Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
+    "type": "warning"
+  },
+  {
+    "id": "1780906288289",
+    "timestamp": "2026-06-08T08:11:28.289Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
+    "type": "warning"
+  },
+  {
     "id": "1780903657941",
     "timestamp": "2026-06-08T07:27:37.941Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
@@ -573,30 +597,6 @@
     "id": "1779650452747",
     "timestamp": "2026-05-24T19:20:52.747Z",
     "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
-    "type": "info"
-  },
-  {
-    "id": "1779650439246",
-    "timestamp": "2026-05-24T19:20:39.246Z",
-    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for WEST-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
-    "type": "warning"
-  },
-  {
-    "id": "1779650439242",
-    "timestamp": "2026-05-24T19:20:39.242Z",
-    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: WEST.",
-    "type": "warning"
-  },
-  {
-    "id": "1779650362360",
-    "timestamp": "2026-05-24T19:19:22.360Z",
-    "message": "[API: ADMIN/IOT] Traffic density forcefully updated to MEDIUM for EAST lane. Adjusting base timing.",
-    "type": "info"
-  },
-  {
-    "id": "1779650354942",
-    "timestamp": "2026-05-24T19:19:14.942Z",
-    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   }
 ]

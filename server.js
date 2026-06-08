@@ -97,7 +97,7 @@ app.post('/api/chat', async (req, res) => {
       "Keep responses highly engaging, concise (1-3 sentences maximum), and always maintain a supportive, polite, and professional persona. " +
       "You can answer general questions, but try to tie them back to traffic, health, navigation, or safety when appropriate.";
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
