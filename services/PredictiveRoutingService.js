@@ -7,9 +7,9 @@ const logService = require('./LogService');
 class PredictiveRoutingService {
     constructor() {
         this.nodes = [
-            { id: 'JUNC-01', lat: 28.62, lng: 77.215, address: 'Main St & 1st Ave', congestion: 1.0 }, // Clear
-            { id: 'JUNC-02', lat: 28.625, lng: 77.220, address: 'Main St & 2nd Ave', congestion: 2.5 }, // Jams (High factor)
-            { id: 'JUNC-03', lat: 28.63, lng: 77.225, address: 'Metro Boulevard', congestion: 1.2 }  // Moderate
+            { id: 'JUNC-01', lat: 28.6139, lng: 77.2090, address: 'Main Junction (I1)', congestion: 1.0 }, // Physical Node
+            { id: 'JUNC-02', lat: 28.6110, lng: 77.2090, address: 'South Node (I3)', congestion: 1.0 },    // Simulated Node
+            { id: 'JUNC-03', lat: 28.6160, lng: 77.2090, address: 'North Node (I2)', congestion: 1.0 }     // Simulated Node
         ];
     }
 

@@ -22,7 +22,9 @@ function speak(text) {
          synth.cancel(); 
     }
     
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Strip HTML tags and &nbsp; entities so browser does not read them out loud
+    const cleanText = text.replace(/<\/?[^>]+(>|$)/g, " ").replace(/&nbsp;/g, " ");
+    const utterance = new SpeechSynthesisUtterance(cleanText);
     
     // Try to find a good English voice
     const voice = voices.find(v => v.name.includes('Google') || v.name.includes('Natural') || v.lang === 'en-US') || voices[0];

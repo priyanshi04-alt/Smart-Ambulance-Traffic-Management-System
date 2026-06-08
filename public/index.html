@@ -135,16 +135,16 @@
 
     <!-- ===== FLOATING MASCOT (Driver ResQ Bot) ===== -->
     <div id="floatingMascot" class="hidden z-[60] flex flex-col items-center pointer-events-auto select-none group"
-         style="position:fixed; right:20px; bottom:100px; width:180px; cursor:grab; touch-action:none;">
+         style="position:fixed; right:20px; bottom:100px; width:280px; cursor:grab; touch-action:none;">
         <!-- Beautiful Floating ResQ Bot Bubble -->
-        <div id="mascotBubble" class="mb-4 glass-panel dark:glass-panel p-3 rounded-[1.5rem] rounded-br-none shadow-2xl border-brand-200/50 dark:border-brand-500/30 w-full opacity-0 transition-all duration-500 pointer-events-none transform translate-y-2 scale-95">
+        <div id="mascotBubble" class="mb-4 glass-panel dark:glass-panel p-3 rounded-[1.5rem] rounded-br-none shadow-2xl border-brand-200/50 dark:border-brand-500/30 w-full h-auto overflow-visible opacity-0 transition-all duration-500 pointer-events-none transform translate-y-2 scale-95">
             <div class="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-100 dark:border-slate-700/50">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
                 </span>
                 <span class="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-400">ResQ Bot</span>
-                <span id="ResQ BotStatusText" class="ml-auto text-[8px] font-bold text-slate-400 uppercase transition-colors">Live</span>
+                <span id="ResQBotStatusText" class="ml-auto text-[8px] font-bold text-slate-400 uppercase transition-colors">Live</span>
             </div>
             <div id="activeInstruction" class="text-xs font-bold text-slate-700 dark:text-slate-200 leading-snug">
                 Ready! 🗺️
@@ -1306,7 +1306,7 @@
         </div>
     </div>
     <!-- ===== ResQ Bot CHATBOT WINDOW ===== -->
-    <div id="ResQ BotChatWindow" class="fixed right-6 bottom-24 w-80 h-[450px] hidden z-[70] flex flex-col glass-panel dark:glass-panel rounded-3xl shadow-2xl border-brand-200/50 dark:border-brand-500/30 overflow-hidden animate-in slide-in-from-bottom-10 duration-300">
+    <div id="ResQBotChatWindow" class="fixed right-6 bottom-24 w-80 h-[450px] hidden z-[70] flex flex-col glass-panel dark:glass-panel rounded-3xl shadow-2xl border-brand-200/50 dark:border-brand-500/30 overflow-hidden animate-in slide-in-from-bottom-10 duration-300">
         <!-- Chat Header -->
         <div class="p-4 bg-brand-500 text-white flex items-center justify-between shadow-md">
             <div class="flex items-center gap-3">

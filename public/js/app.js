@@ -91,6 +91,18 @@ function initChatbot() {
                     responses: ["Starting navigation sequence to the selected hospital.", "Route calculated. Beginning navigation now."]
                 },
                 {
+                    match: /(list|near|closest|around|nearby|show).*(hospital|hospitals)/i,
+                    responses: ["Based on our Smart Corridor Network, here are the nearest registered emergency hospitals:<br><br>🏥 1. <strong>City General Hospital</strong> (Connaught Place) - 1.2 km away [ICU & ER available]<br>🏥 2. <strong>Apollo Life Care</strong> (Barakhamba Road) - 1.8 km away [Trauma Center active]<br>🏥 3. <strong>Metro Heart Institute</strong> (Gole Market) - 2.1 km away [Cardiac wing ready]<br><br>Would you like me to calculate or plot a route to any of these?"]
+                },
+                {
+                    match: /(hospital|hospitals).*(list|near|closest|around|nearby|show)/i,
+                    responses: ["Based on our Smart Corridor Network, here are the nearest registered emergency hospitals:<br><br>🏥 1. <strong>City General Hospital</strong> (Connaught Place) - 1.2 km away [ICU & ER available]<br>🏥 2. <strong>Apollo Life Care</strong> (Barakhamba Road) - 1.8 km away [Trauma Center active]<br>🏥 3. <strong>Metro Heart Institute</strong> (Gole Market) - 2.1 km away [Cardiac wing ready]<br><br>Would you like me to calculate or plot a route to any of these?"]
+                },
+                {
+                    match: /chemist|pharmacy|pharmacies|medical\s+shop|medicine/i,
+                    responses: ["Here are the nearest 24/7 chemist and pharmacy shops around your current emergency route:<br><br>💊 1. <strong>ResQ Med Store</strong> (Adjacent to Main Junction Node) - 0.2 km away [Open 24/7 - Emergency Meds & Oxygen available]<br>💊 2. <strong>Apollo Pharmacy</strong> (Radial Road 3, Connaught Place) - 0.8 km away [Open 24/7 - Home Delivery active]<br>💊 3. <strong>Fortis Healthworld</strong> (Janpath Crossing) - 1.1 km away [8:00 AM - 11:00 PM]<br>💊 4. <strong>Jeevan Chemist</strong> (Ashoka Road, near South Node) - 1.4 km away [Open 24/7]<br><br>Do you need navigation or contact info for the nearest pharmacy?"]
+                },
+                {
                     match: /hospital|notify/i,
                     responses: ["Hospital notified of incoming emergency and patient vitals.", "Alert sent to the destination hospital. They are on standby."]
                 },
@@ -124,7 +136,7 @@ function initChatbot() {
                     responses: ["Dr. Sharma (Trauma) and Nurse Mehra (ER) have been assigned and notified. OT Team 4 is on standby."]
                 },
                 {
-                    match: /hi|hello|hey|greetings/i,
+                    match: /\b(hi|hello|hey|greetings)\b/i,
                     responses: ["Hello! I am your ResQ Bot. I can assist with route status, hospital availability, patient information, and overriding traffic signals. What do you need?", "Hi there! ResQ Bot at your service. How can I help today?"]
                 },
                 {
@@ -144,15 +156,15 @@ function initChatbot() {
                     responses: ["I'm optimized for traffic and medical routing, but I hope the roads are clear out there!"]
                 },
                 {
-                    match: /yes|ok|okay|sure/i,
+                    match: /\b(yes|ok|okay|sure)\b/i,
                     responses: ["Great! Let me know if you need anything else.", "Acknowledged. Standing by."]
                 },
                 {
-                    match: /no|cancel/i,
+                    match: /\b(no|cancel)\b/i,
                     responses: ["Understood. Canceling previous action.", "Alright, standing down."]
                 },
                 {
-                    match: /name/i,
+                    match: /\bname\b/i,
                     responses: ["My name is ResQ Bot! I am the intelligent assistant for the Smart Ambulance system."]
                 },
                 {
@@ -162,27 +174,54 @@ function initChatbot() {
             ];
 
             let matched = false;
-            for (const p of patterns) {
-                if (p.match.test(lowerText)) {
-                    const resp = p.responses[Math.floor(Math.random() * p.responses.length)];
-                    responseText = typeof resp === 'function' ? resp() : resp;
-                    matched = true;
-                    
-                    // Side effects
-                    if (p.match.toString().includes('siren')) {
-                        fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ direction: 'north', active: true })
-                        }).catch(console.error);
-                    } else if (p.match.toString().includes('start')) {
-                        const startBtn = document.getElementById('startTripBtn');
-                        if(startBtn) startBtn.click();
-                    } else if (p.match.toString().includes('hospital')) {
-                        const notifyBtn = document.getElementById('notifyHospitalBtn');
-                        if(notifyBtn) notifyBtn.click();
+            
+            // 1. Try backend Generative AI Chatbot (Gemini) first for general queries
+            // Skip Gemini for active physical command triggers to keep offline demo safety
+            const isPhysicalCommand = /siren|trigger|clear|emergency|override|start\s*trip|navigate|notify\s*hospital/i.test(lowerText);
+            
+            if (!isPhysicalCommand) {
+                try {
+                    const aiRes = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: text })
+                    });
+                    if (aiRes.ok) {
+                        const aiData = await aiRes.json();
+                        if (aiData.success && aiData.response) {
+                            responseText = aiData.response;
+                            matched = true;
+                        }
                     }
-                    break;
+                } catch (err) {
+                    console.warn("Backend AI chat failed or not set up, using local rules.", err);
+                }
+            }
+
+            // 2. Local rule-based patterns (for command triggers and offline fallback)
+            if (!matched) {
+                for (const p of patterns) {
+                    if (p.match.test(lowerText)) {
+                        const resp = p.responses[Math.floor(Math.random() * p.responses.length)];
+                        responseText = typeof resp === 'function' ? resp() : resp;
+                        matched = true;
+                        
+                        // Side effects
+                        if (p.match.toString().includes('siren')) {
+                            fetch(`${window.apiBaseUrl || ''}/api/iot/ambulance-detected`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ direction: 'north', active: true })
+                            }).catch(console.error);
+                        } else if (p.match.toString().includes('start')) {
+                            const startBtn = document.getElementById('startTripBtn');
+                            if(startBtn) startBtn.click();
+                        } else if (p.match.toString().includes('hospital') && !lowerText.includes('list') && !lowerText.includes('near')) {
+                            const notifyBtn = document.getElementById('notifyHospitalBtn');
+                            if(notifyBtn) notifyBtn.click();
+                        }
+                        break;
+                    }
                 }
             }
 

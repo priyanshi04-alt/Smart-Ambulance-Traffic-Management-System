@@ -81,6 +81,48 @@ const iotRoutes = require('./routes/iot');
 app.use('/api/auth', authRoutes);
 app.use('/api/iot', iotRoutes);
 
+// AI Chatbot Route with Gemini fallback
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body;
+  const apiKey = process.env.GEMINI_API_KEY;
+
+  if (!apiKey) {
+    // If no API key is provided, return a special status so the frontend falls back seamlessly
+    return res.json({ success: false, response: null, error: 'NO_API_KEY' });
+  }
+
+  try {
+    const systemInstruction = 
+      "You are ResQ Bot, an intelligent, extremely helpful and cute emergency assistant chatbot in a Smart Ambulance system. " +
+      "Keep responses highly engaging, concise (1-3 sentences maximum), and always maintain a supportive, polite, and professional persona. " +
+      "You can answer general questions, but try to tie them back to traffic, health, navigation, or safety when appropriate.";
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [
+          { role: 'user', parts: [{ text: `${systemInstruction}\n\nUser Query: ${message}` }] }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('[Gemini API Error]', errorText);
+      return res.json({ success: false, response: null, error: 'API_ERROR' });
+    }
+
+    const data = await response.json();
+    const botText = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm standing by to assist you with emergency corridors.";
+    res.json({ success: true, response: botText.trim() });
+
+  } catch (err) {
+    console.error('[AI Route Error]', err);
+    res.json({ success: false, response: null, error: err.message });
+  }
+});
+
 // Static files and SPA fallback
 app.use(express.static(path.join(__dirname, 'public')));
 

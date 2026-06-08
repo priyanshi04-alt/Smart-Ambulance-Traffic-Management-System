@@ -52,5 +52,35 @@
     "username": "jack",
     "password": "$2b$10$ilYg3HKtCXeNBB5lG/odXeM/vJ7eFOIEzUoxgasD3FZo.sNb6ph5C",
     "role": "driver"
+  },
+  {
+    "id": 10,
+    "username": "bbggn",
+    "password": "$2b$10$tQOvhMSggfvKYNi8S7XOru5In28h.GAnHxgy.C2rZ7u2YyMvQEh7K",
+    "role": "driver"
+  },
+  {
+    "id": 11,
+    "username": "vhjnfjfn",
+    "password": "$2b$10$5zDGpDsSRRBB0NimQSVN0eQSaSQwC2Eze9COxhTVJ14Sux7bUCkCm",
+    "role": "hospital"
+  },
+  {
+    "id": 12,
+    "username": "fdfvdv",
+    "password": "$2b$10$jWVZAZXiWYpPUtM05lW1oOf3awH1.Re9F5MTXJq2IJdwXNemJ0b3.",
+    "role": "driver"
+  },
+  {
+    "id": 13,
+    "username": "gefe",
+    "password": "$2b$10$1dPX0Ga8i.cVoTbZsUPoiOAvf7yMKN6u0qlLv1mWGbanJH/umPdd6",
+    "role": "driver"
+  },
+  {
+    "id": 14,
+    "username": "RAM",
+    "password": "$2b$10$rGpIYJzk9rD67.PBrMp3Nev13oauJCI0ZxWRE.NLlmQIIRaEFzbLe",
+    "role": "driver"
   }
 ]

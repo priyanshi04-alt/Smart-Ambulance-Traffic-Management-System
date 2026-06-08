@@ -118,17 +118,17 @@ class TrafficController {
             this._executeEmergencyState('JUNC-01', direction, 'GREEN');
             if (this.io) this.io.emit('emergency-alert', { active: true, direction, message: `Emergency siren detected. Physical hardware node JUNC-01 has locked traffic for ${direction} approach.` });
             this.broadcastState();
+
+            // Auto-Reset Protocol after passing (15s completion logic)
+            // Placed inside the block so duplicate triggers don't extend the lock forever!
+            if(this.sirenTimeout) clearTimeout(this.sirenTimeout);
+            this.sirenTimeout = setTimeout(() => {
+                this.handleCorridorCompletion();
+            }, 15000); 
         } else {
             // Prevent repeated triggering during active acoustic block
             logService.addLog(`[STATUS: COOLDOWN] Ignoring duplicate acoustic trigger from ${direction.toUpperCase()}. Node [JUNC-01] is already locked in emergency state.`, 'info');
         }
-
-        if(this.sirenTimeout) clearTimeout(this.sirenTimeout);
-        
-        // Auto-Reset Protocol after simulated passing (30s completion logic)
-        this.sirenTimeout = setTimeout(() => {
-            this.handleCorridorCompletion();
-        }, 30000); 
     }
 
     handleCorridorCompletion() {

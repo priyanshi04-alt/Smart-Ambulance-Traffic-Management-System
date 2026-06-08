@@ -2,11 +2,11 @@
 #include <WebSocketsClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid     = "S25 ultra";
-const char* password = "25100903";
+const char* ssid     = "moto g34 5G_3702";
+const char* password = "98712356";
 
 // Updated to your current active IP
-const char* serverIp   = "10.85.57.215"; 
+const char* serverIp   = "10.239.10.215"; 
 const int   serverPort = 3000;
 
 WebSocketsClient webSocket;

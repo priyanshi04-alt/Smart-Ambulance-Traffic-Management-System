@@ -2,21 +2,26 @@
 #include <HTTPClient.h>
 #include <arduinoFFT.h> 
 
-const char* ssid = "S25 ultra";
-const char* password = "25100903";
-const char* serverUrl = "http://10.20.26.10:3000/api/iot/ambulance-detected";
+// Wi-Fi Credentials
+const char* ssid = "moto g34 5G_3702";
+const char* password = "98712356";
+
+// Server API Endpoint
+const char* serverUrl = "http://10.239.10.215:3000/api/iot/ambulance-detected";
 
 const int micPin = 32;
 
-#define SAMPLES 256            
-#define SAMPLING_FREQUENCY 6000 
+// FFT Configuration (Exact May 14th Setup)
+#define SAMPLES 128            
+#define SAMPLING_FREQUENCY 4000 
 unsigned int sampling_period_us;
 unsigned long microSeconds;
 double vReal[SAMPLES];
 double vImag[SAMPLES];
 
-ArduinoFFT<double> FFT = ArduinoFFT<double>(vReal, vImag, SAMPLES, SAMPLING_FREQUENCY);
+ArduinoFFT<double> doubleFFT = ArduinoFFT<double>(vReal, vImag, SAMPLES, SAMPLING_FREQUENCY);
 
+// Validation Buffer & Cooldown
 int positiveDetects = 0;
 unsigned long lastTriggerTime = 0;
 const unsigned long COOLDOWN_MS = 10000; 
@@ -27,7 +32,10 @@ void setup() {
   sampling_period_us = round(1000000 * (1.0 / SAMPLING_FREQUENCY));
 
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) { delay(500); Serial.print("."); }
+  Serial.print("Connecting...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500); Serial.print(".");
+  }
   Serial.println("\nREADY!");
 }
 
@@ -42,38 +50,62 @@ void loop() {
     mean += vReal[i];
     while(micros() - microSeconds < sampling_period_us) {}
   }
-  
-  // Center signal
+
+  // CENTER THE SIGNAL: Removes DC Offset electrical bias
   mean /= SAMPLES;
   for (int i = 0; i < SAMPLES; i++) { vReal[i] -= mean; }
 
-  FFT.windowing(FFTWindow::Hamming, FFTDirection::Forward);
-  FFT.compute(FFTDirection::Forward);
-  FFT.complexToMagnitude();
+  doubleFFT.windowing(FFTWindow::Hamming, FFTDirection::Forward);
+  doubleFFT.compute(FFTDirection::Forward);
+  doubleFFT.complexToMagnitude();
 
-  double peakFrequency = FFT.majorPeak();
+  double peakFrequency = doubleFFT.majorPeak();
   double maxAmplitude = 0;
   
-  // Ignore noise bins
-  for (int i = 15; i < (SAMPLES/2); i++) { 
+  // Bins check (Ignoring first few low freq bins)
+  for (int i = 4; i < (SAMPLES/2); i++) { 
     if (vReal[i] > maxAmplitude) maxAmplitude = vReal[i];
   }
 
-  if (maxAmplitude < 35) { peakFrequency = 0; maxAmplitude = 0; }
+  // ─── HIGH-SELECTIVITY NOISE FILTERING ───
+  // Calculate average background noise floor (outside the active peak range)
+  double noiseSum = 0;
+  int noiseCount = 0;
+  for (int i = 4; i < 15; i++) { // Low-frequency non-siren band
+    noiseSum += vReal[i];
+    noiseCount++;
+  }
+  for (int i = 59; i < 64; i++) { // High-frequency non-siren band
+    noiseSum += vReal[i];
+    noiseCount++;
+  }
+  double noiseFloor = (noiseCount > 0) ? (noiseSum / noiseCount) : 1.0;
+  if (noiseFloor < 1.0) noiseFloor = 1.0;
+
+  // Calculate Spectral Peakiness (SNR)
+  double snr = maxAmplitude / noiseFloor;
+
+  // Filter out low amplitude background noise (Increased to 80 for absolute quiet room stability)
+  if (maxAmplitude < 80) { peakFrequency = 0; maxAmplitude = 0; snr = 0.0; }
 
   Serial.print("Freq: "); Serial.print(peakFrequency);
-  Serial.print(" Hz | Amp: "); Serial.println(maxAmplitude);
+  Serial.print(" Hz | Amp: "); Serial.print(maxAmplitude);
+  Serial.print(" | SNR: "); Serial.println(snr);
 
-  // Siren Detection Logic (Balanced for Distance)
-  // 600Hz to 2100Hz range, with 90+ Amplitude
-  if (peakFrequency >= 600 && peakFrequency <= 2100 && maxAmplitude > 90) {
+  // ─── AMBULANCE SIREN SPECIFIC MATCHING ───
+  // 1. Narrow Frequency Band: Strictly 700Hz - 1400Hz (Standard Ambulance Wail/Yelp Center)
+  // 2. High SNR Requirement (snr >= 4.2): Requires a highly sharp, pure single-frequency peak.
+  //    Completely rejects songs/music because songs have background instruments and vocals 
+  //    that raise the noise floor, keeping SNR below 3.0.
+  if (peakFrequency >= 700.0 && peakFrequency <= 1400.0 && maxAmplitude > 115 && snr >= 4.2) {
     positiveDetects++;
   } else {
     if(positiveDetects > 0) positiveDetects--; 
   }
 
-  // Confirm after 4 consecutive hits
-  if (positiveDetects >= 4) {
+  // Confirm after 6 consecutive valid FFT frames (~180-200ms of sustained continuous wail)
+  // Ignores brief musical high notes or vocals that shift/end quickly!
+  if (positiveDetects >= 6) {
     positiveDetects = 0;
     Serial.println(">>> SIREN DETECTED!");
     

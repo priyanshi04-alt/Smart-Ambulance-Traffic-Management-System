@@ -31,7 +31,7 @@ const puppeteer = require('puppeteer');
         console.log('Attempting login as driver1...');
         await page.type('#username', 'driver1');
         await page.type('#password', 'password123');
-        await page.click('button[type="submit"]');
+        await page.click('#loginForm button[type="submit"]');
         
         // Wait for dashboard to load
         console.log('Waiting for dashboard visibility...');

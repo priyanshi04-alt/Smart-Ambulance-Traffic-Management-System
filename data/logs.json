@@ -1,602 +1,602 @@
 [
   {
-    "id": "1779008609353",
-    "timestamp": "2026-05-17T09:03:29.353Z",
-    "message": "[API: ADMIN/IOT] Traffic density forcefully updated to MEDIUM for WEST lane. Adjusting base timing.",
-    "type": "info"
-  },
-  {
-    "id": "1779008338868",
-    "timestamp": "2026-05-17T08:58:58.868Z",
+    "id": "1780903657941",
+    "timestamp": "2026-06-08T07:27:37.941Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1779008338862",
-    "timestamp": "2026-05-17T08:58:58.862Z",
+    "id": "1780903657937",
+    "timestamp": "2026-06-08T07:27:37.937Z",
     "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
     "type": "info"
   },
   {
-    "id": "1779008337840",
-    "timestamp": "2026-05-17T08:58:57.840Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
+    "id": "1780903593364",
+    "timestamp": "2026-06-08T07:26:33.364Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
   },
   {
-    "id": "1779008254011",
-    "timestamp": "2026-05-17T08:57:34.011Z",
+    "id": "1780903593361",
+    "timestamp": "2026-06-08T07:26:33.361Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1780903546441",
+    "timestamp": "2026-06-08T07:25:46.441Z",
     "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
     "type": "info"
   },
   {
-    "id": "1779008239497",
-    "timestamp": "2026-05-17T08:57:19.497Z",
-    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
-    "type": "info"
-  },
-  {
-    "id": "1779008239493",
-    "timestamp": "2026-05-17T08:57:19.493Z",
-    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
-    "type": "info"
-  },
-  {
-    "id": "1779008238783",
-    "timestamp": "2026-05-17T08:57:18.783Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1779008224006",
-    "timestamp": "2026-05-17T08:57:04.006Z",
+    "id": "1780903531438",
+    "timestamp": "2026-06-08T07:25:31.438Z",
     "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1779008224003",
-    "timestamp": "2026-05-17T08:57:04.003Z",
+    "id": "1780903531435",
+    "timestamp": "2026-06-08T07:25:31.435Z",
     "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
     "type": "warning"
   },
   {
-    "id": "1779008192576",
-    "timestamp": "2026-05-17T08:56:32.576Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1779008144720",
-    "timestamp": "2026-05-17T08:55:44.720Z",
+    "id": "1780903499865",
+    "timestamp": "2026-06-08T07:24:59.865Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1779008144714",
-    "timestamp": "2026-05-17T08:55:44.714Z",
+    "id": "1780903499862",
+    "timestamp": "2026-06-08T07:24:59.862Z",
     "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
     "type": "info"
   },
   {
-    "id": "1779008143227",
-    "timestamp": "2026-05-17T08:55:43.227Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1779008142961",
-    "timestamp": "2026-05-17T08:55:42.961Z",
-    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
-    "type": "info"
-  },
-  {
-    "id": "1779008115609",
-    "timestamp": "2026-05-17T08:55:15.609Z",
+    "id": "1780903450700",
+    "timestamp": "2026-06-08T07:24:10.700Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1779008115605",
-    "timestamp": "2026-05-17T08:55:15.605Z",
+    "id": "1780903450696",
+    "timestamp": "2026-06-08T07:24:10.696Z",
     "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
     "type": "info"
   },
   {
-    "id": "1779008112957",
-    "timestamp": "2026-05-17T08:55:12.957Z",
-    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
-    "type": "warning"
-  },
-  {
-    "id": "1779008112953",
-    "timestamp": "2026-05-17T08:55:12.953Z",
-    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
-    "type": "warning"
-  },
-  {
-    "id": "1779008088713",
-    "timestamp": "2026-05-17T08:54:48.713Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1779007977978",
-    "timestamp": "2026-05-17T08:52:57.979Z",
+    "id": "1780903323301",
+    "timestamp": "2026-06-08T07:22:03.301Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1779007977976",
-    "timestamp": "2026-05-17T08:52:57.976Z",
-    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
-    "type": "info"
-  },
-  {
-    "id": "1779007977000",
-    "timestamp": "2026-05-17T08:52:57.000Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1779007930677",
-    "timestamp": "2026-05-17T08:52:10.677Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1779007560185",
-    "timestamp": "2026-05-17T08:46:00.185Z",
-    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
-    "type": "warning"
-  },
-  {
-    "id": "1779006043928",
-    "timestamp": "2026-05-17T08:20:43.928Z",
-    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
-    "type": "warning"
-  },
-  {
-    "id": "1779006043921",
-    "timestamp": "2026-05-17T08:20:43.921Z",
-    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
-    "type": "warning"
-  },
-  {
-    "id": "1779005937894",
-    "timestamp": "2026-05-17T08:18:57.894Z",
-    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
-    "type": "warning"
-  },
-  {
-    "id": "1779005937886",
-    "timestamp": "2026-05-17T08:18:57.886Z",
-    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
-    "type": "warning"
-  },
-  {
-    "id": "1779005701810",
-    "timestamp": "2026-05-17T08:15:01.810Z",
-    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
-    "type": "info"
-  },
-  {
-    "id": "1779005701802",
-    "timestamp": "2026-05-17T08:15:01.803Z",
+    "id": "1780903323297",
+    "timestamp": "2026-06-08T07:22:03.297Z",
     "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
     "type": "info"
   },
   {
-    "id": "1779005657818",
-    "timestamp": "2026-05-17T08:14:17.818Z",
+    "id": "1780903318767",
+    "timestamp": "2026-06-08T07:21:58.767Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1780903318762",
+    "timestamp": "2026-06-08T07:21:58.763Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1780903295256",
+    "timestamp": "2026-06-08T07:21:35.256Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
+    "type": "warning"
+  },
+  {
+    "id": "1780903295250",
+    "timestamp": "2026-06-08T07:21:35.250Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
+    "type": "warning"
+  },
+  {
+    "id": "1779876014264",
+    "timestamp": "2026-05-27T10:00:14.264Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779876014258",
+    "timestamp": "2026-05-27T10:00:14.258Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1779876012940",
+    "timestamp": "2026-05-27T10:00:12.940Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779876012933",
+    "timestamp": "2026-05-27T10:00:12.933Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779864618550",
+    "timestamp": "2026-05-27T06:50:18.550Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779864603532",
+    "timestamp": "2026-05-27T06:50:03.532Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779864603529",
+    "timestamp": "2026-05-27T06:50:03.529Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779863745697",
+    "timestamp": "2026-05-27T06:35:45.697Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779863745694",
+    "timestamp": "2026-05-27T06:35:45.694Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779863743413",
+    "timestamp": "2026-05-27T06:35:43.413Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
+    "type": "warning"
+  },
+  {
+    "id": "1779863743411",
+    "timestamp": "2026-05-27T06:35:43.411Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
+    "type": "warning"
+  },
+  {
+    "id": "1779863740675",
+    "timestamp": "2026-05-27T06:35:40.675Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
+    "type": "warning"
+  },
+  {
+    "id": "1779863740672",
+    "timestamp": "2026-05-27T06:35:40.672Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
+    "type": "warning"
+  },
+  {
+    "id": "1779863737015",
+    "timestamp": "2026-05-27T06:35:37.015Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779863721996",
+    "timestamp": "2026-05-27T06:35:21.996Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779863721992",
+    "timestamp": "2026-05-27T06:35:21.992Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779862950905",
+    "timestamp": "2026-05-27T06:22:30.905Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779862943395",
+    "timestamp": "2026-05-27T06:22:23.395Z",
+    "message": "Emergency alert sent to Apollo Life Care: [Patient: priya] pain",
+    "type": "warning"
+  },
+  {
+    "id": "1779862935902",
+    "timestamp": "2026-05-27T06:22:15.902Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779862935900",
+    "timestamp": "2026-05-27T06:22:15.900Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779861991297",
+    "timestamp": "2026-05-27T06:06:31.297Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779861976280",
+    "timestamp": "2026-05-27T06:06:16.280Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779861976277",
+    "timestamp": "2026-05-27T06:06:16.277Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779858616276",
+    "timestamp": "2026-05-27T05:10:16.276Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779858613683",
+    "timestamp": "2026-05-27T05:10:13.683Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779858613677",
+    "timestamp": "2026-05-27T05:10:13.677Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779858605710",
+    "timestamp": "2026-05-27T05:10:05.710Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779858605707",
+    "timestamp": "2026-05-27T05:10:05.707Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779858601263",
+    "timestamp": "2026-05-27T05:10:01.263Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779858601259",
+    "timestamp": "2026-05-27T05:10:01.259Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779858552378",
+    "timestamp": "2026-05-27T05:09:12.378Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779858552370",
+    "timestamp": "2026-05-27T05:09:12.370Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779858545057",
+    "timestamp": "2026-05-27T05:09:05.057Z",
     "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for EAST-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
     "type": "warning"
   },
   {
-    "id": "1779005657810",
-    "timestamp": "2026-05-17T08:14:17.810Z",
+    "id": "1779858545052",
+    "timestamp": "2026-05-27T05:09:05.052Z",
     "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: EAST.",
     "type": "warning"
   },
   {
-    "id": "1779005328883",
-    "timestamp": "2026-05-17T08:08:48.883Z",
+    "id": "1779857909605",
+    "timestamp": "2026-05-27T04:58:29.605Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779857909600",
+    "timestamp": "2026-05-27T04:58:29.601Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1779857845397",
+    "timestamp": "2026-05-27T04:57:25.397Z",
+    "message": "Message from Hospital (Apollo Life Care): \"guih\"",
+    "type": "info"
+  },
+  {
+    "id": "1779857824770",
+    "timestamp": "2026-05-27T04:57:04.770Z",
+    "message": "Emergency alert sent to Apollo Life Care: Emergency Response Requested",
+    "type": "info"
+  },
+  {
+    "id": "1779857807813",
+    "timestamp": "2026-05-27T04:56:47.813Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779857807809",
+    "timestamp": "2026-05-27T04:56:47.809Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1779857776772",
+    "timestamp": "2026-05-27T04:56:16.773Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779857761762",
+    "timestamp": "2026-05-27T04:56:01.762Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1779857761759",
+    "timestamp": "2026-05-27T04:56:01.759Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1779857748088",
+    "timestamp": "2026-05-27T04:55:48.088Z",
+    "message": "Emergency alert sent to Apollo Life Care: Emergency Response Requested",
+    "type": "info"
+  },
+  {
+    "id": "1779857599583",
+    "timestamp": "2026-05-27T04:53:19.583Z",
+    "message": "[API: ADMIN/IOT] Traffic density forcefully updated to MEDIUM for WEST lane. Adjusting base timing.",
+    "type": "info"
+  },
+  {
+    "id": "1779857581840",
+    "timestamp": "2026-05-27T04:53:01.840Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779857581834",
+    "timestamp": "2026-05-27T04:53:01.834Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779857564903",
+    "timestamp": "2026-05-27T04:52:44.903Z",
     "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for EAST-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
     "type": "warning"
   },
   {
-    "id": "1779005328868",
-    "timestamp": "2026-05-17T08:08:48.868Z",
+    "id": "1779857564896",
+    "timestamp": "2026-05-27T04:52:44.896Z",
     "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: EAST.",
     "type": "warning"
   },
   {
-    "id": "1779005302460",
-    "timestamp": "2026-05-17T08:08:22.460Z",
-    "message": "[API: ADMIN/IOT] Traffic density forcefully updated to MEDIUM for NORTH lane. Adjusting base timing.",
+    "id": "1779857212935",
+    "timestamp": "2026-05-27T04:46:52.935Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
     "type": "info"
   },
   {
-    "id": "1779004733530",
-    "timestamp": "2026-05-17T07:58:53.530Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1779004703514",
-    "timestamp": "2026-05-17T07:58:23.514Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1779004703505",
-    "timestamp": "2026-05-17T07:58:23.505Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779857197932",
+    "timestamp": "2026-05-27T04:46:37.932Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1779004702262",
-    "timestamp": "2026-05-17T07:58:22.262Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1779004702256",
-    "timestamp": "2026-05-17T07:58:22.256Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779857197929",
+    "timestamp": "2026-05-27T04:46:37.929Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
     "type": "warning"
   },
   {
-    "id": "1779004688258",
-    "timestamp": "2026-05-17T07:58:08.258Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "id": "1779857054263",
+    "timestamp": "2026-05-27T04:44:14.263Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779857039250",
+    "timestamp": "2026-05-27T04:43:59.250Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1779004688252",
-    "timestamp": "2026-05-17T07:58:08.253Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779857039248",
+    "timestamp": "2026-05-27T04:43:59.248Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
     "type": "warning"
   },
   {
-    "id": "1779004674755",
-    "timestamp": "2026-05-17T07:57:54.755Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "id": "1779856781380",
+    "timestamp": "2026-05-27T04:39:41.380Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
     "type": "info"
   },
   {
-    "id": "1779004644746",
-    "timestamp": "2026-05-17T07:57:24.746Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1779004644739",
-    "timestamp": "2026-05-17T07:57:24.739Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856766367",
+    "timestamp": "2026-05-27T04:39:26.367Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1779004642258",
-    "timestamp": "2026-05-17T07:57:22.258Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1779004642252",
-    "timestamp": "2026-05-17T07:57:22.252Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856766362",
+    "timestamp": "2026-05-27T04:39:26.362Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
     "type": "warning"
   },
   {
-    "id": "1779004633111",
-    "timestamp": "2026-05-17T07:57:13.111Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
+    "id": "1779856747398",
+    "timestamp": "2026-05-27T04:39:07.398Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
     "type": "info"
   },
   {
-    "id": "1779004633100",
-    "timestamp": "2026-05-17T07:57:13.100Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856732382",
+    "timestamp": "2026-05-27T04:38:52.382Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1779004631952",
-    "timestamp": "2026-05-17T07:57:11.952Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1779004631946",
-    "timestamp": "2026-05-17T07:57:11.946Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856732379",
+    "timestamp": "2026-05-27T04:38:52.379Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
     "type": "warning"
   },
   {
-    "id": "1779004622120",
-    "timestamp": "2026-05-17T07:57:02.120Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "id": "1779856204530",
+    "timestamp": "2026-05-27T04:30:04.530Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1779856204528",
+    "timestamp": "2026-05-27T04:30:04.528Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779856183292",
+    "timestamp": "2026-05-27T04:29:43.292Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for WEST-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
     "type": "warning"
   },
   {
-    "id": "1779004622114",
-    "timestamp": "2026-05-17T07:57:02.114Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856183289",
+    "timestamp": "2026-05-27T04:29:43.289Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: WEST.",
     "type": "warning"
   },
   {
-    "id": "1778922155616",
-    "timestamp": "2026-05-16T09:02:35.616Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "id": "1779856156339",
+    "timestamp": "2026-05-27T04:29:16.339Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
     "type": "info"
   },
   {
-    "id": "1778922125599",
-    "timestamp": "2026-05-16T09:02:05.599Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "id": "1779856141321",
+    "timestamp": "2026-05-27T04:29:01.321Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from NORTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1778922125595",
-    "timestamp": "2026-05-16T09:02:05.595Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779856141315",
+    "timestamp": "2026-05-27T04:29:01.315Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for north direction.",
     "type": "warning"
   },
   {
-    "id": "1778921776619",
-    "timestamp": "2026-05-16T08:56:16.619Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "id": "1779650706435",
+    "timestamp": "2026-05-24T19:25:06.435Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1778921746598",
-    "timestamp": "2026-05-16T08:55:46.598Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
+    "id": "1779650706434",
+    "timestamp": "2026-05-24T19:25:06.434Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1779650659107",
+    "timestamp": "2026-05-24T19:24:19.107Z",
+    "message": "Message from Hospital (Apollo Life Care): \"jbjhb\"",
+    "type": "info"
+  },
+  {
+    "id": "1779650653009",
+    "timestamp": "2026-05-24T19:24:13.009Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1779650644507",
+    "timestamp": "2026-05-24T19:24:04.507Z",
+    "message": "Emergency alert sent to Apollo Life Care: Emergency Response Requested",
+    "type": "info"
+  },
+  {
+    "id": "1779650637996",
+    "timestamp": "2026-05-24T19:23:57.996Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
     "type": "warning"
   },
   {
-    "id": "1778921746592",
-    "timestamp": "2026-05-16T08:55:46.592Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
+    "id": "1779650637992",
+    "timestamp": "2026-05-24T19:23:57.992Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
     "type": "warning"
   },
   {
-    "id": "1778921615279",
-    "timestamp": "2026-05-16T08:53:35.279Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "id": "1779650462111",
+    "timestamp": "2026-05-24T19:21:02.111Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1778921604790",
-    "timestamp": "2026-05-16T08:53:24.790Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
+    "id": "1779650462107",
+    "timestamp": "2026-05-24T19:21:02.107Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
     "type": "info"
   },
   {
-    "id": "1778921604787",
-    "timestamp": "2026-05-16T08:53:24.787Z",
-    "message": "Emergency override DEACTIVATED",
+    "id": "1779650452750",
+    "timestamp": "2026-05-24T19:20:52.750Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   },
   {
-    "id": "1778921603870",
-    "timestamp": "2026-05-16T08:53:23.870Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "id": "1779650452747",
+    "timestamp": "2026-05-24T19:20:52.747Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1779650439246",
+    "timestamp": "2026-05-24T19:20:39.246Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for WEST-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
     "type": "warning"
   },
   {
-    "id": "1778921585266",
-    "timestamp": "2026-05-16T08:53:05.267Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
+    "id": "1779650439242",
+    "timestamp": "2026-05-24T19:20:39.242Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: WEST.",
     "type": "warning"
   },
   {
-    "id": "1778921585261",
-    "timestamp": "2026-05-16T08:53:05.261Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778921575359",
-    "timestamp": "2026-05-16T08:52:55.359Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "warning"
-  },
-  {
-    "id": "1778921553912",
-    "timestamp": "2026-05-16T08:52:33.912Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
+    "id": "1779650362360",
+    "timestamp": "2026-05-24T19:19:22.360Z",
+    "message": "[API: ADMIN/IOT] Traffic density forcefully updated to MEDIUM for EAST lane. Adjusting base timing.",
     "type": "info"
   },
   {
-    "id": "1778920177529",
-    "timestamp": "2026-05-16T08:29:37.529Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1778920177526",
-    "timestamp": "2026-05-16T08:29:37.526Z",
-    "message": "Emergency override DEACTIVATED",
-    "type": "info"
-  },
-  {
-    "id": "1778920176073",
-    "timestamp": "2026-05-16T08:29:36.073Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1778920175711",
-    "timestamp": "2026-05-16T08:29:35.711Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778920148138",
-    "timestamp": "2026-05-16T08:29:08.138Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1778920148134",
-    "timestamp": "2026-05-16T08:29:08.134Z",
-    "message": "Emergency override DEACTIVATED",
-    "type": "info"
-  },
-  {
-    "id": "1778920145695",
-    "timestamp": "2026-05-16T08:29:05.695Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778920145688",
-    "timestamp": "2026-05-16T08:29:05.688Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778920112437",
-    "timestamp": "2026-05-16T08:28:32.437Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1778920099515",
-    "timestamp": "2026-05-16T08:28:19.515Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1778920099511",
-    "timestamp": "2026-05-16T08:28:19.511Z",
-    "message": "Emergency override DEACTIVATED",
-    "type": "info"
-  },
-  {
-    "id": "1778920099243",
-    "timestamp": "2026-05-16T08:28:19.243Z",
-    "message": "Emergency alert sent to City General Hospital: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1778920098553",
-    "timestamp": "2026-05-16T08:28:18.553Z",
-    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
-    "type": "warning"
-  },
-  {
-    "id": "1778920054797",
-    "timestamp": "2026-05-16T08:27:34.797Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778920024787",
-    "timestamp": "2026-05-16T08:27:04.787Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778920024782",
-    "timestamp": "2026-05-16T08:27:04.782Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778920016317",
-    "timestamp": "2026-05-16T08:26:56.317Z",
-    "message": "Redundant acoustic trigger gracefully ignored due to active traffic lock.",
-    "type": "info"
-  },
-  {
-    "id": "1778920016312",
-    "timestamp": "2026-05-16T08:26:56.313Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778920013227",
-    "timestamp": "2026-05-16T08:26:53.227Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from north. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778920013221",
-    "timestamp": "2026-05-16T08:26:53.221Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778920010058",
-    "timestamp": "2026-05-16T08:26:50.058Z",
-    "message": "Traffic density forcefully set to MEDIUM for north",
-    "type": "info"
-  },
-  {
-    "id": "1778918892390",
-    "timestamp": "2026-05-16T08:08:12.390Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778918862374",
-    "timestamp": "2026-05-16T08:07:42.374Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from east. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778918862365",
-    "timestamp": "2026-05-16T08:07:42.365Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778918635853",
-    "timestamp": "2026-05-16T08:03:55.853Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1778918635848",
-    "timestamp": "2026-05-16T08:03:55.848Z",
-    "message": "Emergency override DEACTIVATED",
-    "type": "info"
-  },
-  {
-    "id": "1778918635176",
-    "timestamp": "2026-05-16T08:03:55.176Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
-    "type": "info"
-  },
-  {
-    "id": "1778918607527",
-    "timestamp": "2026-05-16T08:03:27.527Z",
-    "message": "Manual Override Cancelled. Restoring predictive/normal control.",
-    "type": "info"
-  },
-  {
-    "id": "1778918607524",
-    "timestamp": "2026-05-16T08:03:27.524Z",
-    "message": "Emergency override DEACTIVATED",
-    "type": "info"
-  },
-  {
-    "id": "1778918605160",
-    "timestamp": "2026-05-16T08:03:25.160Z",
-    "message": "ACOUSTIC TRIGGER: Verified siren detected from south. Corridor active on real node (JUNC-01).",
-    "type": "warning"
-  },
-  {
-    "id": "1778918605155",
-    "timestamp": "2026-05-16T08:03:25.155Z",
-    "message": "Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor.",
-    "type": "warning"
-  },
-  {
-    "id": "1778918274860",
-    "timestamp": "2026-05-16T07:57:54.860Z",
-    "message": "AMBULANCE PASSED: Active corridor dismantled. Re-instating normalized flow cycle.",
+    "id": "1779650354942",
+    "timestamp": "2026-05-24T19:19:14.942Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
     "type": "info"
   }
 ]

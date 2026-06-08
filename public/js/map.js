@@ -645,7 +645,7 @@ function addAlertBox(message, type) {
     const box = document.getElementById('driverAlertsBox');
     const empty = document.getElementById('alertsEmptyState');
     const activeInstr = document.getElementById('activeInstruction');
-    const statusText = document.getElementById('ResQ BotStatusText');
+    const statusText = document.getElementById('ResQBotStatusText');
     
     if (!box) return;
     if (empty) empty.classList.add('hidden');
@@ -672,7 +672,7 @@ function addAlertBox(message, type) {
             // Animate words floating in one by one
             const words = clean.split(' ');
             activeInstr.innerHTML = words.map((w, i) =>
-                `<span class="ResQ Bot-word" style="animation-delay:${i * 0.08}s">${w}&nbsp;</span>`
+                `<span class="ResQ-Bot-word" style="animation-delay:${i * 0.08}s">${w}&nbsp;</span>`
             ).join('');
 
             // Update mascot speech bubble animation
