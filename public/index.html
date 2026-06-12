@@ -64,12 +64,12 @@
     <div class="fixed top-[40%] left-[60%] w-[30vw] h-[30vw] rounded-full bg-purple-500/10 dark:bg-purple-500/5 blur-[100px] animate-blob pointer-events-none z-0" style="animation-delay: 4s;"></div>
 
     <!-- Header -->
-    <header class="glass-panel dark:glass-panel border-b border-white/20 dark:border-slate-700/50 py-3 px-6 shadow-md z-10 hidden backdrop-blur-xl" id="mainHeader">
-        <div class="flex justify-between items-center max-w-7xl mx-auto w-full">
-            <div class="flex items-center gap-3">
+    <header class="glass-panel dark:glass-panel border-b border-white/20 dark:border-slate-700/50 py-3 px-3 sm:px-6 shadow-md z-10 hidden backdrop-blur-xl" id="mainHeader">
+        <div class="flex justify-between items-center max-w-7xl mx-auto w-full gap-2">
+            <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
                 <!-- Cute inline SVG ambulance logo - always visible -->
-                <div class="w-10 h-10 shrink-0 rounded-xl overflow-hidden flex items-center justify-center shadow-md" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-                    <svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="w-9 h-9">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-xl overflow-hidden flex items-center justify-center shadow-md" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+                    <svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 sm:w-9 sm:h-9">
                         <!-- Ambulance body -->
                         <rect x="2" y="14" width="40" height="24" rx="5" fill="#f1f5f9"/>
                         <!-- Red stripe -->
@@ -100,33 +100,33 @@
                     </svg>
                 </div>
                 <h1 class="text-xl font-bold tracking-tight hidden sm:block">Smart Ambulance Traffic Management System <span class="text-brand-500">Using IOT & Sound Detection</span></h1>
-                <h1 class="text-xl font-bold tracking-tight sm:hidden">Smart <span class="text-brand-500">Ambulance</span></h1>
+                <h1 class="text-xs xs:text-sm font-bold tracking-tight sm:hidden truncate">Smart <span class="text-brand-500">Ambulance</span></h1>
             </div>
             
-            <div class="flex items-center gap-3">
-                <span id="userRoleBadge" class="px-3 py-1 rounded-full text-sm font-medium bg-brand-100 text-brand-600 dark:bg-brand-900 dark:text-brand-100 uppercase">
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <span id="userRoleBadge" class="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-brand-100 text-brand-600 dark:bg-brand-900/30 dark:text-brand-100 uppercase">
                     Role
                 </span>
 
                 <!-- Admin-only: Create User button in navbar -->
-                <button id="navAddUserBtn" onclick="document.getElementById('addUserModal').classList.remove('hidden')" class="hidden items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition font-semibold text-sm shadow-sm shadow-brand-500/30">
-                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                <button id="navAddUserBtn" onclick="document.getElementById('addUserModal').classList.remove('hidden')" class="hidden items-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition font-semibold text-xs sm:text-sm shadow-sm shadow-brand-500/30">
+                    <i data-lucide="user-plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     <span class="hidden md:inline">Add User</span>
                 </button>
                 
-                <div class="w-px h-6 bg-slate-200 dark:bg-slate-700"></div>
+                <div class="hidden xs:block w-px h-6 bg-slate-200 dark:bg-slate-700"></div>
 
-                <button id="themeToggleBtn" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    <i data-lucide="moon" id="moonIcon" class="w-5 h-5 hidden"></i>
-                    <i data-lucide="sun" id="sunIcon" class="w-5 h-5 text-yellow-400"></i>
+                <button id="themeToggleBtn" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    <i data-lucide="moon" id="moonIcon" class="w-4 h-4 sm:w-5 sm:h-5 hidden"></i>
+                    <i data-lucide="sun" id="sunIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400"></i>
                 </button>
 
-                <button id="muteBtn" class="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 transition group" title="Toggle System Audio">
-                    <i data-lucide="volume-2" id="volIcon" class="w-5 h-5 text-slate-600 dark:text-slate-300 group-hover:text-red-500"></i>
+                <button id="muteBtn" class="p-1 sm:p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 transition group" title="Toggle System Audio">
+                    <i data-lucide="volume-2" id="volIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-600 dark:text-slate-300 group-hover:text-red-500"></i>
                 </button>
                 
-                <button id="logoutBtn" onclick="localStorage.clear(); window.location.href='/';" class="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition font-medium text-sm">
-                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                <button id="logoutBtn" onclick="localStorage.clear(); window.location.href='/';" class="flex items-center gap-1.5 px-2 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition font-medium text-xs sm:text-sm">
+                    <i data-lucide="log-out" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     <span class="hidden md:inline">Logout</span>
                 </button>
             </div>
@@ -714,9 +714,9 @@
             </div>
 
             <!-- System Logs -->
-            <div class="glass-panel dark:glass-panel rounded-2xl shadow-lg border border-white/40 dark:border-slate-700/50 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-200/50 p-5 lg:h-[400px] flex flex-col">
+            <div class="glass-panel dark:glass-panel rounded-2xl shadow-lg border border-white/40 dark:border-slate-700/50 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-brand-200/50 p-5 lg:h-auto flex flex-col">
                 <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="terminal" class="text-brand-500"></i> Event Logs</h3>
-                <div id="logsContainer" class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar font-mono text-sm bg-slate-900 text-slate-300 p-4 rounded-xl border border-slate-700 shadow-inner">
+                <div id="logsContainer" class="h-[160px] overflow-y-auto space-y-2 pr-2 custom-scrollbar font-mono text-xs bg-slate-900 text-slate-300 p-4 rounded-xl border border-slate-700 shadow-inner">
                     <!-- Logs injected here -->
                 </div>
             </div>
