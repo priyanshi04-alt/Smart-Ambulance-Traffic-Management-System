@@ -5,9 +5,9 @@
 const char* ssid     = "moto g34 5G_3702";
 const char* password = "98712356";
 
-// Updated to your current active IP
-const char* serverIp   = "10.239.10.215"; 
-const int   serverPort = 3000;
+// Updated to Render Cloud deployment
+const char* serverIp   = "resqroute-nd4f.onrender.com"; 
+const int   serverPort = 443;
 
 WebSocketsClient webSocket;
 
@@ -50,7 +50,7 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) { delay(500); Serial.print("."); }
   Serial.println("WiFi Connected!");
 
-  webSocket.begin(serverIp, serverPort, "/hardware-ws");
+  webSocket.beginSSL(serverIp, serverPort, "/hardware-ws");
   webSocket.onEvent(webSocketEvent);
   webSocket.setReconnectInterval(5000);
 }

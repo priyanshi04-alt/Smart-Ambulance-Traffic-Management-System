@@ -7,7 +7,7 @@ const char* ssid = "moto g34 5G_3702";
 const char* password = "98712356";
 
 // Server API Endpoint
-const char* serverUrl = "http://10.239.10.215:3000/api/iot/ambulance-detected";
+const char* serverUrl = "https://resqroute-nd4f.onrender.com/api/iot/ambulance-detected";
 
 const int micPin = 32;
 
