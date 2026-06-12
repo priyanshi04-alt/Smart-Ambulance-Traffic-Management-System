@@ -257,31 +257,6 @@ class TrafficController {
         }
     }
 
-    /**
-     * Hysteresis-Based Signal Stabilization
-     * Prevents signal 'flickering' by adding a temporal buffer to state transitions.
-     */
-    _calculateExecutionState(nodeId, newEta) {
-        const node = this.intersections[nodeId];
-        const prevState = node.lastPredictedState || 'NORMAL';
-        
-        let newState = 'NORMAL';
-        if (newEta < 5) newState = 'GREEN';
-        else if (newEta < 15) newState = 'PREPARE';
-        else if (newEta < 30) newState = 'READY';
-
-        // Apply Hysteresis: If we are in a higher state (e.g., GREEN), 
-        // don't drop back to a lower state (e.g., PREPARE) unless the ETA is significantly higher (+3s)
-        if (this._isStateHigher(prevState, newState)) {
-            const buffer = 3; // 3-second hysteresis window
-            if (newEta < (this._getThreshold(prevState) + buffer)) {
-                newState = prevState;
-            }
-        }
-
-        node.lastPredictedState = newState;
-        return newState;
-    }
 
     _isStateHigher(prev, next) {
         const rank = { 'NORMAL': 0, 'READY': 1, 'PREPARE': 2, 'GREEN': 3 };

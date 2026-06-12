@@ -1,5 +1,65 @@
 [
   {
+    "id": "1781263552114",
+    "timestamp": "2026-06-12T11:25:52.114Z",
+    "message": "Geo-Fenced Alert Sent [HIGH]: CRITICAL: Ambulance approaching from behind at 0km/h. Clear lane!",
+    "type": "warning"
+  },
+  {
+    "id": "1781263539908",
+    "timestamp": "2026-06-12T11:25:39.908Z",
+    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
+    "type": "info"
+  },
+  {
+    "id": "1781263527176",
+    "timestamp": "2026-06-12T11:25:27.176Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1781263527173",
+    "timestamp": "2026-06-12T11:25:27.173Z",
+    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
+    "type": "info"
+  },
+  {
+    "id": "1781263524901",
+    "timestamp": "2026-06-12T11:25:24.901Z",
+    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
+    "type": "warning"
+  },
+  {
+    "id": "1781263524897",
+    "timestamp": "2026-06-12T11:25:24.897Z",
+    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
+    "type": "warning"
+  },
+  {
+    "id": "1781263459000",
+    "timestamp": "2026-06-12T11:24:19.000Z",
+    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
+    "type": "info"
+  },
+  {
+    "id": "1781263458994",
+    "timestamp": "2026-06-12T11:24:18.994Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
+    "type": "info"
+  },
+  {
+    "id": "1781263447591",
+    "timestamp": "2026-06-12T11:24:07.591Z",
+    "message": "[ACTION: MASTER OVERRIDE] Admin forced GREEN CORRIDOR for NORTH-bound traffic across ALL nodes (JUNC-01, JUNC-02, JUNC-03).",
+    "type": "warning"
+  },
+  {
+    "id": "1781263447585",
+    "timestamp": "2026-06-12T11:24:07.585Z",
+    "message": "[API: DASHBOARD] MANUAL OVERRIDE Requested by Admin. Target direction: NORTH.",
+    "type": "warning"
+  },
+  {
     "id": "1780906312692",
     "timestamp": "2026-06-08T08:11:52.692Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
@@ -537,66 +597,6 @@
     "id": "1779650706435",
     "timestamp": "2026-05-24T19:25:06.435Z",
     "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
-    "type": "info"
-  },
-  {
-    "id": "1779650706434",
-    "timestamp": "2026-05-24T19:25:06.434Z",
-    "message": "[API: IOT] Hardware Emergency override explicitly DEACTIVATED by external system.",
-    "type": "info"
-  },
-  {
-    "id": "1779650659107",
-    "timestamp": "2026-05-24T19:24:19.107Z",
-    "message": "Message from Hospital (Apollo Life Care): \"jbjhb\"",
-    "type": "info"
-  },
-  {
-    "id": "1779650653009",
-    "timestamp": "2026-05-24T19:24:13.009Z",
-    "message": "[STATUS: CORRIDOR CLEARED] 30s hardware timeout reached for [JUNC-01]. Dismantling emergency state and restoring standard flow.",
-    "type": "info"
-  },
-  {
-    "id": "1779650644507",
-    "timestamp": "2026-05-24T19:24:04.507Z",
-    "message": "Emergency alert sent to Apollo Life Care: Emergency Response Requested",
-    "type": "info"
-  },
-  {
-    "id": "1779650637996",
-    "timestamp": "2026-05-24T19:23:57.996Z",
-    "message": "[ACTION: HARDWARE TRIGGER] Verified Acoustic Siren detected from SOUTH. Forcing GREEN CORRIDOR on physical node [JUNC-01].",
-    "type": "warning"
-  },
-  {
-    "id": "1779650637992",
-    "timestamp": "2026-05-24T19:23:57.992Z",
-    "message": "[API: IOT] Hardware FFT Siren Trigger ACTIVATED. Handing off to AutoSiren executor for south direction.",
-    "type": "warning"
-  },
-  {
-    "id": "1779650462111",
-    "timestamp": "2026-05-24T19:21:02.111Z",
-    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
-    "type": "info"
-  },
-  {
-    "id": "1779650462107",
-    "timestamp": "2026-05-24T19:21:02.107Z",
-    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
-    "type": "info"
-  },
-  {
-    "id": "1779650452750",
-    "timestamp": "2026-05-24T19:20:52.750Z",
-    "message": "[ACTION: MASTER RELEASE] Admin cancelled Manual Override. System restoring normal cyclic control across ALL nodes.",
-    "type": "info"
-  },
-  {
-    "id": "1779650452747",
-    "timestamp": "2026-05-24T19:20:52.747Z",
-    "message": "[API: DASHBOARD] MANUAL OVERRIDE DEACTIVATED by Admin.",
     "type": "info"
   }
 ]

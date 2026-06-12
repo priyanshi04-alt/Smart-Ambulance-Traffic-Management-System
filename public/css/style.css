@@ -182,6 +182,16 @@
     overflow-y: auto;
 }
 
+/* Hide scrollbar UI while preserving scroll functionality */
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, Opera */
+}
+
 /* Full screen dashboard fill */
 #mainContent {
     display: flex;
