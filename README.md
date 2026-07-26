@@ -9,9 +9,34 @@
 
 ---
 
-## 📸 Preview
+## 📸 System Preview
 
-![Dashboard Preview](driver_nearest_hospital.png)
+### 🚦 Admin Traffic Control Dashboard
+
+Real-time traffic signal monitoring, emergency override control, and city-level ambulance tracking.
+
+![Admin Dashboard](assets/admin-dashboard.png)
+
+
+### 🚑 Driver Navigation Dashboard
+
+Live ambulance route visualization, navigation controls, and real-time activity logs.
+
+![Driver Dashboard](assets/driver-dashboard.png)
+
+
+### 🏥 Hospital Emergency Dashboard
+
+Live ambulance ETA, patient information, emergency feed, and hospital readiness monitoring.
+
+![Hospital Dashboard](assets/hospital-dashboard.png)
+
+
+### 🔌 IoT Hardware Prototype
+
+ESP32-based traffic signal controller with KY-037 sound sensor and LED indicators.
+
+![ESP32 Prototype](assets/esp32-prototype.png)
 
 ---
 
