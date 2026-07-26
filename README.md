@@ -1,5 +1,10 @@
 # 🚑 Smart Ambulance Traffic Management System
 
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![Express.js](https://img.shields.io/badge/Express.js-5-black)
+![Socket.io](https://img.shields.io/badge/Socket.io-Realtime-blue)
+![ESP32](https://img.shields.io/badge/Hardware-ESP32-orange)
+
 > A real-time, IoT-integrated web system that autonomously creates a **Green Corridor** for ambulances by overriding traffic signals, dynamically rerouting around congestion, and providing voice-assisted ResQ Bot navigation.
 
 ---
