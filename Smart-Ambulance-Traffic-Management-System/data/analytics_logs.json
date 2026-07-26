@@ -1,0 +1,434 @@
+[
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1774785974024,
+    "date": "2026-03-29T12:06:14.024Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1774786234829,
+    "date": "2026-03-29T12:10:34.829Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1774786651621,
+    "date": "2026-03-29T12:17:31.621Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1774845993991,
+    "date": "2026-03-30T04:46:33.991Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1775449520321,
+    "date": "2026-04-06T04:25:20.321Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1776589722913,
+    "date": "2026-04-19T09:08:42.913Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1777465786745,
+    "date": "2026-04-29T12:29:46.745Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778434871528,
+    "date": "2026-05-10T17:41:11.528Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778477569718,
+    "date": "2026-05-11T05:32:49.718Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778477635827,
+    "date": "2026-05-11T05:33:55.827Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778479768094,
+    "date": "2026-05-11T06:09:28.094Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778481012230,
+    "date": "2026-05-11T06:30:12.230Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778493868201,
+    "date": "2026-05-11T10:04:28.201Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778493992847,
+    "date": "2026-05-11T10:06:32.847Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778581735177,
+    "date": "2026-05-12T10:28:55.177Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778589946891,
+    "date": "2026-05-12T12:45:46.891Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778591751274,
+    "date": "2026-05-12T13:15:51.274Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778591918867,
+    "date": "2026-05-12T13:18:38.867Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778592033689,
+    "date": "2026-05-12T13:20:33.689Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778592103932,
+    "date": "2026-05-12T13:21:43.932Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778592165985,
+    "date": "2026-05-12T13:22:45.985Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778592315623,
+    "date": "2026-05-12T13:25:15.623Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778596235392,
+    "date": "2026-05-12T14:30:35.392Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778604353976,
+    "date": "2026-05-12T16:45:53.976Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778604720767,
+    "date": "2026-05-12T16:52:00.767Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778605265949,
+    "date": "2026-05-12T17:01:05.949Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778607356840,
+    "date": "2026-05-12T17:35:56.840Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778607414958,
+    "date": "2026-05-12T17:36:54.958Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778608005667,
+    "date": "2026-05-12T17:46:45.667Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778609562580,
+    "date": "2026-05-12T18:12:42.580Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778609622070,
+    "date": "2026-05-12T18:13:42.070Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778686758758,
+    "date": "2026-05-13T15:39:18.758Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778686941797,
+    "date": "2026-05-13T15:42:21.797Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778687088031,
+    "date": "2026-05-13T15:44:48.031Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778687586079,
+    "date": "2026-05-13T15:53:06.079Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778690751046,
+    "date": "2026-05-13T16:45:51.046Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778739722610,
+    "date": "2026-05-14T06:22:02.610Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778852991084,
+    "date": "2026-05-15T13:49:51.084Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778920098557,
+    "date": "2026-05-16T08:28:18.557Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778920176077,
+    "date": "2026-05-16T08:29:36.077Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1778921603874,
+    "date": "2026-05-16T08:53:23.874Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1779007977004,
+    "date": "2026-05-17T08:52:57.004Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1779008143230,
+    "date": "2026-05-17T08:55:43.230Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1779008238787,
+    "date": "2026-05-17T08:57:18.787Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1779008337843,
+    "date": "2026-05-17T08:58:57.843Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1779515851116,
+    "date": "2026-05-23T05:57:31.116Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1780904337179,
+    "date": "2026-06-08T07:38:57.179Z"
+  },
+  {
+    "ambulance_id": "AMB-01",
+    "action_type": "CIVILIAN_GEO_ALERT",
+    "civilian_id": "CIV-001",
+    "priority": "HIGH",
+    "distance_m": "75.1",
+    "timestamp": 1781263552117,
+    "date": "2026-06-12T11:25:52.117Z"
+  }
+]
