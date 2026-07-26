@@ -15,7 +15,7 @@
 
 The Admin Dashboard provides centralized traffic management with real-time intersection monitoring, emergency signal override control, city-level ambulance tracking, and system administration features.
 
-![Admin Dashboard](Smart-Ambulance-Traffic-Management-System/assets/admin-dashboard.png)
+![Admin Dashboard](assets/admin-dashboard.png)
 
 ---
 
@@ -23,7 +23,7 @@ The Admin Dashboard provides centralized traffic management with real-time inter
 
 The Driver Dashboard provides live ambulance navigation, route visualization, destination selection, and real-time activity monitoring to assist emergency vehicle movement.
 
-![Driver Dashboard](Smart-Ambulance-Traffic-Management-System/assets/driver-dashboard.png)
+![Driver Dashboard](assets/driver-dashboard.png)
 
 ---
 
@@ -31,7 +31,7 @@ The Driver Dashboard provides live ambulance navigation, route visualization, de
 
 The Hospital Dashboard enables medical teams to monitor ambulance ETA, emergency alerts, patient information, bed availability, and hospital readiness before patient arrival.
 
-![Hospital Dashboard](Smart-Ambulance-Traffic-Management-System/assets/hospital-dashboard.png)
+![Hospital Dashboard](assets/hospital-dashboard.png)
 
 ---
 
@@ -39,7 +39,7 @@ The Hospital Dashboard enables medical teams to monitor ambulance ETA, emergency
 
 The hardware prototype uses ESP32, KY-037 sound sensor, and LED traffic signals to detect ambulance sirens and trigger emergency traffic management actions.
 
-![ESP32 Prototype](Smart-Ambulance-Traffic-Management-System/assets/esp32-prototype.png)
+![ESP32 Prototype](assets/esp32-prototype.png)
 ---
 
 ## ✨ Features
