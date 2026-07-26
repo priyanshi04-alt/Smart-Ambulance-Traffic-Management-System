@@ -14,7 +14,17 @@ You can find these images directly in your project folder as `simple_dfd_white.p
 
 ---
 
+---
+
 ## 2. ER Diagram (Core Database Entities) - Solid White PNG Image
 *This diagram shows the 4 core database tables, their keys, and how they connect.*
 
 ![Simple ER Diagram with White Background](simple_er_white.png)
+
+---
+
+## 3. Signal Phase Machine (State-Transition Diagram - FIG. 5)
+*This diagram shows the transitions between the NORMAL, READY, PREPARE, and GREEN states with hysteresis and temporal buffers.*
+
+![Simple State Machine Diagram with White Background](signal_phase_machine_bw.png)
+
